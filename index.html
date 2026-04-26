@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ahmad Saleh Tuffaha — CV</title>
+<title>Ahmad Saleh TUFFAHA — CV</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500&family=Lora:ital,wght@0,400;0,600;1,400&family=Raleway:wght@300;400;500&family=Josefin+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -63,11 +63,12 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--ink);font-
 .main{padding:2.5rem 1.5rem 3rem 2rem;min-width:0;}
 .tl-wrap{position:relative;width:100%;margin-top:2rem;}
 canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
-.tl-card{position:absolute;background:var(--white);border-radius:9px;padding:.6rem .8rem;cursor:pointer;transition:box-shadow .2s,transform .2s;z-index:1;border:1px solid;}
+.tl-card{position:absolute;background:var(--white);border-radius:9px;padding:.6rem .8rem;cursor:pointer;transition:box-shadow .2s,transform .2s;z-index:1;border:1px solid;overflow:hidden;}
+.tl-card-role{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .tl-card:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.08);}
 .tl-card.left{text-align:right;}
 .tl-card.right{text-align:left;}
-.tl-card-role{font-family:var(--font-display);font-size:.78rem;color:var(--ink);line-height:1.2;margin-bottom:.1rem;}
+.tl-card-role{font-family:var(--font-display);font-size:.7rem;color:var(--ink);line-height:1.2;margin-bottom:.1rem;}
 .tl-card-org{font-size:.6rem;font-weight:500;}
 .tl-hint{font-size:.52rem;color:var(--ink-ghost);margin-top:.2rem;}
 
@@ -109,8 +110,9 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
 
   .tl-wrap{margin-top:1.35rem;}
   .tl-card{padding:.72rem .78rem;border-radius:8px;box-shadow:0 3px 14px rgba(0,0,0,.05);}
-  .tl-card.left,.tl-card.right{text-align:left;}
-  .tl-card-role{font-size:.86rem;}
+  .tl-card.left{text-align:right;}
+  .tl-card.right{text-align:left;}
+  .tl-card-role{font-size:.54rem;}
   .tl-card-org{font-size:.68rem;}
   .tl-hint{font-size:.58rem;}
 
@@ -133,7 +135,7 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
   <p class="hero-label">Curriculum Vitae</p>
   <h1 class="hero-name">
     <span>Ahmad Saleh</span>
-    <span>Tuffaha</span>
+    <span>TUFFAHA</span>
   </h1>
   <p class="hero-sub">Istanbul, Turkey</p>
   <p class="hero-bio">Versatile professional with 20+ years of cross-sector experience in business development, operations, educational consultancy, humanitarian work, and creative design. Known for building systems and processes that transform how organizations operate — including Excel solutions that turn complex workflows into effortless ones. Equally strong in client-facing roles and behind-the-scenes infrastructure. Fluent English–Arabic translator with deep cross-cultural communication skills. Driven by adaptability and a passion for meaningful impact.</p>
@@ -245,9 +247,9 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
 <script>
 const GHOST='#a0a09a',SPINE_C='#d8d4cc',INK='#1a1a18';
 const COL={edu:'#c0392b',human:'#2471a3',biz:'#1e8449',create:'#6c3483',sales:'#d35400',trans:'#b7950b'};
-const MIN=2003,MAX=2026,TOP=60,PY=68;
+const MIN=2003,MAX=2026,TOP=60,PY=78;
 const D_INNER=34,D_OUTER=74,SERIF=10,CARD_GAP=9;
-const INNER_W=118,OUTER_W=108;
+const INNER_W=150,OUTER_W=132;
 
 function yOf(yr){return TOP+(MAX-yr)*PY;}
 
@@ -302,17 +304,15 @@ function handleClose(e){if(e.target===e.currentTarget)closeCard();}
 
 function resolveOverlaps(group){
   group.sort(function(a,b){return a.idealY-b.idealY;});
-  for(var iter=0;iter<60;iter++){
-    var moved=false;
-    for(var i=1;i<group.length;i++){
-      var a=group[i-1],b=group[i];
-      var gap=a.cardH/2+b.cardH/2+8;
-      if(b.cardY-a.cardY<gap){
-        var push=(gap-(b.cardY-a.cardY))/2;
-        a.cardY-=push;b.cardY+=push;moved=true;
-      }
+  for(var i=0;i<group.length;i++){
+    var item=group[i];
+    if(i===0){
+      item.cardY=Math.max(item.idealY,item.cardH/2+18);
+    }else{
+      var prev=group[i-1];
+      var minY=prev.cardY+prev.cardH/2+item.cardH/2+12;
+      item.cardY=Math.max(item.idealY,minY);
     }
-    if(!moved)break;
   }
 }
 
@@ -321,10 +321,10 @@ function render(){
   if(!W)return;
   var isMobile=W<620;
   var totalH=TOP+(MAX-MIN)*PY+80;
+  var cx=Math.round(W/2);
   wrap.style.height=totalH+'px';
   canvas.width=W;canvas.height=totalH;
   ctx.clearRect(0,0,W,totalH);
-  var cx=isMobile?28:Math.round(W/2);
 
   ctx.strokeStyle=SPINE_C;ctx.lineWidth=1;
   ctx.beginPath();ctx.moveTo(cx,TOP-20);ctx.lineTo(cx,totalH);ctx.stroke();
@@ -355,12 +355,28 @@ function render(){
     groups[k].push(j);
   });
   Object.values(groups).forEach(resolveOverlaps);
+  var bottom=Math.max.apply(null,jobs.map(function(j){return j.cardY+j.cardH/2;}))+60;
+  if(bottom>totalH){
+    totalH=bottom;wrap.style.height=totalH+'px';canvas.height=totalH;
+    ctx.clearRect(0,0,W,totalH);
+    ctx.strokeStyle=SPINE_C;ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(cx,TOP-20);ctx.lineTo(cx,totalH);ctx.stroke();
+    for(var yy=MIN;yy<=MAX;yy++){
+      var ky2=yOf(yy),maj2=yy%5===0||yy===MIN||yy===MAX;
+      ctx.strokeStyle=maj2?'#c0bdb5':SPINE_C;ctx.lineWidth=maj2?1:0.5;
+      ctx.beginPath();ctx.moveTo(cx-(maj2?6:4),ky2);ctx.lineTo(cx+(maj2?6:4),ky2);ctx.stroke();
+      ctx.fillStyle=maj2?'#888780':GHOST;ctx.font=(maj2?'500 11px':'400 9px')+' "DM Sans",sans-serif';ctx.textAlign='center';
+      ctx.fillText(yy===MAX?'now':yy,cx,ky2-6);
+    }
+  }
 
   jobs.forEach(function(j){
-    var dist=isMobile?18:(j.depth==='inner'?D_INNER:D_OUTER);
-    var bx=isMobile?cx+dist:(j.side==='L'?cx-dist:cx+dist);
-    var cardW=isMobile?Math.max(210,W-76):(j.depth==='inner'?INNER_W:OUTER_W);
-    var sf=isMobile?8:(j.side==='L'?SERIF:-SERIF);
+    var dist=isMobile?(j.depth==='inner'?30:50):(j.depth==='inner'?D_INNER:D_OUTER);
+    var bx=j.side==='L'?cx-dist:cx+dist;
+    var available=j.side==='L'?bx-CARD_GAP-10:W-(bx+CARD_GAP)-10;
+    var desired=isMobile?(j.depth==='inner'?126:106):(j.depth==='inner'?INNER_W:OUTER_W);
+    var cardW=Math.max(82,Math.min(desired,available));
+    var sf=j.side==='L'?SERIF:-SERIF;
     var el=document.getElementById(j.id);
 
     ctx.strokeStyle=j.col;ctx.lineWidth=2;
@@ -380,8 +396,7 @@ function render(){
       ctx.setLineDash([]);
     }
 
-    if(isMobile){el.style.left=(bx+CARD_GAP)+'px';el.style.right='auto';}
-    else if(j.side==='L'){el.style.right=(W-bx+CARD_GAP)+'px';el.style.left='auto';}
+    if(j.side==='L'){el.style.right=(W-bx+CARD_GAP)+'px';el.style.left='auto';}
     else{el.style.left=(bx+CARD_GAP)+'px';el.style.right='auto';}
     el.style.width=cardW+'px';
     el.style.top=(j.cardY-j.cardH/2)+'px';
