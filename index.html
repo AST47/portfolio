@@ -18,11 +18,6 @@
 }
 body{font-family:var(--font-body);background:var(--cream);color:var(--ink);font-size:var(--fs-base);}
 
-[contenteditable]{outline:none;cursor:text;border-radius:3px;transition:background .15s;}
-[contenteditable]:hover{background:rgba(192,57,43,.06);}
-[contenteditable]:focus{background:rgba(192,57,43,.09);box-shadow:0 0 0 1.5px rgba(192,57,43,.25);}
-
-.edit-hint{font-size:.6rem;color:var(--ink-ghost);text-align:center;padding:.4rem;letter-spacing:.05em;background:rgba(192,57,43,.04);border-bottom:1px solid var(--line);}
 
 /* HERO */
 .hero{background:var(--ink);padding:4.5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden;}
@@ -90,45 +85,64 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
 .exp-div{height:1px;background:var(--line);margin-bottom:1rem;}
 .exp-desc{font-size:.9rem;color:var(--ink-soft);line-height:1.9;}
 
-/* SETTINGS BUTTON */
-.settings-btn{position:fixed;bottom:1.5rem;right:1.5rem;width:42px;height:42px;border-radius:50%;background:var(--ink);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.2);transition:transform .2s;}
-.settings-btn:hover{transform:rotate(30deg);}
-.settings-btn svg{width:18px;height:18px;}
 
-/* SETTINGS PANEL */
-.settings-panel{position:fixed;bottom:4.5rem;right:1.5rem;width:260px;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:1.25rem;z-index:300;box-shadow:0 8px 32px rgba(0,0,0,.12);display:none;animation:slideUp .2s ease;}
-.settings-panel.open{display:block;}
-@keyframes slideUp{from{transform:translateY(10px);opacity:0;}to{transform:translateY(0);opacity:1;}}
-.sp-title{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-ghost);margin-bottom:1rem;}
-.sp-row{margin-bottom:.9rem;}
-.sp-label{font-size:.7rem;color:var(--ink-soft);margin-bottom:.35rem;display:block;}
-.sp-row input[type=range]{width:100%;accent-color:var(--edu);}
-.sp-row select{width:100%;font-size:.72rem;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--cream);color:var(--ink);font-family:var(--font-body);}
-.color-swatches{display:flex;gap:6px;flex-wrap:wrap;}
-.swatch{width:20px;height:20px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform .15s;}
-.swatch:hover{transform:scale(1.15);}
-.swatch.active{border-color:var(--ink);}
-.sp-divider{height:1px;background:var(--line);margin:.75rem 0;}
+
+/* MOBILE LAYOUT */
+@media (max-width: 760px){
+  body{font-size:15px;overflow-x:hidden;}
+  .hero{padding:3.25rem 1.15rem 2.75rem;}
+  .hero::before{width:260px;height:260px;top:-90px;right:-110px;}
+  .hero-label{font-size:.58rem;margin-bottom:1rem;}
+  .hero-name{font-size:clamp(2.35rem,16vw,4rem);}
+  .hero-sub{margin-bottom:1.25rem;}
+  .hero-bio{font-size:.78rem;line-height:1.75;padding-left:.85rem;margin-bottom:1.35rem;}
+  .tag{font-size:.62rem;padding:5px 10px;}
+
+  .page{display:flex;flex-direction:column;max-width:none;width:100%;}
+  .main{order:1;padding:1.75rem 1rem 2.25rem;overflow:hidden;}
+  .sidebar{order:2;border-right:0;border-top:1px solid var(--line);padding:2rem 1.1rem;background:var(--white);display:grid;grid-template-columns:1fr;gap:1.65rem;}
+  .sidebar > div{min-width:0;}
+  .sec-label{font-size:10px;margin-bottom:.8rem;}
+  .ct,.cl,.skill-name,.lang-name{font-size:.76rem;}
+  .cert-item,.leg-row,.lang-level{font-size:.7rem;}
+  .skill-track{height:3px;}
+
+  .tl-wrap{margin-top:1.35rem;}
+  .tl-card{padding:.72rem .78rem;border-radius:8px;box-shadow:0 3px 14px rgba(0,0,0,.05);}
+  .tl-card.left,.tl-card.right{text-align:left;}
+  .tl-card-role{font-size:.86rem;}
+  .tl-card-org{font-size:.68rem;}
+  .tl-hint{font-size:.58rem;}
+
+  .overlay{padding:.85rem;align-items:flex-end;}
+  .exp-card{max-height:86vh;border-radius:14px 14px 0 0;padding:2.2rem 1.2rem 1.35rem;}
+  .exp-close{top:.8rem;right:.8rem;}
+  .exp-desc{font-size:.84rem;line-height:1.75;}
+}
+
+@media (min-width: 520px) and (max-width: 760px){
+  .sidebar{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+
 </style>
 </head>
 <body>
 
-<div class="edit-hint">✏️ click any text to edit · ⚙️ settings (bottom right) to change fonts, colors & size</div>
 
 <div class="hero">
-  <p class="hero-label" contenteditable>Curriculum Vitae</p>
+  <p class="hero-label">Curriculum Vitae</p>
   <h1 class="hero-name">
-    <span contenteditable>Ahmad Saleh</span>
-    <span contenteditable>Tuffaha</span>
+    <span>Ahmad Saleh</span>
+    <span>Tuffaha</span>
   </h1>
-  <p class="hero-sub" contenteditable>Istanbul, Turkey</p>
-  <p class="hero-bio" contenteditable>Versatile professional with 20+ years of cross-sector experience in business development, operations, educational consultancy, humanitarian work, and creative design. Known for building systems and processes that transform how organizations operate — including Excel solutions that turn complex workflows into effortless ones. Equally strong in client-facing roles and behind-the-scenes infrastructure. Fluent English–Arabic translator with deep cross-cultural communication skills. Driven by adaptability and a passion for meaningful impact.</p>
+  <p class="hero-sub">Istanbul, Turkey</p>
+  <p class="hero-bio">Versatile professional with 20+ years of cross-sector experience in business development, operations, educational consultancy, humanitarian work, and creative design. Known for building systems and processes that transform how organizations operate — including Excel solutions that turn complex workflows into effortless ones. Equally strong in client-facing roles and behind-the-scenes infrastructure. Fluent English–Arabic translator with deep cross-cultural communication skills. Driven by adaptability and a passion for meaningful impact.</p>
   <div class="hero-tags">
-    <span class="tag" contenteditable>Business Development</span>
-    <span class="tag" contenteditable>Operations</span>
-    <span class="tag" contenteditable>Humanitarian Work</span>
-    <span class="tag" contenteditable>Creative Design</span>
-    <span class="tag" contenteditable>EN–AR Translation</span>
+    <span class="tag">Business Development</span>
+    <span class="tag">Operations</span>
+    <span class="tag">Humanitarian Work</span>
+    <span class="tag">Creative Design</span>
+    <span class="tag">EN–AR Translation</span>
   </div>
 </div>
 
@@ -139,11 +153,11 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
       <p class="sec-label">Contact</p>
       <div class="contact-item">
         <svg class="ci" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#a0a09a" stroke-width="1.2"/><path d="M1 5l7 5 7-5" stroke="#a0a09a" stroke-width="1.2"/></svg>
-        <span class="ct" contenteditable>salehzuh@gmail.com</span>
+        <span class="ct">salehzuh@gmail.com</span>
       </div>
       <div class="contact-item">
         <svg class="ci" viewBox="0 0 16 16" fill="none"><path d="M8 1a5.5 5.5 0 00-5.5 5.5c0 3.5 5.5 9 5.5 9s5.5-5.5 5.5-9A5.5 5.5 0 008 1zm0 7.5a2 2 0 110-4 2 2 0 010 4z" stroke="#a0a09a" stroke-width="1.2"/></svg>
-        <span class="ct" contenteditable>+90 552 540 73 77</span>
+        <span class="ct">+90 552 540 73 77</span>
       </div>
       <div class="contact-item">
         <svg class="ci" viewBox="0 0 16 16" fill="none"><path d="M13.5 2.5C12 1 10 0 8 0 3.6 0 0 3.6 0 8c0 1.4.4 2.8 1 4L0 16l4.2-1.1C5.4 15.6 6.7 16 8 16c4.4 0 8-3.6 8-8 0-2-.8-4-2.5-5.5zM8 14.7c-1.2 0-2.4-.3-3.4-.9l-.2-.1-2.5.6.7-2.4-.2-.3C1.8 10.5 1.4 9.3 1.4 8 1.4 4.4 4.4 1.4 8 1.4c1.7 0 3.3.7 4.5 1.9 1.2 1.2 1.9 2.8 1.9 4.5-.1 3.7-3.1 6.9-6.4 6.9zm3.8-5.1c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1l-.6.7c-.1.1-.2.1-.4.1-.2-.1-.8-.3-1.5-1-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.4l.3-.4c.1-.1.1-.2.2-.3 0-.1 0-.2-.1-.3l-.6-1.5c-.2-.4-.3-.4-.5-.4h-.4c-.1 0-.4.1-.6.3C5 5.8 4.5 6.3 4.5 7.4s.8 2.2.9 2.4c.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1z" fill="#a0a09a"/></svg>
@@ -157,52 +171,52 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
 
     <div>
       <p class="sec-label">Skills</p>
-      <div class="skill-row"><div class="skill-name"><span contenteditable>Excel & Data</span><span contenteditable>95%</span></div><div class="skill-track"><div class="skill-fill" data-w="95"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span contenteditable>Operations</span><span contenteditable>90%</span></div><div class="skill-track"><div class="skill-fill" data-w="90"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span contenteditable>Adobe Suite</span><span contenteditable>88%</span></div><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span contenteditable>CRM Systems</span><span contenteditable>85%</span></div><div class="skill-track"><div class="skill-fill" data-w="85"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span contenteditable>Digital Marketing</span><span contenteditable>82%</span></div><div class="skill-track"><div class="skill-fill" data-w="82"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span contenteditable>AutoCAD</span><span contenteditable>70%</span></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Excel & Data</span><span>95%</span></div><div class="skill-track"><div class="skill-fill" data-w="95"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Operations</span><span>90%</span></div><div class="skill-track"><div class="skill-fill" data-w="90"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Adobe Suite</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>CRM Systems</span><span>85%</span></div><div class="skill-track"><div class="skill-fill" data-w="85"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Digital Marketing</span><span>82%</span></div><div class="skill-track"><div class="skill-fill" data-w="82"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>AutoCAD</span><span>70%</span></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
     </div>
 
     <div>
       <p class="sec-label">Languages</p>
-      <div class="lang-row"><div class="lang-top"><span class="lang-name" contenteditable>Arabic</span><span class="lang-level" contenteditable>Native</span></div><div class="lang-dots"><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div></div></div>
-      <div class="lang-row"><div class="lang-top"><span class="lang-name" contenteditable>English</span><span class="lang-level" contenteditable>Fluent</span></div><div class="lang-dots"><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot"></div></div></div>
-      <div class="lang-row"><div class="lang-top"><span class="lang-name" contenteditable>Turkish</span><span class="lang-level" contenteditable>Intermediate</span></div><div class="lang-dots"><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot"></div><div class="lang-dot"></div></div></div>
+      <div class="lang-row"><div class="lang-top"><span class="lang-name">Arabic</span><span class="lang-level">Native</span></div><div class="lang-dots"><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div></div></div>
+      <div class="lang-row"><div class="lang-top"><span class="lang-name">English</span><span class="lang-level">Fluent</span></div><div class="lang-dots"><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot"></div></div></div>
+      <div class="lang-row"><div class="lang-top"><span class="lang-name">Turkish</span><span class="lang-level">Intermediate</span></div><div class="lang-dots"><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot"></div><div class="lang-dot"></div></div></div>
     </div>
 
     <div>
       <p class="sec-label">Sector Legend</p>
       <div class="legend">
-        <div class="leg-row"><div class="leg-dot" style="background:var(--edu)"></div><span contenteditable>Education & Ops</span></div>
-        <div class="leg-row"><div class="leg-dot" style="background:var(--human)"></div><span contenteditable>Humanitarian</span></div>
-        <div class="leg-row"><div class="leg-dot" style="background:var(--biz)"></div><span contenteditable>Business</span></div>
-        <div class="leg-row"><div class="leg-dot" style="background:var(--create)"></div><span contenteditable>Creative & Design</span></div>
-        <div class="leg-row"><div class="leg-dot" style="background:var(--sales)"></div><span contenteditable>Sales & Retail</span></div>
-        <div class="leg-row"><div class="leg-dot" style="background:var(--trans)"></div><span contenteditable>Translation</span></div>
+        <div class="leg-row"><div class="leg-dot" style="background:var(--edu)"></div><span>Education & Ops</span></div>
+        <div class="leg-row"><div class="leg-dot" style="background:var(--human)"></div><span>Humanitarian</span></div>
+        <div class="leg-row"><div class="leg-dot" style="background:var(--biz)"></div><span>Business</span></div>
+        <div class="leg-row"><div class="leg-dot" style="background:var(--create)"></div><span>Creative & Design</span></div>
+        <div class="leg-row"><div class="leg-dot" style="background:var(--sales)"></div><span>Sales & Retail</span></div>
+        <div class="leg-row"><div class="leg-dot" style="background:var(--trans)"></div><span>Translation</span></div>
       </div>
     </div>
 
     <div>
       <p class="sec-label">Certifications & Training</p>
-      <div class="cert-item"><strong contenteditable>Google Digital Garage</strong><span contenteditable>Fundamentals of Digital Marketing</span></div>
-      <div class="cert-item"><strong contenteditable>Meta</strong><span contenteditable>Certified Digital Marketing Associate</span></div>
-      <div class="cert-item"><strong contenteditable>Coursera / Meta</strong><span contenteditable>Social Media Marketing Professional</span></div>
-      <div class="cert-item"><strong contenteditable>Niuversity</strong><span contenteditable>Fundamentals of Digital Marketing</span></div>
-      <div class="cert-item"><strong contenteditable>Niuversity</strong><span contenteditable>Search Engine Optimization (SEO)</span></div>
-      <div class="cert-item"><strong contenteditable>IFRC / ICRC</strong><span contenteditable>Data Analysis</span></div>
-      <div class="cert-item"><strong contenteditable>IFRC / BRC</strong><span contenteditable>Conducting Field Survey</span></div>
-      <div class="cert-item"><strong contenteditable>IFRC</strong><span contenteditable>Logistic Inventory Control (LogIC)</span></div>
-      <div class="cert-item"><strong contenteditable>SARC</strong><span contenteditable>First Aid Basic</span></div>
-      <div class="cert-item"><strong contenteditable>SARC</strong><span contenteditable>Disaster Management Basic</span></div>
-      <div class="cert-item"><strong contenteditable>SARC</strong><span contenteditable>Neuro-Linguistic Programming (NLP)</span></div>
-      <div class="cert-item"><strong contenteditable>IFRC Online</strong><span contenteditable>Project / Programme Planning</span></div>
-      <div class="cert-item"><strong contenteditable>IFRC Online</strong><span contenteditable>Introduction to M&E</span></div>
-      <div class="cert-item"><strong contenteditable>IFRC Online</strong><span contenteditable>Emergency Needs Assessment</span></div>
-      <div class="cert-item"><strong contenteditable>IFRC Online</strong><span contenteditable>Vulnerability Assessment & Analysis</span></div>
-      <div class="cert-item"><strong contenteditable>IFRC Online</strong><span contenteditable>WORC: World of Red Cross</span></div>
-      <div class="cert-item"><strong contenteditable>Damascus University</strong><span contenteditable>Commercial Institute / Accounting</span></div>
+      <div class="cert-item"><strong>Google Digital Garage</strong><span>Fundamentals of Digital Marketing</span></div>
+      <div class="cert-item"><strong>Meta</strong><span>Certified Digital Marketing Associate</span></div>
+      <div class="cert-item"><strong>Coursera / Meta</strong><span>Social Media Marketing Professional</span></div>
+      <div class="cert-item"><strong>Niuversity</strong><span>Fundamentals of Digital Marketing</span></div>
+      <div class="cert-item"><strong>Niuversity</strong><span>Search Engine Optimization (SEO)</span></div>
+      <div class="cert-item"><strong>IFRC / ICRC</strong><span>Data Analysis</span></div>
+      <div class="cert-item"><strong>IFRC / BRC</strong><span>Conducting Field Survey</span></div>
+      <div class="cert-item"><strong>IFRC</strong><span>Logistic Inventory Control (LogIC)</span></div>
+      <div class="cert-item"><strong>SARC</strong><span>First Aid Basic</span></div>
+      <div class="cert-item"><strong>SARC</strong><span>Disaster Management Basic</span></div>
+      <div class="cert-item"><strong>SARC</strong><span>Neuro-Linguistic Programming (NLP)</span></div>
+      <div class="cert-item"><strong>IFRC Online</strong><span>Project / Programme Planning</span></div>
+      <div class="cert-item"><strong>IFRC Online</strong><span>Introduction to M&E</span></div>
+      <div class="cert-item"><strong>IFRC Online</strong><span>Emergency Needs Assessment</span></div>
+      <div class="cert-item"><strong>IFRC Online</strong><span>Vulnerability Assessment & Analysis</span></div>
+      <div class="cert-item"><strong>IFRC Online</strong><span>WORC: World of Red Cross</span></div>
+      <div class="cert-item"><strong>Damascus University</strong><span>Commercial Institute / Accounting</span></div>
     </div>
 
   </div>
@@ -221,67 +235,10 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
     <button class="exp-close" onclick="closeCard()">&#x2715;</button>
     <p class="exp-sector" id="exp-sector"></p>
     <p class="exp-period" id="exp-period"></p>
-    <p class="exp-role" id="exp-role" contenteditable></p>
-    <p class="exp-org" id="exp-org" contenteditable></p>
+    <p class="exp-role" id="exp-role"></p>
+    <p class="exp-org" id="exp-org"></p>
     <div class="exp-div"></div>
-    <p class="exp-desc" id="exp-desc" contenteditable></p>
-  </div>
-</div>
-
-<!-- SETTINGS BUTTON -->
-<button class="settings-btn" onclick="toggleSettings()" title="Design settings">
-  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-</button>
-
-<!-- SETTINGS PANEL -->
-<div class="settings-panel" id="settings-panel">
-  <p class="sp-title">Design settings</p>
-  <div class="sp-row">
-    <label class="sp-label">Accent color</label>
-    <div class="color-swatches">
-      <div class="swatch active" style="background:#c0392b" data-color="#c0392b" onclick="setAccent(this)"></div>
-      <div class="swatch" style="background:#2471a3" data-color="#2471a3" onclick="setAccent(this)"></div>
-      <div class="swatch" style="background:#1e8449" data-color="#1e8449" onclick="setAccent(this)"></div>
-      <div class="swatch" style="background:#6c3483" data-color="#6c3483" onclick="setAccent(this)"></div>
-      <div class="swatch" style="background:#b7950b" data-color="#b7950b" onclick="setAccent(this)"></div>
-      <div class="swatch" style="background:#1a1a18" data-color="#1a1a18" onclick="setAccent(this)"></div>
-    </div>
-  </div>
-  <div class="sp-divider"></div>
-  <div class="sp-row">
-    <label class="sp-label">Body font</label>
-    <select onchange="setBodyFont(this.value)">
-      <option value="'DM Sans',sans-serif">DM Sans (default)</option>
-      <option value="'Raleway',sans-serif">Raleway</option>
-      <option value="'Josefin Sans',sans-serif">Josefin Sans</option>
-      <option value="'Cormorant Garamond',serif">Cormorant Garamond</option>
-      <option value="'Lora',serif">Lora</option>
-    </select>
-  </div>
-  <div class="sp-row">
-    <label class="sp-label">Display font (headings)</label>
-    <select onchange="setDisplayFont(this.value)">
-      <option value="'Playfair Display',serif">Playfair Display (default)</option>
-      <option value="'Cormorant Garamond',serif">Cormorant Garamond</option>
-      <option value="'Lora',serif">Lora</option>
-      <option value="'Josefin Sans',sans-serif">Josefin Sans</option>
-      <option value="'Raleway',sans-serif">Raleway</option>
-    </select>
-  </div>
-  <div class="sp-divider"></div>
-  <div class="sp-row">
-    <label class="sp-label">Base font size — <span id="fs-val">14</span>px</label>
-    <input type="range" min="11" max="18" value="14" step="1" oninput="setFontSize(this.value)">
-  </div>
-  <div class="sp-row">
-    <label class="sp-label">Background</label>
-    <div class="color-swatches">
-      <div class="swatch active" style="background:#f5f2eb;border:1px solid #d8d4cc;" data-bg="#f5f2eb" onclick="setBg(this)"></div>
-      <div class="swatch" style="background:#ffffff;border:1px solid #d8d4cc;" data-bg="#ffffff" onclick="setBg(this)"></div>
-      <div class="swatch" style="background:#f0ede8;border:1px solid #d8d4cc;" data-bg="#f0ede8" onclick="setBg(this)"></div>
-      <div class="swatch" style="background:#1a1a18;" data-bg="#1a1a18" onclick="setBg(this)"></div>
-      <div class="swatch" style="background:#0f1923;" data-bg="#0f1923" onclick="setBg(this)"></div>
-    </div>
+    <p class="exp-desc" id="exp-desc"></p>
   </div>
 </div>
 
@@ -313,17 +270,15 @@ const jobs=[
 const wrap=document.getElementById('tl-wrap');
 const canvas=document.getElementById('tl-canvas');
 const ctx=canvas.getContext('2d');
-const descStore={};
 
 function buildCards(){
   jobs.forEach(j=>{
-    descStore[j.id]=j.desc;
     const el=document.createElement('div');
     el.className='tl-card '+(j.side==='L'?'left':'right');
     el.id=j.id;
     el.style.borderColor=j.col+'44';
     el.style.background=j.col+'0d';
-    el.innerHTML='<p class="tl-card-role">'+j.role+'</p><p class="tl-card-org" style="color:'+j.col+'">'+j.org+'</p><p class="tl-hint">tap to expand</p>';
+    el.innerHTML='<p class="tl-card-role">'+j.role+'</p><p class="tl-card-org" style="color:'+j.col+'">'+j.org+'</p><p class="tl-hint">tap to view</p>';
     el.addEventListener('click',function(){openCard(j);});
     wrap.appendChild(el);
   });
@@ -336,52 +291,14 @@ function openCard(j){
   document.getElementById('exp-role').textContent=j.role;
   document.getElementById('exp-org').textContent=j.org;
   document.getElementById('exp-org').style.color=j.col;
-  document.getElementById('exp-desc').textContent=descStore[j.id]||j.desc;
+  document.getElementById('exp-desc').textContent=j.desc;
   document.getElementById('overlay').dataset.jobId=j.id;
   document.getElementById('overlay').classList.add('open');
 }
 function closeCard(){
-  var id=document.getElementById('overlay').dataset.jobId;
-  if(id)descStore[id]=document.getElementById('exp-desc').textContent;
   document.getElementById('overlay').classList.remove('open');
 }
 function handleClose(e){if(e.target===e.currentTarget)closeCard();}
-
-function toggleSettings(){document.getElementById('settings-panel').classList.toggle('open');}
-
-function setAccent(el){
-  document.querySelectorAll('.swatch').forEach(function(s){s.classList.remove('active');});
-  el.classList.add('active');
-  var c=el.dataset.color;
-  document.documentElement.style.setProperty('--edu',c);
-  document.querySelectorAll('.skill-fill').forEach(function(b){b.style.background=c;});
-  document.querySelectorAll('.lang-dot.on').forEach(function(d){d.style.background=c;});
-  render();
-}
-function setBodyFont(v){
-  document.documentElement.style.setProperty('--font-body',v);
-  document.body.style.fontFamily=v;
-}
-function setDisplayFont(v){
-  document.documentElement.style.setProperty('--font-display',v);
-  document.querySelectorAll('.hero-name,.tl-card-role,.exp-role').forEach(function(el){el.style.fontFamily=v;});
-}
-function setFontSize(v){
-  document.getElementById('fs-val').textContent=v;
-  document.documentElement.style.setProperty('--fs-base',v+'px');
-  document.body.style.fontSize=v+'px';
-}
-function setBg(el){
-  document.querySelectorAll('[data-bg]').forEach(function(s){s.classList.remove('active');});
-  el.classList.add('active');
-  var bg=el.dataset.bg;
-  document.documentElement.style.setProperty('--cream',bg);
-  document.body.style.background=bg;
-  var isDark=bg==='#1a1a18'||bg==='#0f1923';
-  document.documentElement.style.setProperty('--ink',isDark?'#f5f2eb':'#1a1a18');
-  document.documentElement.style.setProperty('--ink-soft',isDark?'#c0bdb5':'#5a5a55');
-  document.documentElement.style.setProperty('--white',isDark?'#2a2a28':'#ffffff');
-}
 
 function resolveOverlaps(group){
   group.sort(function(a,b){return a.idealY-b.idealY;});
@@ -402,11 +319,12 @@ function resolveOverlaps(group){
 function render(){
   var W=wrap.offsetWidth;
   if(!W)return;
+  var isMobile=W<620;
   var totalH=TOP+(MAX-MIN)*PY+80;
   wrap.style.height=totalH+'px';
   canvas.width=W;canvas.height=totalH;
   ctx.clearRect(0,0,W,totalH);
-  var cx=Math.round(W/2);
+  var cx=isMobile?28:Math.round(W/2);
 
   ctx.strokeStyle=SPINE_C;ctx.lineWidth=1;
   ctx.beginPath();ctx.moveTo(cx,TOP-20);ctx.lineTo(cx,totalH);ctx.stroke();
@@ -439,10 +357,10 @@ function render(){
   Object.values(groups).forEach(resolveOverlaps);
 
   jobs.forEach(function(j){
-    var dist=j.depth==='inner'?D_INNER:D_OUTER;
-    var bx=j.side==='L'?cx-dist:cx+dist;
-    var cardW=j.depth==='inner'?INNER_W:OUTER_W;
-    var sf=j.side==='L'?SERIF:-SERIF;
+    var dist=isMobile?18:(j.depth==='inner'?D_INNER:D_OUTER);
+    var bx=isMobile?cx+dist:(j.side==='L'?cx-dist:cx+dist);
+    var cardW=isMobile?Math.max(210,W-76):(j.depth==='inner'?INNER_W:OUTER_W);
+    var sf=isMobile?8:(j.side==='L'?SERIF:-SERIF);
     var el=document.getElementById(j.id);
 
     ctx.strokeStyle=j.col;ctx.lineWidth=2;
@@ -462,7 +380,8 @@ function render(){
       ctx.setLineDash([]);
     }
 
-    if(j.side==='L'){el.style.right=(W-bx+CARD_GAP)+'px';el.style.left='auto';}
+    if(isMobile){el.style.left=(bx+CARD_GAP)+'px';el.style.right='auto';}
+    else if(j.side==='L'){el.style.right=(W-bx+CARD_GAP)+'px';el.style.left='auto';}
     else{el.style.left=(bx+CARD_GAP)+'px';el.style.right='auto';}
     el.style.width=cardW+'px';
     el.style.top=(j.cardY-j.cardH/2)+'px';
