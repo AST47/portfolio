@@ -63,13 +63,14 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--ink);font-
 .main{padding:2.5rem 1.5rem 3rem 2rem;min-width:0;}
 .tl-wrap{position:relative;width:100%;margin-top:2rem;}
 canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
-.tl-card{position:absolute;background:var(--white);border-radius:9px;padding:.6rem .8rem;cursor:pointer;transition:box-shadow .2s,transform .2s;z-index:1;border:1px solid;overflow:hidden;}
-.tl-card-role{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tl-card{position:absolute;background:var(--white);border-radius:9px;padding:clamp(.48rem,1.5vw,.62rem) clamp(.54rem,2vw,.82rem);cursor:pointer;transition:box-shadow .2s,transform .2s;z-index:1;border:1px solid;overflow:hidden;min-width:0;}
+.tl-card-role,.tl-card-org{white-space:nowrap;overflow:hidden;text-overflow:clip;display:block;max-width:100%;}
 .tl-card:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.08);}
 .tl-card.left{text-align:right;}
 .tl-card.right{text-align:left;}
-.tl-card-role{font-family:var(--font-display);font-size:.7rem;color:var(--ink);line-height:1.2;margin-bottom:.1rem;}
-.tl-card-org{font-size:.6rem;font-weight:500;}
+.tl-card-role{font-family:var(--font-display);font-size:clamp(.56rem,1.05vw,.76rem);color:var(--ink);line-height:1.15;margin-bottom:.12rem;}
+.tl-card-org{font-size:clamp(.48rem,.85vw,.64rem);font-weight:500;line-height:1.15;}
+.tl-card-role,.tl-card-org{font-stretch:condensed;}
 .tl-hint{font-size:.52rem;color:var(--ink-ghost);margin-top:.2rem;}
 
 /* OVERLAY */
@@ -109,12 +110,12 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
   .skill-track{height:3px;}
 
   .tl-wrap{margin-top:1.35rem;}
-  .tl-card{padding:.72rem .78rem;border-radius:8px;box-shadow:0 3px 14px rgba(0,0,0,.05);}
+  .tl-card{padding:.58rem .52rem;border-radius:8px;box-shadow:0 3px 14px rgba(0,0,0,.05);}
   .tl-card.left{text-align:right;}
   .tl-card.right{text-align:left;}
-  .tl-card-role{font-size:.54rem;}
-  .tl-card-org{font-size:.68rem;}
-  .tl-hint{font-size:.58rem;}
+  .tl-card-role{font-size:.6rem;}
+  .tl-card-org{font-size:.5rem;}
+  .tl-hint{font-size:.5rem;}
 
   .overlay{padding:.85rem;align-items:flex-end;}
   .exp-card{max-height:86vh;border-radius:14px 14px 0 0;padding:2.2rem 1.2rem 1.35rem;}
@@ -247,11 +248,39 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
 <script>
 const GHOST='#a0a09a',SPINE_C='#d8d4cc',INK='#1a1a18';
 const COL={edu:'#c0392b',human:'#2471a3',biz:'#1e8449',create:'#6c3483',sales:'#d35400',trans:'#b7950b'};
-const MIN=2003,MAX=2026,TOP=60,PY=78;
+const MIN=2003,MAX=2026,TOP=60;
 const D_INNER=34,D_OUTER=74,SERIF=10,CARD_GAP=9;
-const INNER_W=150,OUTER_W=132;
+const INNER_W=172,OUTER_W=150;
 
-function yOf(yr){return TOP+(MAX-yr)*PY;}
+function getScale(W){
+  var usable=Math.max(320,Math.min(W,920));
+  return {
+    py: Math.round(66+(usable-320)*0.026),
+    innerD: Math.round(14+(usable-320)*0.023),
+    outerD: Math.round(32+(usable-320)*0.05),
+    innerW: Math.round(150+(usable-320)*0.078),
+    outerW: Math.round(124+(usable-320)*0.068),
+    minW: W<420?118:132
+  };
+}
+var scale=getScale(760);
+function yOf(yr){return TOP+(MAX-yr)*scale.py;}
+function fitLine(el,minPx,maxPx){
+  el.style.fontSize=maxPx+'px';
+  var size=maxPx;
+  var guard=0;
+  while(size>minPx && el.scrollWidth>el.clientWidth && guard<80){
+    size-=0.35;
+    el.style.fontSize=size+'px';
+    guard++;
+  }
+}
+function fitCardText(el){
+  var role=el.querySelector('.tl-card-role');
+  var org=el.querySelector('.tl-card-org');
+  fitLine(role,3.6,parseFloat(getComputedStyle(role).fontSize));
+  fitLine(org,3.6,parseFloat(getComputedStyle(org).fontSize));
+}
 
 const jobs=[
   {id:'j4', start:2021,end:2022,side:'L',depth:'inner',sector:'Education & Ops',  col:COL.edu,   role:'Agent Relations Manager',      org:'New Horizons',                desc:'Managed communications between the company and its partners, which evolved into overseeing the data entry team and the full admissions process — including complete ownership of Bitrix24 and all its customizations.'},
@@ -319,8 +348,8 @@ function resolveOverlaps(group){
 function render(){
   var W=wrap.offsetWidth;
   if(!W)return;
-  var isMobile=W<620;
-  var totalH=TOP+(MAX-MIN)*PY+80;
+  scale=getScale(W);
+  var totalH=TOP+(MAX-MIN)*scale.py+80;
   var cx=Math.round(W/2);
   wrap.style.height=totalH+'px';
   canvas.width=W;canvas.height=totalH;
@@ -371,13 +400,19 @@ function render(){
   }
 
   jobs.forEach(function(j){
-    var dist=isMobile?(j.depth==='inner'?30:50):(j.depth==='inner'?D_INNER:D_OUTER);
+    var dist=j.depth==='inner'?scale.innerD:scale.outerD;
     var bx=j.side==='L'?cx-dist:cx+dist;
-    var available=j.side==='L'?bx-CARD_GAP-10:W-(bx+CARD_GAP)-10;
-    var desired=isMobile?(j.depth==='inner'?126:106):(j.depth==='inner'?INNER_W:OUTER_W);
-    var cardW=Math.max(82,Math.min(desired,available));
+    var available=j.side==='L'?bx-CARD_GAP-8:W-(bx+CARD_GAP)-8;
+    var desired=j.depth==='inner'?scale.innerW:scale.outerW;
+    var cardW=Math.max(scale.minW,Math.min(desired,available));
     var sf=j.side==='L'?SERIF:-SERIF;
     var el=document.getElementById(j.id);
+    if(W<460 && j.side==='R' && j.depth==='inner'){
+      var long=Math.max(j.role.length,j.org.length);
+      if(long>18){
+        bx=Math.max(cx+10,W-CARD_GAP-8-cardW);
+      }
+    }
 
     ctx.strokeStyle=j.col;ctx.lineWidth=2;
     ctx.beginPath();ctx.moveTo(bx,j.sy);ctx.lineTo(bx,j.ey);ctx.stroke();
@@ -399,6 +434,8 @@ function render(){
     if(j.side==='L'){el.style.right=(W-bx+CARD_GAP)+'px';el.style.left='auto';}
     else{el.style.left=(bx+CARD_GAP)+'px';el.style.right='auto';}
     el.style.width=cardW+'px';
+    fitCardText(el);
+    j.cardH=el.offsetHeight;
     el.style.top=(j.cardY-j.cardH/2)+'px';
   });
 }
