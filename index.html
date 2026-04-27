@@ -159,19 +159,19 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
       <p class="sec-label">Contact</p>
       <div class="contact-item">
         <svg class="ci" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#a0a09a" stroke-width="1.2"/><path d="M1 5l7 5 7-5" stroke="#a0a09a" stroke-width="1.2"/></svg>
-        <span class="ct">salehzuh@gmail.com</span>
+        <a class="cl" href="mailto:salehzuh@gmail.com">salehzuh@gmail.com</a>
       </div>
       <div class="contact-item">
         <svg class="ci" viewBox="0 0 16 16" fill="none"><path d="M8 1a5.5 5.5 0 00-5.5 5.5c0 3.5 5.5 9 5.5 9s5.5-5.5 5.5-9A5.5 5.5 0 008 1zm0 7.5a2 2 0 110-4 2 2 0 010 4z" stroke="#a0a09a" stroke-width="1.2"/></svg>
-        <span class="ct">+90 552 540 73 77</span>
+        <a class="cl" href="tel:+905525407377">+90 552 540 73 77</a>
       </div>
       <div class="contact-item">
         <svg class="ci" viewBox="0 0 16 16" fill="none"><path d="M13.5 2.5C12 1 10 0 8 0 3.6 0 0 3.6 0 8c0 1.4.4 2.8 1 4L0 16l4.2-1.1C5.4 15.6 6.7 16 8 16c4.4 0 8-3.6 8-8 0-2-.8-4-2.5-5.5zM8 14.7c-1.2 0-2.4-.3-3.4-.9l-.2-.1-2.5.6.7-2.4-.2-.3C1.8 10.5 1.4 9.3 1.4 8 1.4 4.4 4.4 1.4 8 1.4c1.7 0 3.3.7 4.5 1.9 1.2 1.2 1.9 2.8 1.9 4.5-.1 3.7-3.1 6.9-6.4 6.9zm3.8-5.1c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1l-.6.7c-.1.1-.2.1-.4.1-.2-.1-.8-.3-1.5-1-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.4l.3-.4c.1-.1.1-.2.2-.3 0-.1 0-.2-.1-.3l-.6-1.5c-.2-.4-.3-.4-.5-.4h-.4c-.1 0-.4.1-.6.3C5 5.8 4.5 6.3 4.5 7.4s.8 2.2.9 2.4c.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1z" fill="#a0a09a"/></svg>
-        <a class="cl" href="https://wa.me/905525407377?text=%D8%A7%D9%84%D8%B3%D9%91%D9%8E%D9%84%D9%8E%D8%A7%D9%85%D9%8F%20%D8%B9%D9%8E%D9%84%D9%8E%D9%8A%D9%92%D9%83%D9%8F%D9%85%D9%92%20%D9%88%D9%8E%D8%B1%D9%8E%D8%AD%D9%92%D9%85%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%84%D9%87%D9%90%20%D9%88%D9%8E%D8%A8%D9%8E%D8%B1%D9%8E%D9%83%D9%8E%D8%A7%D8%AA%D9%8F%D9%87%D9%8F" target="_blank">WhatsApp</a>
+        <a class="cl" href="https://api.whatsapp.com/send?phone=905525407377&text=%D8%A7%D9%84%D8%B3%D9%91%D9%8E%D9%84%D9%8E%D8%A7%D9%85%D9%8F%20%D8%B9%D9%8E%D9%84%D9%8E%D9%8A%D9%92%D9%83%D9%8F%D9%85%D9%92%20%D9%88%D9%8E%D8%B1%D9%8E%D8%AD%D9%92%D9%85%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%84%D9%87%D9%90%20%D9%88%D9%8E%D8%A8%D9%8E%D8%B1%D9%8E%D9%83%D9%8E%D8%A7%D8%AA%D9%8F%D9%87%D9%8F" target="_blank" rel="noopener">WhatsApp</a>
       </div>
       <div class="contact-item">
         <svg class="ci" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2" stroke="#a0a09a" stroke-width="1.2"/><path d="M4 6v6M4 4v.5M8 6v6M8 6a3 3 0 016 0v6" stroke="#a0a09a" stroke-width="1.2" stroke-linecap="round"/></svg>
-        <a class="cl" href="https://www.linkedin.com/in/ahmad-saleh-tuffaha/" target="_blank">LinkedIn</a>
+        <a class="cl" href="https://www.linkedin.com/in/ahmad-saleh-tuffaha/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
 
@@ -396,6 +396,11 @@ function render(){
     groups[k].push(j);
   });
   Object.values(groups).forEach(resolveOverlaps);
+  var translator=jobs.find(function(j){return j.id==='j10';});
+  var store=jobs.find(function(j){return j.id==='j11';});
+  if(translator&&store){
+    translator.cardY=Math.max(translator.cardY,store.cardY+store.cardH/2+translator.cardH/2+26);
+  }
   var bottom=Math.max.apply(null,jobs.map(function(j){return j.cardY+j.cardH/2;}))+60;
   if(bottom>totalH){
     totalH=bottom;wrap.style.height=totalH+'px';canvas.height=totalH;
@@ -433,18 +438,25 @@ function render(){
       }
     }
 
+    var drawSy=j.sy,drawEy=j.ey;
+    if(j.id==='j10'){
+      var storeJob=jobs.find(function(x){return x.id==='j11';});
+      var storeBottom=storeJob?storeJob.cardY+storeJob.cardH/2+18:Math.min(j.sy,j.ey);
+      drawEy=Math.max(Math.min(j.sy,j.ey),storeBottom);
+      drawSy=Math.max(Math.max(j.sy,j.ey),drawEy+90);
+    }
+
     ctx.strokeStyle=j.col;ctx.lineWidth=2;
-    ctx.beginPath();ctx.moveTo(bx,j.sy);ctx.lineTo(bx,j.ey);ctx.stroke();
-    ctx.beginPath();ctx.moveTo(bx,j.sy);ctx.lineTo(bx+sf,j.sy);ctx.stroke();
-    ctx.beginPath();ctx.moveTo(bx,j.ey);ctx.lineTo(bx+sf,j.ey);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(bx,drawSy);ctx.lineTo(bx,drawEy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(bx,drawSy);ctx.lineTo(bx+sf,drawSy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(bx,drawEy);ctx.lineTo(bx+sf,drawEy);ctx.stroke();
     ctx.fillStyle=j.col;ctx.beginPath();ctx.arc(cx,j.sy,4,0,Math.PI*2);ctx.fill();
 
     ctx.strokeStyle=j.col+'55';ctx.lineWidth=1;ctx.setLineDash([2,3]);
-    ctx.beginPath();ctx.moveTo(cx,j.sy);ctx.lineTo(bx,j.sy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx,j.sy);ctx.lineTo(bx,drawSy);ctx.stroke();
     ctx.setLineDash([]);
 
-    var brMid=(j.sy+j.ey)/2;
-    if(j.id==='j10') brMid=Math.max(brMid,document.getElementById('j11').offsetTop+document.getElementById('j11').offsetHeight+18);
+    var brMid=(drawSy+drawEy)/2;
     if(Math.abs(brMid-j.cardY)>8){
       ctx.strokeStyle=j.col+'33';ctx.lineWidth=1;ctx.setLineDash([1,4]);
       ctx.beginPath();ctx.moveTo(bx,brMid);ctx.lineTo(bx,j.cardY);ctx.stroke();
