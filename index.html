@@ -14,7 +14,7 @@
   --create:#6c3483;--sales:#d35400;--trans:#b7950b;
   --font-body:'DM Sans',sans-serif;
   --font-display:'Playfair Display',serif;
-  --fs-base:14px;
+  --fs-base:16px;
 }
 body{font-family:var(--font-body);background:var(--cream);color:var(--ink);font-size:var(--fs-base);}
 
@@ -31,47 +31,48 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--ink);font-
 .tag{padding:4px 13px;border:1px solid rgba(255,255,255,.12);border-radius:100px;font-size:.65rem;color:rgba(255,255,255,.4);}
 
 /* PAGE */
-.page{display:grid;grid-template-columns:185px 1fr;max-width:1100px;margin:0 auto;}
+.page{display:grid;grid-template-columns:220px minmax(0,1fr);max-width:1600px;margin:0 auto;}
 
 /* SIDEBAR */
-.sidebar{background:var(--white);border-right:1px solid var(--line);padding:2.5rem 1.15rem;display:flex;flex-direction:column;gap:2rem;}
-.sec-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--edu);font-weight:500;margin-bottom:.85rem;}
+.sidebar{background:var(--white);border-right:1px solid var(--line);padding:2.75rem 1.35rem;display:flex;flex-direction:column;gap:2rem;}
+.sec-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--edu);font-weight:500;margin-bottom:.85rem;}
 .contact-item{display:flex;align-items:flex-start;gap:7px;margin-bottom:.6rem;}
 .ci{width:12px;height:12px;flex-shrink:0;margin-top:2px;}
-.ct{font-size:.65rem;color:var(--ink-soft);line-height:1.5;word-break:break-all;}
-.cl{font-size:.65rem;color:var(--edu);line-height:1.5;word-break:break-all;text-decoration:none;}
+.ct{font-size:.75rem;color:var(--ink-soft);line-height:1.5;word-break:break-all;}
+.cl{font-size:.75rem;color:var(--edu);line-height:1.5;word-break:break-all;text-decoration:none;}
 .cl:hover{text-decoration:underline;}
 .skill-row{margin-bottom:.65rem;}
-.skill-name{font-size:.65rem;color:var(--ink);font-weight:500;margin-bottom:3px;display:flex;justify-content:space-between;}
-.skill-name span{color:var(--ink-ghost);font-weight:400;font-size:.6rem;}
+.skill-name{font-size:.76rem;color:var(--ink);font-weight:500;margin-bottom:3px;display:flex;justify-content:space-between;}
+.skill-name span{color:var(--ink-ghost);font-weight:400;font-size:.68rem;}
 .skill-track{height:2px;background:var(--line);border-radius:1px;overflow:hidden;}
 .skill-fill{height:100%;background:var(--edu);border-radius:1px;transition:width 1.2s ease;width:0;}
 .lang-row{margin-bottom:.75rem;}
 .lang-top{display:flex;justify-content:space-between;margin-bottom:3px;}
-.lang-name{font-size:.65rem;color:var(--ink);font-weight:500;}
-.lang-level{font-size:.6rem;color:var(--ink-ghost);}
+.lang-name{font-size:.76rem;color:var(--ink);font-weight:500;}
+.lang-level{font-size:.68rem;color:var(--ink-ghost);}
 .lang-dots{display:flex;gap:3px;}
 .lang-dot{width:6px;height:6px;border-radius:50%;background:var(--line);}
 .lang-dot.on{background:var(--edu);}
-.cert-item{font-size:.6rem;color:var(--ink-soft);margin-bottom:.38rem;padding-left:.5rem;border-left:1.5px solid var(--line);line-height:1.45;}
-.cert-item strong{color:var(--ink);font-weight:500;display:block;font-size:.58rem;}
+.cert-item{font-size:.7rem;color:var(--ink-soft);margin-bottom:.38rem;padding-left:.5rem;border-left:1.5px solid var(--line);line-height:1.45;}
+.cert-item strong{color:var(--ink);font-weight:500;display:block;font-size:.68rem;}
 .legend{display:flex;flex-direction:column;gap:.4rem;}
-.leg-row{display:flex;align-items:center;gap:6px;font-size:.62rem;color:var(--ink-soft);}
+.leg-row{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--ink-soft);}
 .leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 
 /* MAIN */
-.main{padding:2.5rem 1.5rem 3rem 2rem;min-width:0;}
+.main{padding:2.65rem clamp(1.5rem,3.5vw,4.25rem) 3.25rem clamp(2.25rem,4.5vw,5rem);min-width:0;}
 .tl-wrap{position:relative;width:100%;margin-top:2rem;}
 canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
-.tl-card{position:absolute;background:var(--white);border-radius:9px;padding:clamp(.48rem,1.5vw,.62rem) clamp(.54rem,2vw,.82rem);cursor:pointer;transition:box-shadow .2s,transform .2s;z-index:1;border:1px solid;overflow:hidden;min-width:0;}
+.tl-card{position:absolute;background:var(--white);border-radius:9px;padding:clamp(.7rem,1.05vw,1rem) clamp(.95rem,1.55vw,1.35rem);cursor:pointer;transition:box-shadow .2s,transform .2s;z-index:1;border:1px solid;overflow:hidden;min-width:0;}
 .tl-card-role,.tl-card-org{white-space:nowrap;overflow:hidden;text-overflow:clip;display:block;max-width:100%;}
 .tl-card:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.08);}
 .tl-card.left{text-align:right;}
 .tl-card.right{text-align:left;}
-.tl-card-role{font-family:var(--font-display);font-size:clamp(.56rem,1.05vw,.76rem);color:var(--ink);line-height:1.15;margin-bottom:.12rem;}
-.tl-card-org{font-size:clamp(.48rem,.85vw,.64rem);font-weight:500;line-height:1.15;}
+.tl-card-role{font-family:var(--font-display);font-size:clamp(1rem,1.22vw,1.42rem);color:var(--ink);line-height:1.15;margin-bottom:.14rem;}
+.tl-card-org{font-size:clamp(.82rem,.98vw,1.08rem);font-weight:500;line-height:1.15;}
 .tl-card-role,.tl-card-org{font-stretch:condensed;}
-.tl-hint{font-size:.52rem;color:var(--ink-ghost);margin-top:.2rem;}
+.tl-hint{font-size:.72rem;color:var(--ink-ghost);margin-top:.26rem;}
+.tl-year{position:absolute;transform:translate(-50%,-100%);font-family:var(--font-body);font-weight:500;font-size:14px;line-height:1;color:var(--ink-ghost);z-index:2;pointer-events:none;background:var(--cream);padding:0 3px;}
 
 /* OVERLAY */
 .overlay{display:none;position:fixed;inset:0;background:rgba(26,26,24,.7);z-index:200;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(2px);}
@@ -95,7 +96,7 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
   .hero{padding:3.25rem 1.15rem 2.75rem;}
   .hero::before{width:260px;height:260px;top:-90px;right:-110px;}
   .hero-label{font-size:.58rem;margin-bottom:1rem;}
-  .hero-name{font-size:clamp(2.35rem,16vw,4rem);}
+  .hero-name{font-size:clamp(2.25rem,14vw,3.55rem);}
   .hero-sub{margin-bottom:1.25rem;}
   .hero-bio{font-size:.78rem;line-height:1.75;padding-left:.85rem;margin-bottom:1.35rem;}
   .tag{font-size:.62rem;padding:5px 10px;}
@@ -113,9 +114,10 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
   .tl-card{padding:.58rem .52rem;border-radius:8px;box-shadow:0 3px 14px rgba(0,0,0,.05);}
   .tl-card.left{text-align:right;}
   .tl-card.right{text-align:left;}
-  .tl-card-role{font-size:.6rem;}
-  .tl-card-org{font-size:.5rem;}
+  .tl-card-role{font-size:.66rem;}
+  .tl-card-org{font-size:.56rem;}
   .tl-hint{font-size:.5rem;}
+  .tl-year{font-size:10px;}
 
   .overlay{padding:.85rem;align-items:flex-end;}
   .exp-card{max-height:86vh;border-radius:14px 14px 0 0;padding:2.2rem 1.2rem 1.35rem;}
@@ -253,14 +255,15 @@ const D_INNER=34,D_OUTER=74,SERIF=10,CARD_GAP=9;
 const INNER_W=172,OUTER_W=150;
 
 function getScale(W){
-  var usable=Math.max(320,Math.min(W,920));
+  var usable=Math.max(320,Math.min(W,1240));
+  var desktop=Math.max(0,usable-760);
   return {
-    py: Math.round(66+(usable-320)*0.026),
-    innerD: Math.round(14+(usable-320)*0.023),
-    outerD: Math.round(32+(usable-320)*0.05),
-    innerW: Math.round(150+(usable-320)*0.078),
-    outerW: Math.round(124+(usable-320)*0.068),
-    minW: W<420?118:132
+    py: Math.round(64+(usable-320)*0.022),
+    innerD: Math.round(14+(usable-320)*0.02+desktop*0.018),
+    outerD: Math.round(32+(usable-320)*0.045+desktop*0.035),
+    innerW: Math.round(182+(usable-320)*0.18+desktop*0.16),
+    outerW: Math.round(156+(usable-320)*0.15+desktop*0.12),
+    minW: W<420?118:W<760?132:310
   };
 }
 var scale=getScale(760);
@@ -278,8 +281,12 @@ function fitLine(el,minPx,maxPx){
 function fitCardText(el){
   var role=el.querySelector('.tl-card-role');
   var org=el.querySelector('.tl-card-org');
-  fitLine(role,3.6,parseFloat(getComputedStyle(role).fontSize));
-  fitLine(org,3.6,parseFloat(getComputedStyle(org).fontSize));
+  role.style.fontSize='';
+  org.style.fontSize='';
+  var minRole=wrap.offsetWidth<760?5.2:13.5;
+  var minOrg=wrap.offsetWidth<760?4.9:11.8;
+  fitLine(role,minRole,parseFloat(getComputedStyle(role).fontSize));
+  fitLine(org,minOrg,parseFloat(getComputedStyle(org).fontSize));
 }
 
 const jobs=[
@@ -291,7 +298,7 @@ const jobs=[
   {id:'j7', start:2017,end:2019,side:'L',depth:'inner',sector:'Humanitarian',     col:COL.human, role:'M&E Coordinator',               org:'SARC – Disaster Mgmt',        desc:'Created the Daily Unit Report — a compiled analysis of small departmental reports revealing the results and trends of every ongoing operation in the unit.'},
   {id:'j12',start:2004,end:2010,side:'L',depth:'inner',sector:'Creative & Design',col:COL.create,role:'AutoCAD Draughtsman',            org:'Tuffaha Office',              desc:'Used computer skills guided by an engineering father to produce technical drawings described as the best we had — delivering engineering solutions without a formal engineering background.'},
   {id:'j1', start:2024,end:2026,side:'R',depth:'inner',sector:'Business',         col:COL.biz,   role:'Business Development Manager',   org:'Amwal Training & Consulting', desc:'Managed and optimized key business systems ensuring smooth operations. Designed advanced Excel-based tools including a 47-sheet data consolidation system and a tax processing workflow that cut processing time from ~20 days to ~2 days. Acted as internal point of expertise for digital platforms.'},
-  {id:'j5', start:2020,end:2024,side:'R',depth:'inner',sector:'Creative & Design',col:COL.create,role:'Adobe Designer & Editor',         org:'One for All',                 desc:'Grew a pandemic-era side venture into a solid marketing and design operation — online product sales, content design and editing, and digital solutions for clients across multiple industries.'},
+  {id:'j5', start:2020,end:2026,side:'R',depth:'inner',sector:'Creative & Design',col:COL.create,role:'Adobe Designer & Editor',         org:'One for All',                 desc:'Grew a pandemic-era side venture into a solid marketing and design operation — online product sales, content design and editing, and digital solutions for clients across multiple industries.'},
   {id:'j6', start:2019,end:2020,side:'R',depth:'inner',sector:'Sales & Retail',   col:COL.sales, role:'Salesman',                       org:'Kiswah Jewellery',            desc:'Sold not just jewelry but heritage — telling the story and inspiration behind each piece. Handled all shift responsibilities at the Istanbul New Airport branch.'},
   {id:'j10',start:2007,end:2018,side:'R',depth:'outer',sector:'Translation',      col:COL.trans, role:'Translator',                     org:'NatGeo, MBC, Quest Arabia',   desc:'Translated English to Arabic text and voice content for National Geographic, MBC Group, Quest Arabia, Space Power, and more — running concurrently with other roles for 11 years. Also translated articles for several magazines.'},
   {id:'j11',start:2006,end:2012,side:'R',depth:'inner',sector:'Sales & Retail',   col:COL.sales, role:'Store Manager',                  org:'Tuffaha Fashion',             desc:'Ran the store entirely solo: purchasing, showcase design, Facebook management, selling, accounting, taxes, and every detail needed to keep the business running day to day.'},
@@ -353,6 +360,7 @@ function render(){
   var cx=Math.round(W/2);
   wrap.style.height=totalH+'px';
   canvas.width=W;canvas.height=totalH;
+  wrap.querySelectorAll('.tl-year').forEach(function(n){n.remove();});
   ctx.clearRect(0,0,W,totalH);
 
   ctx.strokeStyle=SPINE_C;ctx.lineWidth=1;
@@ -364,10 +372,13 @@ function render(){
     ctx.strokeStyle=maj?'#c0bdb5':SPINE_C;
     ctx.lineWidth=maj?1:0.5;
     ctx.beginPath();ctx.moveTo(cx-(maj?6:4),ky);ctx.lineTo(cx+(maj?6:4),ky);ctx.stroke();
-    ctx.fillStyle=maj?'#888780':GHOST;
-    ctx.font=(maj?'500 11px':'400 9px')+' "DM Sans",sans-serif';
-    ctx.textAlign='center';
-    ctx.fillText(y===MAX?'now':y,cx,ky-6);
+    var yearEl=document.createElement('span');
+    yearEl.className='tl-year';
+    yearEl.textContent=y===MAX?'2026':y;
+    yearEl.style.left=cx+'px';
+    yearEl.style.top=(ky-6)+'px';
+    if(maj){yearEl.style.color='#888780';yearEl.style.fontSize='15px';}
+    wrap.appendChild(yearEl);
   }
 
   jobs.forEach(function(j){
@@ -387,6 +398,7 @@ function render(){
   var bottom=Math.max.apply(null,jobs.map(function(j){return j.cardY+j.cardH/2;}))+60;
   if(bottom>totalH){
     totalH=bottom;wrap.style.height=totalH+'px';canvas.height=totalH;
+    wrap.querySelectorAll('.tl-year').forEach(function(n){n.remove();});
     ctx.clearRect(0,0,W,totalH);
     ctx.strokeStyle=SPINE_C;ctx.lineWidth=1;
     ctx.beginPath();ctx.moveTo(cx,TOP-20);ctx.lineTo(cx,totalH);ctx.stroke();
@@ -394,8 +406,13 @@ function render(){
       var ky2=yOf(yy),maj2=yy%5===0||yy===MIN||yy===MAX;
       ctx.strokeStyle=maj2?'#c0bdb5':SPINE_C;ctx.lineWidth=maj2?1:0.5;
       ctx.beginPath();ctx.moveTo(cx-(maj2?6:4),ky2);ctx.lineTo(cx+(maj2?6:4),ky2);ctx.stroke();
-      ctx.fillStyle=maj2?'#888780':GHOST;ctx.font=(maj2?'500 11px':'400 9px')+' "DM Sans",sans-serif';ctx.textAlign='center';
-      ctx.fillText(yy===MAX?'now':yy,cx,ky2-6);
+      var yearEl2=document.createElement('span');
+      yearEl2.className='tl-year';
+      yearEl2.textContent=yy===MAX?'2026':yy;
+      yearEl2.style.left=cx+'px';
+      yearEl2.style.top=(ky2-6)+'px';
+      if(maj2){yearEl2.style.color='#888780';yearEl2.style.fontSize='15px';}
+      wrap.appendChild(yearEl2);
     }
   }
 
@@ -410,7 +427,7 @@ function render(){
     if(W<460 && j.side==='R' && j.depth==='inner'){
       var long=Math.max(j.role.length,j.org.length);
       if(long>18){
-        bx=Math.max(cx+10,W-CARD_GAP-8-cardW);
+        bx=Math.min(cx+10,W-CARD_GAP-8-cardW);
       }
     }
 
@@ -441,10 +458,13 @@ function render(){
 }
 
 buildCards();
+render();
 setTimeout(function(){
   render();
   document.querySelectorAll('.skill-fill').forEach(function(b){b.style.width=b.dataset.w+'%';});
 },300);
+window.addEventListener('load',render);
+if(document.fonts){document.fonts.ready.then(render);}
 window.addEventListener('resize',render);
 </script>
 </body>
