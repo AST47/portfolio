@@ -74,6 +74,9 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
 .tl-card-role,.tl-card-org{font-stretch:condensed;}
 .tl-hint{font-size:.78rem;color:var(--ink-ghost);margin-top:.26rem;}
 .tl-year{position:absolute;transform:translate(-50%,-100%);font-family:var(--font-body);font-weight:500;font-size:14px;line-height:1;color:var(--ink-ghost);z-index:2;pointer-events:none;background:var(--cream);padding:0 3px;}
+.print-btn{position:fixed;right:18px;bottom:18px;z-index:150;border:0;border-radius:999px;background:var(--edu);color:var(--white);font-family:var(--font-body);font-size:.85rem;font-weight:500;padding:.8rem 1.05rem;box-shadow:0 10px 28px rgba(0,0,0,.18);cursor:pointer;}
+.print-btn:hover{filter:brightness(.95);}
+@media print{body{background:var(--white);-webkit-print-color-adjust:exact;print-color-adjust:exact;}.print-btn,.overlay{display:none!important;}.hero{break-inside:avoid;padding:2rem 1rem 1.6rem;}.page{display:block;max-width:none;}.sidebar{break-inside:avoid;border-right:0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:1.2rem;gap:1rem;}.main{padding:1.2rem;}.tl-card{box-shadow:none!important;}canvas{display:block;}}
 
 /* OVERLAY */
 .overlay{display:none;position:fixed;inset:0;background:rgba(26,26,24,.7);z-index:200;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(2px);}
@@ -238,6 +241,8 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
   </div>
 </div>
 
+<button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+
 <!-- OVERLAY -->
 <div class="overlay" id="overlay" onclick="handleClose(event)">
   <div class="exp-card">
@@ -399,11 +404,6 @@ function render(){
     groups[k].push(j);
   });
   Object.keys(groups).forEach(function(k){resolveOverlaps(groups[k]);});
-  var translator=null,store=null;
-  for(var ti=0;ti<jobs.length;ti++){if(jobs[ti].id==='j10')translator=jobs[ti];if(jobs[ti].id==='j11')store=jobs[ti];}
-  if(translator&&store){
-    translator.cardY=Math.max(translator.cardY,store.cardY+store.cardH/2+translator.cardH/2+26);
-  }
   var bottom=Math.max.apply(null,jobs.map(function(j){return j.cardY+j.cardH/2;}))+60;
   if(bottom>totalH){
     totalH=bottom;wrap.style.height=totalH+'px';canvas.height=totalH;
@@ -427,7 +427,6 @@ function render(){
 
   jobs.forEach(function(j){
     var dist=j.depth==='inner'?scale.innerD:scale.outerD;
-    if(j.id==='j10') dist+=Math.round(scale.outerD*0.22);
     var bx=j.side==='L'?cx-dist:cx+dist;
     var available=j.side==='L'?bx-CARD_GAP-8:W-(bx+CARD_GAP)-8;
     var desired=j.depth==='inner'?scale.innerW:scale.outerW;
