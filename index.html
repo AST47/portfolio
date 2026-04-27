@@ -141,7 +141,6 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
     <span>Ahmad Saleh</span>
     <span>TUFFAHA</span>
   </h1>
-  <p class="hero-sub">Istanbul, Turkey</p>
   <p class="hero-bio">Versatile professional with 20+ years of cross-sector experience in business development, operations, educational consultancy, humanitarian work, and creative design. Known for building systems and processes that transform how organizations operate — including Excel solutions that turn complex workflows into effortless ones. Equally strong in client-facing roles and behind-the-scenes infrastructure. Fluent English–Arabic translator with deep cross-cultural communication skills. Driven by adaptability and a passion for meaningful impact.</p>
   <div class="hero-tags">
     <span class="tag">Business Development</span>
@@ -162,8 +161,12 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
         <a class="cl" href="mailto:salehzuh@gmail.com">salehzuh@gmail.com</a>
       </div>
       <div class="contact-item">
-        <svg class="ci" viewBox="0 0 16 16" fill="none"><path d="M8 1a5.5 5.5 0 00-5.5 5.5c0 3.5 5.5 9 5.5 9s5.5-5.5 5.5-9A5.5 5.5 0 008 1zm0 7.5a2 2 0 110-4 2 2 0 010 4z" stroke="#a0a09a" stroke-width="1.2"/></svg>
+        <svg class="ci" viewBox="0 0 16 16" fill="none"><rect x="4" y="1.5" width="8" height="13" rx="1.6" stroke="#a0a09a" stroke-width="1.2"/><path d="M7 12.2h2" stroke="#a0a09a" stroke-width="1.2" stroke-linecap="round"/></svg>
         <a class="cl" href="tel:+905525407377">+90 552 540 73 77</a>
+      </div>
+      <div class="contact-item">
+        <svg class="ci" viewBox="0 0 16 16" fill="none"><path d="M8 1a5.5 5.5 0 00-5.5 5.5c0 3.5 5.5 9 5.5 9s5.5-5.5 5.5-9A5.5 5.5 0 008 1zm0 7.5a2 2 0 110-4 2 2 0 010 4z" stroke="#a0a09a" stroke-width="1.2"/></svg>
+        <span class="ct">Istanbul, Turkey</span>
       </div>
       <div class="contact-item">
         <svg class="ci" viewBox="0 0 16 16" fill="none"><path d="M13.5 2.5C12 1 10 0 8 0 3.6 0 0 3.6 0 8c0 1.4.4 2.8 1 4L0 16l4.2-1.1C5.4 15.6 6.7 16 8 16c4.4 0 8-3.6 8-8 0-2-.8-4-2.5-5.5zM8 14.7c-1.2 0-2.4-.3-3.4-.9l-.2-.1-2.5.6.7-2.4-.2-.3C1.8 10.5 1.4 9.3 1.4 8 1.4 4.4 4.4 1.4 8 1.4c1.7 0 3.3.7 4.5 1.9 1.2 1.2 1.9 2.8 1.9 4.5-.1 3.7-3.1 6.9-6.4 6.9zm3.8-5.1c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1l-.6.7c-.1.1-.2.1-.4.1-.2-.1-.8-.3-1.5-1-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.4l.3-.4c.1-.1.1-.2.2-.3 0-.1 0-.2-.1-.3l-.6-1.5c-.2-.4-.3-.4-.5-.4h-.4c-.1 0-.4.1-.6.3C5 5.8 4.5 6.3 4.5 7.4s.8 2.2.9 2.4c.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1z" fill="#a0a09a"/></svg>
@@ -249,11 +252,11 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
 </div>
 
 <script>
-const GHOST='#a0a09a',SPINE_C='#d8d4cc',INK='#1a1a18';
-const COL={edu:'#c0392b',human:'#2471a3',biz:'#1e8449',create:'#6c3483',sales:'#d35400',trans:'#b7950b'};
-const MIN=2003,MAX=2026,TOP=60;
-const D_INNER=34,D_OUTER=74,SERIF=10,CARD_GAP=15;
-const INNER_W=172,OUTER_W=150;
+var GHOST='#a0a09a',SPINE_C='#d8d4cc',INK='#1a1a18';
+var COL={edu:'#c0392b',human:'#2471a3',biz:'#1e8449',create:'#6c3483',sales:'#d35400',trans:'#b7950b'};
+var MIN=2003,MAX=2026,TOP=60;
+var D_INNER=34,D_OUTER=74,SERIF=10,CARD_GAP=15;
+var INNER_W=172,OUTER_W=150;
 
 function getScale(W){
   var usable=Math.max(320,Math.min(W,1240));
@@ -290,7 +293,7 @@ function fitCardText(el){
   fitLine(org,minOrg,parseFloat(getComputedStyle(org).fontSize));
 }
 
-const jobs=[
+var jobs=[
   {id:'j4', start:2021,end:2022,side:'L',depth:'inner',sector:'Education & Ops',  col:COL.edu,   role:'Agent Relations Manager',      org:'New Horizons',                desc:'Managed communications between the company and its partners, which evolved into overseeing the data entry team and the full admissions process — including complete ownership of Bitrix24 and all its customizations.'},
   {id:'j3', start:2022,end:2023,side:'L',depth:'inner',sector:'Education & Ops',  col:COL.edu,   role:'Operations Manager',            org:'Marifet Group',               desc:'Responsible for monitoring all operations: recruiting, training, sales, marketing and campaign analysis, admissions, business communications, logistics, HR, Bitrix24 management, reporting and analysis.'},
   {id:'j2', start:2023,end:2024,side:'L',depth:'inner',sector:'Education & Ops',  col:COL.edu,   role:'Business Development Manager',   org:'Unitopia Global',             desc:'Recruited staff, tracked CRM and website progress, found new logistics revenue streams, wrote company policy and contracts, worked daily with marketing partners, organized agent relations, set financial accounting rules — reporting to the board throughout the company\'s growth journey.'},
@@ -306,13 +309,13 @@ const jobs=[
   {id:'j13',start:2003,end:2006,side:'R',depth:'inner',sector:'Creative & Design',col:COL.create,role:'Tracks Designer',                org:'Silver Light',                desc:'Designed embroidery machine tracks for a baby clothing company. Produced over 100 designs in one season vs the usual 10-15 — setting a new benchmark for the company.'},
 ];
 
-const wrap=document.getElementById('tl-wrap');
-const canvas=document.getElementById('tl-canvas');
-const ctx=canvas.getContext('2d');
+var wrap=document.getElementById('tl-wrap');
+var canvas=document.getElementById('tl-canvas');
+var ctx=canvas.getContext('2d');
 
 function buildCards(){
-  jobs.forEach(j=>{
-    const el=document.createElement('div');
+  jobs.forEach(function(j){
+    var el=document.createElement('div');
     el.className='tl-card '+(j.side==='L'?'left':'right');
     el.id=j.id;
     el.style.borderColor=j.col+'44';
@@ -361,7 +364,7 @@ function render(){
   var cx=Math.round(W/2);
   wrap.style.height=totalH+'px';
   canvas.width=W;canvas.height=totalH;
-  wrap.querySelectorAll('.tl-year').forEach(function(n){n.remove();});
+  Array.prototype.forEach.call(wrap.querySelectorAll('.tl-year'),function(n){n.parentNode.removeChild(n);});
   ctx.clearRect(0,0,W,totalH);
 
   ctx.strokeStyle=SPINE_C;ctx.lineWidth=1;
@@ -395,16 +398,16 @@ function render(){
     if(!groups[k])groups[k]=[];
     groups[k].push(j);
   });
-  Object.values(groups).forEach(resolveOverlaps);
-  var translator=jobs.find(function(j){return j.id==='j10';});
-  var store=jobs.find(function(j){return j.id==='j11';});
+  Object.keys(groups).forEach(function(k){resolveOverlaps(groups[k]);});
+  var translator=null,store=null;
+  for(var ti=0;ti<jobs.length;ti++){if(jobs[ti].id==='j10')translator=jobs[ti];if(jobs[ti].id==='j11')store=jobs[ti];}
   if(translator&&store){
     translator.cardY=Math.max(translator.cardY,store.cardY+store.cardH/2+translator.cardH/2+26);
   }
   var bottom=Math.max.apply(null,jobs.map(function(j){return j.cardY+j.cardH/2;}))+60;
   if(bottom>totalH){
     totalH=bottom;wrap.style.height=totalH+'px';canvas.height=totalH;
-    wrap.querySelectorAll('.tl-year').forEach(function(n){n.remove();});
+    Array.prototype.forEach.call(wrap.querySelectorAll('.tl-year'),function(n){n.parentNode.removeChild(n);});
     ctx.clearRect(0,0,W,totalH);
     ctx.strokeStyle=SPINE_C;ctx.lineWidth=1;
     ctx.beginPath();ctx.moveTo(cx,TOP-20);ctx.lineTo(cx,totalH);ctx.stroke();
@@ -439,12 +442,6 @@ function render(){
     }
 
     var drawSy=j.sy,drawEy=j.ey;
-    if(j.id==='j10'){
-      var storeJob=jobs.find(function(x){return x.id==='j11';});
-      var storeBottom=storeJob?storeJob.cardY+storeJob.cardH/2+18:Math.min(j.sy,j.ey);
-      drawEy=Math.max(Math.min(j.sy,j.ey),storeBottom);
-      drawSy=Math.max(Math.max(j.sy,j.ey),drawEy+90);
-    }
 
     ctx.strokeStyle=j.col;ctx.lineWidth=2;
     ctx.beginPath();ctx.moveTo(bx,drawSy);ctx.lineTo(bx,drawEy);ctx.stroke();
@@ -472,15 +469,20 @@ function render(){
   });
 }
 
-buildCards();
-render();
-setTimeout(function(){
+try{
+  buildCards();
   render();
-  document.querySelectorAll('.skill-fill').forEach(function(b){b.style.width=b.dataset.w+'%';});
-},300);
-window.addEventListener('load',render);
-if(document.fonts){document.fonts.ready.then(render);}
-window.addEventListener('resize',render);
+  setTimeout(function(){
+    render();
+    Array.prototype.forEach.call(document.querySelectorAll('.skill-fill'),function(b){b.style.width=b.getAttribute('data-w')+'%';});
+  },300);
+  window.addEventListener('load',render);
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(render).catch(function(){});}
+  window.addEventListener('resize',render);
+}catch(err){
+  document.body.className+=' script-fallback';
+  console.error(err);
+}
 </script>
 </body>
 </html>
