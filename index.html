@@ -89,8 +89,8 @@ html[dir="ltr"] .translatable{direction:ltr;}
 
 
 .photo-col{display:flex;flex-direction:column;align-items:center;gap:.65rem;width:100%;max-width:190px;align-self:center;}
-.bd-btn{display:block;width:100%;padding:.55rem 1rem;background:transparent;border:1px solid var(--line);border-radius:6px;font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,1.1vw,1.05rem);letter-spacing:.08em;color:var(--ink-soft);cursor:pointer;transition:background .2s,color .2s,border-color .2s;}
-.bd-btn:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);}
+.bd-btn{display:block;width:100%;padding:.55rem 1rem;background:#c0392b;border:none;border-radius:6px;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,1.1vw,1.05rem);font-weight:700;letter-spacing:.08em;color:#fff;cursor:pointer;transition:opacity .2s;}
+.bd-btn:hover{opacity:.85;}
 .ach-overlay-card{max-width:680px;max-height:80vh;overflow-y:auto;}
 /* ACHIEVEMENTS */
 .achievements{padding:2rem clamp(1.5rem,3.5vw,4.25rem) 0 clamp(2.25rem,4.5vw,5rem);min-width:0;}
@@ -102,6 +102,21 @@ html[dir="ltr"] .translatable{direction:ltr;}
 .ach-badge{font-size:clamp(.62rem,.7vw,.78rem);font-weight:500;padding:2px 9px;border-radius:20px;white-space:nowrap;}
 html[dir="rtl"] .ach-ticket{border-left:0;border-right:3px solid;border-radius:8px 0 0 8px;}
 @media(max-width:760px){.achievements{padding:1.5rem 1.25rem 0;}.ach-grid{grid-template-columns:1fr;}}
+.other-exp{padding:2rem clamp(1.5rem,3.5vw,4.25rem) 2.5rem clamp(2.25rem,4.5vw,5rem);}
+.other-exp-title{margin-bottom:1rem;}
+.other-tickets{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;}
+.other-ticket{border:1px solid var(--line);border-radius:8px;padding:.9rem 1.1rem;cursor:pointer;transition:background .18s,border-color .18s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));}
+.other-ticket:hover{background:var(--ink);border-color:var(--ink);}
+.other-ticket:hover .other-ticket-title,.other-ticket:hover .other-ticket-stat{color:var(--cream);}
+.other-ticket-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,1.2vw,1.25rem);font-weight:600;color:var(--ink);margin:0 0 .35rem;}
+.other-ticket-stat{font-size:clamp(.72rem,.8vw,.88rem);color:var(--ink-ghost);margin:0;letter-spacing:.04em;}
+.other-overlay-list{display:flex;flex-direction:column;gap:.6rem;margin-top:.5rem;}
+.other-overlay-row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.45rem 0;border-bottom:1px solid var(--line);}
+.other-overlay-row:last-child{border-bottom:none;}
+.other-overlay-role{font-size:clamp(.82rem,.92vw,1rem);color:var(--ink);font-weight:500;}
+.other-overlay-org{font-size:clamp(.75rem,.84vw,.92rem);color:var(--ink-soft);}
+.other-overlay-date{font-size:clamp(.7rem,.78vw,.84rem);color:var(--ink-ghost);white-space:nowrap;}
+@media(max-width:760px){.other-tickets{grid-template-columns:1fr;}.other-exp{padding:1.5rem 1.25rem 2rem;}}
 /* MAIN */
 .main{padding:2.65rem clamp(1.5rem,3.5vw,4.25rem) 3.25rem clamp(2.25rem,4.5vw,5rem);min-width:0;}
 .tl-wrap{position:relative;width:100%;margin-top:1.1rem;}
@@ -207,15 +222,14 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
       <img src="CV_Pic.png" alt="Ahmad Saleh Tuffaha">
     </div>
     <button class="bd-btn" id="bd-btn" onclick="openAchievements()" data-i18n="bdBtn">Business Developer</button>
+    <div class="lang-switch" aria-label="Language selector">
+      <button type="button" class="lang-btn" data-lang="ar">ar</button>
+      <button type="button" class="lang-btn active" data-lang="en">en</button>
+      <button type="button" class="lang-btn" data-lang="tr">tr</button>
+    </div>
   </div>
   <div class="hero-copy">
     <div class="hero-topline">
-      <p class="hero-label" data-i18n="cvLabel">Curriculum Vitae</p>
-      <div class="lang-switch" aria-label="Language selector">
-        <button type="button" class="lang-btn" data-lang="ar">ar</button>
-        <button type="button" class="lang-btn active" data-lang="en">en</button>
-        <button type="button" class="lang-btn" data-lang="tr">tr</button>
-      </div>
     </div>
     <h1 class="hero-name" data-name-en="true">
       <span data-i18n="firstName">Ahmad Saleh</span>
@@ -309,13 +323,27 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
         <div class="leg-row"><div class="leg-dot" style="background:var(--edu)"></div><span data-i18n="sectorEdu">Educational Consulting</span></div>
         <div class="leg-row"><div class="leg-dot" style="background:var(--human)"></div><span data-i18n="sectorHuman">Humanitarian</span></div>
         <div class="leg-row"><div class="leg-dot" style="background:var(--biz)"></div><span data-i18n="sectorBiz">Accounting & Finance</span></div>
-        <div class="leg-row"><div class="leg-dot" style="background:var(--create)"></div><span data-i18n="sectorCreate">Creative & Design</span></div>
-        <div class="leg-row"><div class="leg-dot" style="background:var(--sales)"></div><span data-i18n="sectorSales">Sales & Retail</span></div>
-        <div class="leg-row"><div class="leg-dot" style="background:var(--trans)"></div><span data-i18n="sectorTrans">Translation</span></div>
       </div>
     </div>
     <div class="tl-wrap" id="tl-wrap">
       <canvas id="tl-canvas"></canvas>
+    </div>
+    <div class="other-exp">
+      <p class="sec-label other-exp-title" data-i18n="otherExp">Other Experiences &amp; Projects</p>
+      <div class="other-tickets">
+        <div class="other-ticket" onclick="openOther('trans')" style="border-color:var(--trans)">
+          <p class="other-ticket-title" style="color:var(--trans)" data-i18n="otherTransTitle">Translation</p>
+          <p class="other-ticket-stat"><span data-i18n="other12yr">12 years</span> &middot; <span data-i18n="other4pl">4 companies</span></p>
+        </div>
+        <div class="other-ticket" onclick="openOther('retail')" style="border-color:var(--sales)">
+          <p class="other-ticket-title" style="color:var(--sales)" data-i18n="otherRetailTitle">Retail &amp; Store Management</p>
+          <p class="other-ticket-stat"><span data-i18n="other7yr">7 years</span> &middot; <span data-i18n="other2pl">2 companies</span></p>
+        </div>
+        <div class="other-ticket" onclick="openOther('design')" style="border-color:var(--create)">
+          <p class="other-ticket-title" style="color:var(--create)" data-i18n="otherDesignTitle">Design</p>
+          <p class="other-ticket-stat"><span data-i18n="other9yr">9 years</span> &middot; <span data-i18n="other3pl">3 companies</span></p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -340,6 +368,15 @@ canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
     <p class="exp-role" id="ach-overlay-title">Business Developer</p>
     <div class="exp-div"></div>
     <div class="ach-grid" id="ach-grid"></div>
+  </div>
+</div>
+
+<div class="overlay" id="other-overlay" onclick="if(event.target===event.currentTarget)closeOther()">
+  <div class="exp-card">
+    <button class="exp-close" onclick="closeOther()">&#x2715;</button>
+    <p class="exp-role" id="other-overlay-title"></p>
+    <div class="exp-div"></div>
+    <div id="other-overlay-list" class="other-overlay-list"></div>
   </div>
 </div>
 
@@ -402,9 +439,9 @@ function buildAchievements(){
 }
 
 var UI_TEXT={
-  en:{cvLabel:'Curriculum Vitae',firstName:'Ahmad Saleh',lastName:'TUFFAHA',heroBio:'20+ years of experience in business development and operations, with a strong focus on building Excel-powered systems and AI-assisted workflows that make organisations run better. Native Arabic speaker, fluent in English and conversational in Turkish.',tagBiz:'Business Development',tagAI:'AI-Assisted Workflows',tagExcel:'Excel & Data Systems',tagOps:'Operations',tagTrans:'EN–AR Translation',contact:'Contact',skills:'Skills',languages:'Languages',sectorLegend:'Sector Legend',certs:'Certifications & Training',timeline:'Companies I\'ve Worked With',location:'Istanbul, Turkey',skillExcel:'Excel & Data',skillOps:'Operations',skillAdobe:'Adobe Suite',skillCrm:'CRM Systems',skillMarketing:'Digital Marketing',skillAutoCAD:'AutoCAD',langArabic:'Arabic',langEnglish:'English',langTurkish:'Turkish',levelNative:'Native',levelFluent:'Fluent',levelIntermediate:'Intermediate',sectorEdu:'Educational Consulting',sectorHuman:'Humanitarian',sectorBiz:'Accounting & Finance',sectorCreate:'Creative & Design',sectorSales:'Sales & Retail',sectorTrans:'Translation',tap:'tap to view',present:'present',certDigitalBasics:'Fundamentals of Digital Marketing',certMetaAssociate:'Certified Digital Marketing Associate',certSocial:'Social Media Marketing Professional',certSeo:'Search Engine Optimization (SEO)',certData:'Data Analysis',certSurvey:'Conducting Field Survey',certLogic:'Logistic Inventory Control (LogIC)',certFirstAid:'First Aid Basic',certDisaster:'Disaster Management Basic',certNlp:'Neuro-Linguistic Programming (NLP)',certProject:'Project / Programme Planning',certME:'Introduction to M&E',certNeeds:'Emergency Needs Assessment',certVulnerability:'Vulnerability Assessment & Analysis',certWorc:'WORC: World of Red Cross',certAccounting:'Commercial Institute / Accounting',achLabel:'Key Achievements',bdBtn:'Business Developer'},
-  ar:{cvLabel:'السيرة الذاتية',firstName:'أحمد صالح',lastName:'تفاحة',heroBio:'خبرة تتجاوز 20 عاماً في تطوير الأعمال والعمليات، مع تركيز واضح على بناء أنظمة Excel وسير عمل مدعومة بالذكاء الاصطناعي تُحسّن أداء المؤسسات. متحدث أصلي بالعربية، طلاقة في الإنجليزية، ومحادثة في التركية.',tagBiz:'تطوير الأعمال',tagAI:'سير عمل بالذكاء الاصطناعي',tagExcel:'Excel وأنظمة البيانات',tagOps:'العمليات',tagTrans:'ترجمة إنجليزي–عربي',contact:'التواصل',skills:'المهارات',languages:'اللغات',sectorLegend:'دليل القطاعات',certs:'الشهادات والتدريب',timeline:'الشركات التي عملت معها',location:'إسطنبول، تركيا',skillExcel:'Excel والبيانات',skillOps:'العمليات',skillAdobe:'حزمة Adobe',skillCrm:'أنظمة إدارة علاقات العملاء',skillMarketing:'التسويق الرقمي',skillAutoCAD:'AutoCAD',langArabic:'العربية',langEnglish:'الإنجليزية',langTurkish:'التركية',levelNative:'اللغة الأم',levelFluent:'متقدم',levelIntermediate:'متوسط',sectorEdu:'الاستشارات التعليمية',sectorHuman:'العمل الإنساني',sectorBiz:'المحاسبة والمالية',sectorCreate:'الإبداع والتصميم',sectorSales:'المبيعات والتجزئة',sectorTrans:'الترجمة',tap:'اضغط للتفاصيل',present:'حتى الآن',certDigitalBasics:'أساسيات التسويق الرقمي',certMetaAssociate:'شريك معتمد في التسويق الرقمي من Meta',certSocial:'محترف تسويق عبر وسائل التواصل الاجتماعي',certSeo:'تحسين محركات البحث (SEO)',certData:'تحليل البيانات',certSurvey:'إجراء المسوحات الميدانية',certLogic:'التحكم بالمخزون اللوجستي (LogIC)',certFirstAid:'الإسعاف الأولي الأساسي',certDisaster:'أساسيات إدارة الكوارث',certNlp:'البرمجة اللغوية العصبية (NLP)',certProject:'تخطيط المشاريع والبرامج',certME:'مقدمة في المتابعة والتقييم',certNeeds:'تقييم الاحتياجات الطارئة',certVulnerability:'تقييم وتحليل الهشاشة',certWorc:'عالم الصليب الأحمر والهلال الأحمر',certAccounting:'المعهد التجاري / المحاسبة',achLabel:'الإنجازات الرئيسية',bdBtn:'مطوّر أعمال'},
-  tr:{cvLabel:'Özgeçmiş',firstName:'Ahmad Saleh',lastName:'TUFFAHA',heroBio:'İş geliştirme ve operasyon alanlarında 20 yılı aşkın deneyim; kurumların daha verimli çalışmasını sağlayan Excel sistemleri ve yapay zekâ destekli iş akışları oluşturmaya güçlü bir odaklanmayla. Anadili Arapça, akıcı İngilizce ve konuşma düzeyinde Türkçe.',tagBiz:'İş Geliştirme',tagAI:'Yapay Zekâ Destekli İş Akışları',tagExcel:'Excel ve Veri Sistemleri',tagOps:'Operasyon',tagTrans:'EN–AR Çeviri',contact:'İletişim',skills:'Yetenekler',languages:'Diller',sectorLegend:'Sektör Rehberi',certs:'Sertifikalar ve Eğitimler',timeline:'Birlikte Çalıştığım Şirketler',location:'İstanbul, Türkiye',skillExcel:'Excel ve Veri',skillOps:'Operasyonlar',skillAdobe:'Adobe Paketi',skillCrm:'CRM Sistemleri',skillMarketing:'Dijital Pazarlama',skillAutoCAD:'AutoCAD',langArabic:'Arapça',langEnglish:'İngilizce',langTurkish:'Türkçe',levelNative:'Ana dil',levelFluent:'Akıcı',levelIntermediate:'Orta seviye',sectorEdu:'Eğitim Danışmanlığı',sectorHuman:'İnsani Çalışmalar',sectorBiz:'Muhasebe ve Finans',sectorCreate:'Yaratıcılık ve Tasarım',sectorSales:'Satış ve Perakende',sectorTrans:'Çeviri',tap:'detayları gör',present:'günümüz',certDigitalBasics:'Dijital Pazarlamanın Temelleri',certMetaAssociate:'Meta Sertifikalı Dijital Pazarlama Ortağı',certSocial:'Sosyal Medya Pazarlama Profesyoneli',certSeo:'Arama Motoru Optimizasyonu (SEO)',certData:'Veri Analizi',certSurvey:'Saha Araştırması Yürütme',certLogic:'Lojistik Envanter Kontrolü (LogIC)',certFirstAid:'Temel İlk Yardım',certDisaster:'Temel Afet Yönetimi',certNlp:'Nöro-Linguistik Programlama (NLP)',certProject:'Proje / Program Planlama',certME:'İzleme ve Değerlendirmeye Giriş',certNeeds:'Acil İhtiyaç Değerlendirmesi',certVulnerability:'Kırılganlık Değerlendirmesi ve Analizi',certWorc:'WORC: Kızılhaç ve Kızılay Dünyası',certAccounting:'Ticaret Enstitüsü / Muhasebe',achLabel:'Öne Çıkan Başarılar',bdBtn:'İş Geliştirici'}
+  en:{cvLabel:'Curriculum Vitae',firstName:'Ahmad Saleh',lastName:'TUFFAHA',heroBio:'20+ years of experience in business development and operations, with a strong focus on building Excel-powered systems and AI-assisted workflows that make organisations run better. Native Arabic speaker, fluent in English and conversational in Turkish.',tagBiz:'Business Development',tagAI:'AI-Assisted Workflows',tagExcel:'Excel & Data Systems',tagOps:'Operations',tagTrans:'EN–AR Translation',contact:'Contact',skills:'Skills',languages:'Languages',sectorLegend:'Sector Legend',certs:'Certifications & Training',timeline:'Companies I\'ve Worked With',location:'Istanbul, Turkey',skillExcel:'Excel & Data',skillOps:'Operations',skillAdobe:'Adobe Suite',skillCrm:'CRM Systems',skillMarketing:'Digital Marketing',skillAutoCAD:'AutoCAD',langArabic:'Arabic',langEnglish:'English',langTurkish:'Turkish',levelNative:'Native',levelFluent:'Fluent',levelIntermediate:'Intermediate',sectorEdu:'Educational Consulting',sectorHuman:'Humanitarian',sectorBiz:'Accounting & Finance',sectorCreate:'Creative & Design',sectorSales:'Sales & Retail',sectorTrans:'Translation',tap:'tap to view',present:'present',certDigitalBasics:'Fundamentals of Digital Marketing',certMetaAssociate:'Certified Digital Marketing Associate',certSocial:'Social Media Marketing Professional',certSeo:'Search Engine Optimization (SEO)',certData:'Data Analysis',certSurvey:'Conducting Field Survey',certLogic:'Logistic Inventory Control (LogIC)',certFirstAid:'First Aid Basic',certDisaster:'Disaster Management Basic',certNlp:'Neuro-Linguistic Programming (NLP)',certProject:'Project / Programme Planning',certME:'Introduction to M&E',certNeeds:'Emergency Needs Assessment',certVulnerability:'Vulnerability Assessment & Analysis',certWorc:'WORC: World of Red Cross',certAccounting:'Commercial Institute / Accounting',achLabel:'Key Achievements',bdBtn:'Business Developer',otherExp:'Other Experiences & Projects',otherTransTitle:'Translation',otherRetailTitle:'Retail & Store Management',otherDesignTitle:'Design',other12yr:'12 years',other4pl:'4 companies',other7yr:'7 years',other2pl:'2 companies',other9yr:'9 years',other3pl:'3 companies'},
+  ar:{cvLabel:'السيرة الذاتية',firstName:'أحمد صالح',lastName:'تفاحة',heroBio:'خبرة تتجاوز 20 عاماً في تطوير الأعمال والعمليات، مع تركيز واضح على بناء أنظمة Excel وسير عمل مدعومة بالذكاء الاصطناعي تُحسّن أداء المؤسسات. متحدث أصلي بالعربية، طلاقة في الإنجليزية، ومحادثة في التركية.',tagBiz:'تطوير الأعمال',tagAI:'سير عمل بالذكاء الاصطناعي',tagExcel:'Excel وأنظمة البيانات',tagOps:'العمليات',tagTrans:'ترجمة إنجليزي–عربي',contact:'التواصل',skills:'المهارات',languages:'اللغات',sectorLegend:'دليل القطاعات',certs:'الشهادات والتدريب',timeline:'الشركات التي عملت معها',location:'إسطنبول، تركيا',skillExcel:'Excel والبيانات',skillOps:'العمليات',skillAdobe:'حزمة Adobe',skillCrm:'أنظمة إدارة علاقات العملاء',skillMarketing:'التسويق الرقمي',skillAutoCAD:'AutoCAD',langArabic:'العربية',langEnglish:'الإنجليزية',langTurkish:'التركية',levelNative:'اللغة الأم',levelFluent:'متقدم',levelIntermediate:'متوسط',sectorEdu:'الاستشارات التعليمية',sectorHuman:'العمل الإنساني',sectorBiz:'المحاسبة والمالية',sectorCreate:'الإبداع والتصميم',sectorSales:'المبيعات والتجزئة',sectorTrans:'الترجمة',tap:'اضغط للتفاصيل',present:'حتى الآن',certDigitalBasics:'أساسيات التسويق الرقمي',certMetaAssociate:'شريك معتمد في التسويق الرقمي من Meta',certSocial:'محترف تسويق عبر وسائل التواصل الاجتماعي',certSeo:'تحسين محركات البحث (SEO)',certData:'تحليل البيانات',certSurvey:'إجراء المسوحات الميدانية',certLogic:'التحكم بالمخزون اللوجستي (LogIC)',certFirstAid:'الإسعاف الأولي الأساسي',certDisaster:'أساسيات إدارة الكوارث',certNlp:'البرمجة اللغوية العصبية (NLP)',certProject:'تخطيط المشاريع والبرامج',certME:'مقدمة في المتابعة والتقييم',certNeeds:'تقييم الاحتياجات الطارئة',certVulnerability:'تقييم وتحليل الهشاشة',certWorc:'عالم الصليب الأحمر والهلال الأحمر',certAccounting:'المعهد التجاري / المحاسبة',achLabel:'الإنجازات الرئيسية',bdBtn:'مطوّر أعمال',otherExp:'تجارب ومشاريع أخرى',otherTransTitle:'الترجمة',otherRetailTitle:'التجزئة وإدارة المتاجر',otherDesignTitle:'التصميم',other12yr:'12 عاماً',other4pl:'4 شركات',other7yr:'7 أعوام',other2pl:'شركتان',other9yr:'9 أعوام',other3pl:'3 شركات'},
+  tr:{cvLabel:'Özgeçmiş',firstName:'Ahmad Saleh',lastName:'TUFFAHA',heroBio:'İş geliştirme ve operasyon alanlarında 20 yılı aşkın deneyim; kurumların daha verimli çalışmasını sağlayan Excel sistemleri ve yapay zekâ destekli iş akışları oluşturmaya güçlü bir odaklanmayla. Anadili Arapça, akıcı İngilizce ve konuşma düzeyinde Türkçe.',tagBiz:'İş Geliştirme',tagAI:'Yapay Zekâ Destekli İş Akışları',tagExcel:'Excel ve Veri Sistemleri',tagOps:'Operasyon',tagTrans:'EN–AR Çeviri',contact:'İletişim',skills:'Yetenekler',languages:'Diller',sectorLegend:'Sektör Rehberi',certs:'Sertifikalar ve Eğitimler',timeline:'Birlikte Çalıştığım Şirketler',location:'İstanbul, Türkiye',skillExcel:'Excel ve Veri',skillOps:'Operasyonlar',skillAdobe:'Adobe Paketi',skillCrm:'CRM Sistemleri',skillMarketing:'Dijital Pazarlama',skillAutoCAD:'AutoCAD',langArabic:'Arapça',langEnglish:'İngilizce',langTurkish:'Türkçe',levelNative:'Ana dil',levelFluent:'Akıcı',levelIntermediate:'Orta seviye',sectorEdu:'Eğitim Danışmanlığı',sectorHuman:'İnsani Çalışmalar',sectorBiz:'Muhasebe ve Finans',sectorCreate:'Yaratıcılık ve Tasarım',sectorSales:'Satış ve Perakende',sectorTrans:'Çeviri',tap:'detayları gör',present:'günümüz',certDigitalBasics:'Dijital Pazarlamanın Temelleri',certMetaAssociate:'Meta Sertifikalı Dijital Pazarlama Ortağı',certSocial:'Sosyal Medya Pazarlama Profesyoneli',certSeo:'Arama Motoru Optimizasyonu (SEO)',certData:'Veri Analizi',certSurvey:'Saha Araştırması Yürütme',certLogic:'Lojistik Envanter Kontrolü (LogIC)',certFirstAid:'Temel İlk Yardım',certDisaster:'Temel Afet Yönetimi',certNlp:'Nöro-Linguistik Programlama (NLP)',certProject:'Proje / Program Planlama',certME:'İzleme ve Değerlendirmeye Giriş',certNeeds:'Acil İhtiyaç Değerlendirmesi',certVulnerability:'Kırılganlık Değerlendirmesi ve Analizi',certWorc:'WORC: Kızılhaç ve Kızılay Dünyası',certAccounting:'Ticaret Enstitüsü / Muhasebe',achLabel:'Öne Çıkan Başarılar',bdBtn:'İş Geliştirici',otherExp:'Diğer Deneyimler ve Projeler',otherTransTitle:'Çeviri',otherRetailTitle:'Perakende ve Mağaza Yönetimi',otherDesignTitle:'Tasarım',other12yr:'12 yıl',other4pl:'4 şirket',other7yr:'7 yıl',other2pl:'2 şirket',other9yr:'9 yıl',other3pl:'3 şirket'}
 };
 var SECTOR_TEXT={ar:{'Education & Ops':'الاستشارات التعليمية','Humanitarian':'العمل الإنساني','Business':'المحاسبة والمالية','Creative & Design':'الإبداع والتصميم','Sales & Retail':'المبيعات والتجزئة','Translation':'الترجمة'},tr:{'Education & Ops':'Eğitim Danışmanlığı','Humanitarian':'İnsani Çalışmalar','Business':'Muhasebe ve Finans','Creative & Design':'Yaratıcılık ve Tasarım','Sales & Retail':'Satış ve Perakende','Translation':'Çeviri'}};
 var JOB_TEXT={
@@ -433,7 +470,7 @@ function applyLanguage(lang){
 
 var GHOST='#a0a09a',SPINE_C='#d8d4cc',INK='#1a1a18';
 var COL={edu:'#c0392b',human:'#2471a3',biz:'#1e8449',create:'#6c3483',sales:'#d35400',trans:'#b7950b'};
-var MIN=2003,MAX=2026,TOP=60;
+var MIN=2015,MAX=2026,TOP=60;
 var D_INNER=34,D_OUTER=74,SERIF=10,CARD_GAP=15;
 var INNER_W=172,OUTER_W=150;
 
@@ -476,19 +513,13 @@ function fitCardText(el){
 }
 
 var jobs=[
-  {id:'j4', start:2021,end:2022,side:'L',depth:'inner',sector:'Education & Ops',  col:COL.edu,   role:'Agent Relations Manager',      org:'New Horizons',                desc:'Managed communications between the company and its partners, which evolved into overseeing the data entry team and the full admissions process — including complete ownership of Bitrix24 and all its customizations.'},
-  {id:'j3', start:2022,end:2023,side:'L',depth:'inner',sector:'Education & Ops',  col:COL.edu,   role:'Operations Manager',            org:'Marifet Group',               desc:'Responsible for monitoring all operations: recruiting, training, sales, marketing and campaign analysis, admissions, business communications, logistics, HR, Bitrix24 management, reporting and analysis.'},
-  {id:'j2', start:2023,end:2024,side:'L',depth:'inner',sector:'Education & Ops',  col:COL.edu,   role:'Business Development Manager',   org:'Unitopia Global',             desc:'Recruited staff, tracked CRM and website progress, found new logistics revenue streams, wrote company policy and contracts, worked daily with marketing partners, organized agent relations, set financial accounting rules — reporting to the board throughout the company\'s growth journey.'},
-  {id:'j9', start:2015,end:2016,side:'L',depth:'inner',sector:'Humanitarian',     col:COL.human, role:'Reporting Officer',              org:'UNHCR – Humanitarian Support', desc:'Started reporting for the distribution department, then escalated to preparing the report for the entire Humanitarian Support Project.'},
-  {id:'j8', start:2016,end:2017,side:'L',depth:'inner',sector:'Humanitarian',     col:COL.human, role:'Information Management Officer',  org:'SARC – Disaster Mgmt',        desc:'Built an Excel inventory system for HQ warehouses that transformed their visibility from "dark to light" — the success of which led directly to promotion as M&E Coordinator.'},
-  {id:'j7', start:2017,end:2019,side:'L',depth:'inner',sector:'Humanitarian',     col:COL.human, role:'M&E Coordinator',               org:'SARC – Disaster Mgmt',        desc:'Created the Daily Unit Report — a compiled analysis of small departmental reports revealing the results and trends of every ongoing operation in the unit.'},
-  {id:'j12',start:2004,end:2010,side:'L',depth:'inner',sector:'Creative & Design',col:COL.create,role:'AutoCAD Draughtsman',            org:'Tuffaha Office',              desc:'Used computer skills guided by an engineering father to produce technical drawings described as the best we had — delivering engineering solutions without a formal engineering background.'},
   {id:'j1', start:2024,end:2026,side:'R',depth:'outer',sector:'Business',         col:COL.biz,   role:'Business Development',           org:'Amwal Accounting & Consulting', desc:'Managed and optimized key business systems ensuring smooth operations. Designed advanced Excel-based tools including a 47-sheet data consolidation system and a tax processing workflow that cut processing time from ~20 days to ~2 days. Acted as internal point of expertise for digital platforms.'},
-  {id:'j5', start:2020,end:2026,side:'R',depth:'inner',sector:'Creative & Design',col:COL.create,role:'Adobe Designer & Editor',         org:'One for All',                 desc:'Grew a pandemic-era side venture into a solid marketing and design operation — online product sales, content design and editing, and digital solutions for clients across multiple industries.'},
-  {id:'j6', start:2019,end:2020,side:'R',depth:'outer',sector:'Sales & Retail',   col:COL.sales, role:'Salesman',                       org:'Kiswah Jewellery',            desc:'Sold not just jewelry but heritage — telling the story and inspiration behind each piece. Handled all shift responsibilities at the Istanbul New Airport branch.'},
-  {id:'j10',start:2007,end:2018,side:'R',depth:'inner',sector:'Translation',      col:COL.trans, role:'Translator',                     org:'NatGeo, MBC, Quest Arabia',   desc:'Translated English to Arabic text and voice content for National Geographic, MBC Group, Quest Arabia, Space Power, and more — running concurrently with other roles for 11 years. Also translated articles for several magazines.'},
-  {id:'j11',start:2006,end:2012,side:'R',depth:'outer',sector:'Sales & Retail',   col:COL.sales, role:'Store Manager',                  org:'Tuffaha Fashion',             desc:'Ran the store entirely solo: purchasing, showcase design, Facebook management, selling, accounting, taxes, and every detail needed to keep the business running day to day.'},
-  {id:'j13',start:2003,end:2006,side:'R',depth:'inner',sector:'Creative & Design',col:COL.create,role:'Tracks Designer',                org:'Silver Light',                desc:'Designed embroidery machine tracks for a baby clothing company. Produced over 100 designs in one season vs the usual 10-15 — setting a new benchmark for the company.'},
+  {id:'j2', start:2023,end:2024,side:'L',depth:'outer',sector:'Education & Ops',  col:COL.edu,   role:'Business Development Manager',   org:'Unitopia Global',             desc:'Recruited staff, tracked CRM and website progress, found new logistics revenue streams, wrote company policy and contracts, worked daily with marketing partners, organized agent relations, set financial accounting rules — reporting to the board throughout the company\'s growth journey.'},
+  {id:'j3', start:2022,end:2023,side:'R',depth:'outer',sector:'Education & Ops',  col:COL.edu,   role:'Operations Manager',            org:'Marifet Group',               desc:'Responsible for monitoring all operations: recruiting, training, sales, marketing and campaign analysis, admissions, business communications, logistics, HR, Bitrix24 management, reporting and analysis.'},
+  {id:'j4', start:2021,end:2022,side:'L',depth:'outer',sector:'Education & Ops',  col:COL.edu,   role:'Agent Relations Manager',      org:'New Horizons',                desc:'Managed communications between the company and its partners, which evolved into overseeing the data entry team and the full admissions process — including complete ownership of Bitrix24 and all its customizations.'},
+  {id:'j7', start:2017,end:2019,side:'L',depth:'outer',sector:'Humanitarian',     col:COL.human, role:'M&E Coordinator',               org:'SARC – Disaster Mgmt',        desc:'Created the Daily Unit Report — a compiled analysis of small departmental reports revealing the results and trends of every ongoing operation in the unit.'},
+  {id:'j8', start:2016,end:2017,side:'R',depth:'outer',sector:'Humanitarian',     col:COL.human, role:'Information Management Officer',  org:'SARC – Disaster Mgmt',        desc:'Built an Excel inventory system for HQ warehouses that transformed stock visibility from zero to full clarity — the success of which led directly to promotion as M&E Coordinator.'},
+  {id:'j9', start:2015,end:2016,side:'L',depth:'outer',sector:'Humanitarian',     col:COL.human, role:'Reporting Officer',              org:'UNHCR – Humanitarian Support', desc:'Started reporting for the distribution department, then escalated to preparing the report for the entire Humanitarian Support Project.'},
 ];
 
 var wrap=document.getElementById('tl-wrap');
@@ -525,6 +556,78 @@ function closeCard(){
   document.getElementById('overlay').classList.remove('open');
 }
 function handleClose(e){if(e.target===e.currentTarget)closeCard();}
+
+var OTHER_EXP={
+  trans:{
+    en:{title:'Translation',rows:[
+      {role:'Translator',org:'National Geographic',date:'2007 – 2018'},
+      {role:'Translator',org:'MBC Group',date:'2007 – 2018'},
+      {role:'Translator',org:'Quest Arabia',date:'2007 – 2018'},
+      {role:'Translator',org:'Space Power',date:'2007 – 2018'}
+    ]},
+    ar:{title:'الترجمة',rows:[
+      {role:'مترجم',org:'ناشيونال جيوغرافيك',date:'2007 – 2018'},
+      {role:'مترجم',org:'مجموعة MBC',date:'2007 – 2018'},
+      {role:'مترجم',org:'Quest Arabia',date:'2007 – 2018'},
+      {role:'مترجم',org:'Space Power',date:'2007 – 2018'}
+    ]},
+    tr:{title:'Çeviri',rows:[
+      {role:'Çevirmen',org:'National Geographic',date:'2007 – 2018'},
+      {role:'Çevirmen',org:'MBC Group',date:'2007 – 2018'},
+      {role:'Çevirmen',org:'Quest Arabia',date:'2007 – 2018'},
+      {role:'Çevirmen',org:'Space Power',date:'2007 – 2018'}
+    ]}
+  },
+  retail:{
+    en:{title:'Retail & Store Management',rows:[
+      {role:'Sales Associate',org:'Kiswah Jewellery',date:'2019 – 2020'},
+      {role:'Store Manager',org:'Tuffaha Fashion',date:'2006 – 2012'}
+    ]},
+    ar:{title:'التجزئة وإدارة المتاجر',rows:[
+      {role:'مندوب مبيعات',org:'Kiswah Jewellery',date:'2019 – 2020'},
+      {role:'مدير متجر',org:'Tuffaha Fashion',date:'2006 – 2012'}
+    ]},
+    tr:{title:'Perakende ve Mağaza Yönetimi',rows:[
+      {role:'Satış Danışmanı',org:'Kiswah Jewellery',date:'2019 – 2020'},
+      {role:'Mağaza Müdürü',org:'Tuffaha Fashion',date:'2006 – 2012'}
+    ]}
+  },
+  design:{
+    en:{title:'Design',rows:[
+      {role:'Adobe Designer & Marketer',org:'One for All',date:'2020 – Present'},
+      {role:'AutoCAD Draughtsman',org:'Tuffaha Office',date:'2004 – 2010'},
+      {role:'Embroidery Designer',org:'Silver Light',date:'2003 – 2006'}
+    ]},
+    ar:{title:'التصميم',rows:[
+      {role:'مصمم ومسوّق Adobe',org:'One for All',date:'2020 – حتى الآن'},
+      {role:'رسام AutoCAD',org:'Tuffaha Office',date:'2004 – 2010'},
+      {role:'مصمم مسارات تطريز',org:'Silver Light',date:'2003 – 2006'}
+    ]},
+    tr:{title:'Tasarım',rows:[
+      {role:'Adobe Tasarımcı ve Pazarlamacı',org:'One for All',date:'2020 – Günümüz'},
+      {role:'AutoCAD Teknik Ressam',org:'Tuffaha Office',date:'2004 – 2010'},
+      {role:'Nakış Deseni Tasarımcısı',org:'Silver Light',date:'2003 – 2006'}
+    ]}
+  }
+};
+
+function openOther(key){
+  var data=OTHER_EXP[key][currentLang]||OTHER_EXP[key].en;
+  document.getElementById('other-overlay-title').textContent=data.title;
+  var list=document.getElementById('other-overlay-list');
+  list.innerHTML='';
+  data.rows.forEach(function(r){
+    var row=document.createElement('div');
+    row.className='other-overlay-row';
+    row.innerHTML='<div><p class="other-overlay-role">'+r.role+'</p><p class="other-overlay-org">'+r.org+'</p></div><span class="other-overlay-date">'+r.date+'</span>';
+    list.appendChild(row);
+  });
+  document.getElementById('other-overlay').classList.add('open');
+}
+function closeOther(){
+  document.getElementById('other-overlay').classList.remove('open');
+}
+
 function openAchievements(){
   buildAchievements();
   document.getElementById('ach-overlay-title').textContent=ui('achLabel');
@@ -576,6 +679,23 @@ function render(){
     wrap.appendChild(yearEl);
   }
 
+  // Kiswah gap marker
+  var kiswahY=yOf(2020);
+  var markerR=5;
+  ctx.beginPath();ctx.arc(cx,kiswahY,markerR,0,Math.PI*2);
+  ctx.strokeStyle=COL.sales;ctx.lineWidth=1.5;ctx.stroke();
+  var markerEl=document.createElement('span');
+  markerEl.className='tl-year tl-gap-marker';
+  markerEl.textContent='Sales Associate · Kiswah Jewellery · 2019–2020';
+  markerEl.style.left=(cx+markerR+10)+'px';
+  markerEl.style.top=(kiswahY-8)+'px';
+  markerEl.style.transform='none';
+  markerEl.style.fontStyle='italic';
+  markerEl.style.color=COL.sales;
+  markerEl.style.fontSize='11px';
+  markerEl.style.background='transparent';
+  wrap.appendChild(markerEl);
+
   jobs.forEach(function(j){
     var el=document.getElementById(j.id);
     j.cardH=el.offsetHeight;
@@ -585,7 +705,7 @@ function render(){
 
   var groups={};
   jobs.forEach(function(j){
-    var k=j.side+j.depth;
+    var k=j.side;
     if(!groups[k])groups[k]=[];
     groups[k].push(j);
   });
@@ -611,13 +731,27 @@ function render(){
       if(maj2){yearEl2.style.color='#888780';yearEl2.style.fontSize='15px';}
       wrap.appendChild(yearEl2);
     }
+    var kiswahY2=yOf(2020);
+    ctx.beginPath();ctx.arc(cx,kiswahY2,5,0,Math.PI*2);
+    ctx.strokeStyle=COL.sales;ctx.lineWidth=1.5;ctx.stroke();
+    var markerEl2=document.createElement('span');
+    markerEl2.className='tl-year tl-gap-marker';
+    markerEl2.textContent='Sales Associate · Kiswah Jewellery · 2019–2020';
+    markerEl2.style.left=(cx+15)+'px';
+    markerEl2.style.top=(kiswahY2-8)+'px';
+    markerEl2.style.transform='none';
+    markerEl2.style.fontStyle='italic';
+    markerEl2.style.color=COL.sales;
+    markerEl2.style.fontSize='11px';
+    markerEl2.style.background='transparent';
+    wrap.appendChild(markerEl2);
   }
 
   jobs.forEach(function(j){
-    var dist=j.depth==='inner'?scale.innerD:scale.outerD;
+    var dist=scale.outerD;
     var bx=j.side==='L'?cx-dist:cx+dist;
     var available=j.side==='L'?bx-CARD_GAP-8:W-(bx+CARD_GAP)-8;
-    var desired=j.depth==='inner'?scale.innerW:scale.outerW;
+    var desired=scale.outerW;
     var cardW=Math.max(scale.minW,Math.min(desired,available));
     var sf=j.side==='L'?SERIF:-SERIF;
     var el=document.getElementById(j.id);
@@ -627,10 +761,10 @@ function render(){
     ctx.beginPath();ctx.moveTo(bx,drawSy);ctx.lineTo(bx,drawEy);ctx.stroke();
     ctx.beginPath();ctx.moveTo(bx,drawSy);ctx.lineTo(bx+sf,drawSy);ctx.stroke();
     ctx.beginPath();ctx.moveTo(bx,drawEy);ctx.lineTo(bx+sf,drawEy);ctx.stroke();
-    ctx.fillStyle=j.col;ctx.beginPath();ctx.arc(cx,j.sy,4,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=j.col;ctx.beginPath();ctx.arc(cx,j.ey,4,0,Math.PI*2);ctx.fill();
 
     ctx.strokeStyle=j.col+'55';ctx.lineWidth=1;ctx.setLineDash([2,3]);
-    ctx.beginPath();ctx.moveTo(cx,j.sy);ctx.lineTo(bx,drawSy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx,j.ey);ctx.lineTo(bx,drawEy);ctx.stroke();
     ctx.setLineDash([]);
 
     var brMid=(drawSy+drawEy)/2;
