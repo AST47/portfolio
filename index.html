@@ -186,10 +186,8 @@ html[dir="rtl"] .other-ticket::after{right:auto;left:.75rem;content:'›';}
   .pt-org{font-size:.78rem;font-weight:500;line-height:1.2;}
   .pt-dates{font-size:.7rem;color:var(--ink-ghost);white-space:nowrap;flex-shrink:0;}
   .pt-desc{font-size:.78rem;color:var(--ink-soft);line-height:1.7;margin-top:.22rem;}
-  .pt-other-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem;}
-  .pt-other-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-  .pt-other-label{font-size:.78rem;font-weight:500;color:var(--ink);}
-  .pt-other-meta{font-size:.73rem;color:var(--ink-ghost);}
+  .pt-other-cat{font-family:var(--font-display);font-size:.88rem;font-weight:600;margin-bottom:.45rem;margin-top:.9rem;}
+  .pt-other-cat:first-child{margin-top:0;}
   html[dir="rtl"] .pt-head{flex-direction:row-reverse;}
   html[dir="rtl"] .pt-role{flex-direction:row;}
 }
@@ -962,7 +960,7 @@ function buildPrintTimeline(){
 
   container.appendChild(mainSection);
 
-  // Other experiences as one-liners
+  // Other experiences — full unfolded rows
   var otherLabel=document.createElement('p');
   otherLabel.className='pt-section-label';
   otherLabel.textContent=ui('otherExp');
@@ -974,29 +972,36 @@ function buildPrintTimeline(){
   var COL_OTHER={trans:COL.trans,retail:COL.sales,design:COL.create};
   ['trans','retail','design'].forEach(function(key){
     var data=OTHER_EXP[key][currentLang]||OTHER_EXP[key].en;
-    var rows=data.rows;
-    var years=rows.map(function(r){return r.date;}).join(' · ');
-    var orgs=rows.map(function(r){return r.org;}).join(', ');
+    var col=COL_OTHER[key];
 
-    var row=document.createElement('div');
-    row.className='pt-other-row';
+    // Category heading
+    var catHead=document.createElement('p');
+    catHead.className='pt-other-cat';
+    catHead.style.color=col;
+    catHead.textContent=data.title;
+    otherSection.appendChild(catHead);
 
-    var dot=document.createElement('div');
-    dot.className='pt-other-dot';
-    dot.style.background=COL_OTHER[key];
+    // Each role row
+    data.rows.forEach(function(r){
+      var row=document.createElement('div');
+      row.className='pt-role';
 
-    var label=document.createElement('span');
-    label.className='pt-other-label';
-    label.textContent=data.title;
+      var dot=document.createElement('div');
+      dot.className='pt-dot';
+      dot.style.background=col;
 
-    var meta=document.createElement('span');
-    meta.className='pt-other-meta';
-    meta.textContent='— '+orgs+' · '+years;
+      var body=document.createElement('div');
+      body.className='pt-body';
+      body.innerHTML='<div class="pt-head">'
+        +'<span class="pt-title" style="color:'+col+'">'+r.role+'</span>'
+        +'<span class="pt-org">'+r.org+'</span>'
+        +'<span class="pt-dates">'+r.date+'</span>'
+        +'</div>';
 
-    row.appendChild(dot);
-    row.appendChild(label);
-    row.appendChild(meta);
-    otherSection.appendChild(row);
+      row.appendChild(dot);
+      row.appendChild(body);
+      otherSection.appendChild(row);
+    });
   });
 
   container.appendChild(otherSection);
