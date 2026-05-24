@@ -187,9 +187,12 @@ html[dir="rtl"] .other-ticket::after{right:auto;left:.75rem;content:'›';}
   .pt-org{font-size:.78rem;font-weight:500;line-height:1.2;}
   .pt-dates{font-size:.7rem;color:var(--ink-ghost);white-space:nowrap;flex-shrink:0;}
   .pt-desc{font-size:.78rem;color:var(--ink-soft);line-height:1.7;margin-top:.22rem;}
+  #print-timeline{padding-top:1.6rem;}
+  .pt-sector-legend{display:inline-flex;align-items:center;gap:6px;margin-bottom:.9rem;}
+  .pt-sector-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+  .pt-sector-name{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;}
   .pt-other-cat{font-family:var(--font-display);font-size:.88rem;font-weight:600;margin-bottom:.45rem;margin-top:.9rem;}
-  .pt-other-cat:first-child{margin-top:0;}
-  html[dir="rtl"] .pt-head{flex-direction:row-reverse;}
+  .pt-other-cat:first-child{margin-top:0;}  html[dir="rtl"] .pt-head{flex-direction:row-reverse;}
   html[dir="rtl"] .pt-role{flex-direction:row;}
 }
 
@@ -921,45 +924,66 @@ function buildPrintTimeline(){
   if(!container)return;
   container.innerHTML='';
 
-  // Main jobs section
+  // Main jobs section — grouped by sector with legend pill per group
   var mainLabel=document.createElement('p');
   mainLabel.className='pt-section-label';
   mainLabel.textContent=ui('timeline');
   container.appendChild(mainLabel);
 
-  var mainSection=document.createElement('div');
-  mainSection.className='pt-section';
+  var SECTOR_ORDER=['Education & Ops','Humanitarian','Business'];
+  var SECTOR_LABELS={
+    'Education & Ops':{en:'Educational Consulting',ar:'الاستشارات التعليمية',tr:'Eğitim Danışmanlığı'},
+    'Humanitarian':{en:'Humanitarian',ar:'العمل الإنساني',tr:'İnsani Çalışmalar'},
+    'Business':{en:'Accounting & Finance',ar:'المحاسبة والمالية',tr:'Muhasebe ve Finans'}
+  };
+  var SECTOR_COL={'Education & Ops':COL.edu,'Humanitarian':COL.human,'Business':COL.biz};
 
-  jobs.forEach(function(j){
-    var row=document.createElement('div');
-    row.className='pt-role';
+  SECTOR_ORDER.forEach(function(sector){
+    var sectorJobs=jobs.filter(function(j){return j.sector===sector;});
+    if(!sectorJobs.length)return;
 
-    var dot=document.createElement('div');
-    dot.className='pt-dot';
-    dot.style.background=j.col;
+    var legend=document.createElement('div');
+    legend.className='pt-sector-legend';
+    var ldot=document.createElement('div');
+    ldot.className='pt-sector-dot';
+    ldot.style.background=SECTOR_COL[sector];
+    var lname=document.createElement('span');
+    lname.className='pt-sector-name';
+    lname.style.color=SECTOR_COL[sector];
+    lname.textContent=SECTOR_LABELS[sector][currentLang]||SECTOR_LABELS[sector].en;
+    legend.appendChild(ldot);
+    legend.appendChild(lname);
+    container.appendChild(legend);
 
-    var body=document.createElement('div');
-    body.className='pt-body';
+    var section=document.createElement('div');
+    section.className='pt-section';
 
-    var endLabel=j.end===MAX?ui('present'):String(j.end);
-    var head=document.createElement('div');
-    head.className='pt-head';
-    head.innerHTML='<span class="pt-title" style="color:'+j.col+'">'+jobText(j,'role')+'</span>'
-      +'<span class="pt-org">'+jobText(j,'org')+'</span>'
-      +'<span class="pt-dates">'+j.start+' – '+endLabel+'</span>';
+    sectorJobs.forEach(function(j){
+      var row=document.createElement('div');
+      row.className='pt-role';
+      var dot=document.createElement('div');
+      dot.className='pt-dot';
+      dot.style.background=j.col;
+      var body=document.createElement('div');
+      body.className='pt-body';
+      var endLabel=j.end===MAX?ui('present'):String(j.end);
+      var head=document.createElement('div');
+      head.className='pt-head';
+      head.innerHTML='<span class="pt-title" style="color:'+j.col+'">'+jobText(j,'role')+'</span>'
+        +'<span class="pt-org">'+jobText(j,'org')+'</span>'
+        +'<span class="pt-dates">'+j.start+' – '+endLabel+'</span>';
+      var desc=document.createElement('p');
+      desc.className='pt-desc';
+      desc.textContent=jobText(j,'desc');
+      body.appendChild(head);
+      body.appendChild(desc);
+      row.appendChild(dot);
+      row.appendChild(body);
+      section.appendChild(row);
+    });
 
-    var desc=document.createElement('p');
-    desc.className='pt-desc';
-    desc.textContent=jobText(j,'desc');
-
-    body.appendChild(head);
-    body.appendChild(desc);
-    row.appendChild(dot);
-    row.appendChild(body);
-    mainSection.appendChild(row);
+    container.appendChild(section);
   });
-
-  container.appendChild(mainSection);
 
   // Other experiences — full unfolded rows
   var otherLabel=document.createElement('p');
