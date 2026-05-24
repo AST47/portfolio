@@ -156,7 +156,7 @@ html[dir="rtl"] .other-ticket::after{right:auto;left:.75rem;content:'›';}
 .print-btn:hover{background:var(--ink);color:var(--white);border-color:var(--ink);}
 .print-btn:focus-visible{outline:2px solid var(--edu);outline-offset:2px;}
 
-/* PRINT-ONLY TIMELINE */
+/* PRINT-ONLY TIMELINE — shown only inside #print-page via print CSS */
 #print-timeline{display:none;}
 
 /* PRINT PAGE */
@@ -170,6 +170,7 @@ html[dir="rtl"] .other-ticket::after{right:auto;left:.75rem;content:'›';}
   .page{display:none!important;}
   .overlay{display:none!important;}
   #print-page{display:flex!important;min-height:100vh;font-family:var(--font-body);}
+  #print-timeline{display:block!important;}
   #pp-sidebar{width:195px;min-width:195px;background:#1a1a18;color:#f5f2eb;padding:2rem 1.2rem;display:flex;flex-direction:column;gap:0;}
   #pp-photo{width:90px;height:90px;border-radius:50%;overflow:hidden;margin:0 auto 1rem;border:2px solid rgba(255,255,255,.15);}
   #pp-photo img{width:100%;height:100%;object-fit:cover;display:block;}
