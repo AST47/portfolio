@@ -168,10 +168,11 @@ html[dir="rtl"] .other-ticket::after{right:auto;left:.75rem;content:'›';}
   .hero-name{font-size:2.8rem;}
   .hero-bio{font-size:.78rem;margin-bottom:1.1rem;}
   .tag{font-size:.6rem;padding:3px 10px;}
-  .page{display:block;max-width:none;}
-  .sidebar{float:left;width:185px;border-right:1px solid var(--line);padding:1.4rem 1.1rem;gap:1.4rem;font-size:.82rem;margin-right:0;}
-  .main{margin-left:185px;padding:1.4rem 1.6rem;border-left:1px solid var(--line);}
-  .page::after{content:'';display:table;clear:both;}
+  .page{display:block;max-width:none;position:relative;}
+  .sidebar{position:absolute;top:0;left:0;width:190px;border-right:1px solid var(--line);padding:1.4rem 1.1rem;font-size:.78rem;gap:1rem;}
+  .main{margin-left:200px;padding:1.4rem 1.4rem 1.4rem 1.6rem;}
+  html[dir="rtl"] .sidebar{left:auto;right:0;border-right:none;border-left:1px solid var(--line);}
+  html[dir="rtl"] .main{margin-left:0;margin-right:200px;}
   /* hide interactive timeline, show print version */
   .tl-wrap{display:none!important;height:0!important;margin:0!important;padding:0!important;}
   .timeline-header{display:none!important;}
