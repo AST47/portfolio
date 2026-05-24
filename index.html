@@ -159,40 +159,65 @@ html[dir="rtl"] .other-ticket::after{right:auto;left:.75rem;content:'›';}
 /* PRINT-ONLY TIMELINE */
 #print-timeline{display:none;}
 
+/* PRINT PAGE */
+#print-page{display:none;}
+
 @media print{
-  body{background:var(--white);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  @page{size:A4;margin:0;}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+  body{background:var(--white);margin:0;padding:0;}
+  .hero{display:none!important;}
+  .page{display:none!important;}
   .overlay{display:none!important;}
-  .print-btn{display:none!important;}
-  .lang-switch{display:none!important;}
-  .hero{break-inside:avoid;padding:1.6rem 1.2rem 1.4rem;grid-template-columns:minmax(90px,110px) minmax(0,1fr);}
-  .hero-name{font-size:2.8rem;}
-  .hero-bio{font-size:.78rem;margin-bottom:1.1rem;}
-  .tag{font-size:.6rem;padding:3px 10px;}
-  .page{display:block;max-width:none;position:relative;}
-  .sidebar{position:absolute;top:0;left:0;width:190px;border-right:1px solid var(--line);padding:1.4rem 1.1rem;font-size:.78rem;gap:1rem;}
-  .main{margin-left:200px;padding:1.4rem 1.4rem 1.4rem 1.6rem;}
-  html[dir="rtl"] .sidebar{left:auto;right:0;border-right:none;border-left:1px solid var(--line);}
-  html[dir="rtl"] .main{margin-left:0;margin-right:200px;}
-  /* hide interactive timeline, show print version */
-  .tl-wrap{display:none!important;height:0!important;margin:0!important;padding:0!important;}
-  .timeline-header{display:none!important;}
-  .other-exp{display:none!important;}
-  #print-timeline{display:block;padding-top:2rem;}
-  /* print timeline styles */
-  .pt-section{margin-bottom:1.6rem;}
-  .pt-section-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--edu);font-weight:600;margin-bottom:.7rem;padding-bottom:.35rem;border-bottom:1px solid var(--line);}
-  .pt-role{display:flex;gap:.75rem;margin-bottom:1rem;break-inside:avoid;}
-  .pt-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:.35rem;}
+  #print-page{display:flex!important;min-height:100vh;font-family:var(--font-body);}
+  #pp-sidebar{width:195px;min-width:195px;background:#1a1a18;color:#f5f2eb;padding:2rem 1.2rem;display:flex;flex-direction:column;gap:0;}
+  #pp-photo{width:90px;height:90px;border-radius:50%;overflow:hidden;margin:0 auto 1rem;border:2px solid rgba(255,255,255,.15);}
+  #pp-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  #pp-photo-placeholder{width:100%;height:100%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,242,235,.4);}
+  #pp-name{text-align:center;margin-bottom:1.4rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(255,255,255,.12);}
+  #pp-name-main{font-family:var(--font-display);font-size:1.05rem;line-height:1.2;color:#f5f2eb;margin-bottom:.2rem;}
+  #pp-name-last{color:var(--edu);}
+  #pp-title{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,235,.5);margin-top:.35rem;}
+  .pp-sec{margin-bottom:1.3rem;}
+  .pp-sec-label{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,242,235,.45);font-weight:500;margin-bottom:.7rem;}
+  .pp-contact-item{display:flex;align-items:flex-start;gap:6px;margin-bottom:.5rem;}
+  .pp-contact-text{font-size:.68rem;color:rgba(245,242,235,.75);line-height:1.45;word-break:break-all;}
+  .pp-contact-text a{color:rgba(245,242,235,.75);text-decoration:none;}
+  .pp-skill-row{margin-bottom:.5rem;}
+  .pp-skill-name{font-size:.68rem;color:rgba(245,242,235,.8);display:flex;justify-content:space-between;margin-bottom:3px;}
+  .pp-skill-pct{color:rgba(245,242,235,.4);font-size:.62rem;}
+  .pp-skill-track{height:2px;background:rgba(255,255,255,.12);border-radius:1px;}
+  .pp-skill-fill{height:100%;background:var(--edu);border-radius:1px;}
+  .pp-lang-row{margin-bottom:.55rem;}
+  .pp-lang-top{display:flex;justify-content:space-between;margin-bottom:3px;}
+  .pp-lang-name{font-size:.68rem;color:rgba(245,242,235,.8);font-weight:500;}
+  .pp-lang-level{font-size:.6rem;color:rgba(245,242,235,.4);}
+  .pp-lang-dots{display:flex;gap:3px;}
+  .pp-lang-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.15);}
+  .pp-lang-dot.on{background:var(--edu);}
+  .pp-cert-item{font-size:.62rem;color:rgba(245,242,235,.65);margin-bottom:.32rem;padding-left:.5rem;border-left:1.5px solid rgba(255,255,255,.12);line-height:1.4;}
+  .pp-cert-item strong{color:rgba(245,242,235,.85);font-weight:500;display:block;font-size:.6rem;}
+  #pp-main{flex:1;padding:2rem 1.8rem 2rem 1.6rem;background:var(--white);}
+  #pp-hero{margin-bottom:1.4rem;padding-bottom:1.2rem;border-bottom:1px solid var(--line);}
+  #pp-hero-name{font-family:var(--font-display);font-size:2.4rem;line-height:.95;color:var(--ink);margin-bottom:.4rem;}
+  #pp-hero-name span:last-child{color:var(--edu);}
+  #pp-hero-bio{font-size:.72rem;color:var(--ink-soft);line-height:1.75;border-left:2px solid var(--edu);padding-left:.85rem;font-style:italic;margin-bottom:.85rem;}
+  #pp-hero-tags{display:flex;flex-wrap:wrap;gap:5px;}
+  .pp-tag{padding:3px 10px;border:1px solid var(--ink);border-radius:100px;font-size:.58rem;color:var(--white);background:var(--ink);}
+  .pt-section{margin-bottom:1.4rem;}
+  .pt-section-label{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--edu);font-weight:600;margin-bottom:.6rem;padding-bottom:.3rem;border-bottom:1px solid var(--line);}
+  .pt-role{display:flex;gap:.65rem;margin-bottom:.9rem;break-inside:avoid;}
+  .pt-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:.32rem;}
   .pt-body{flex:1;min-width:0;}
-  .pt-head{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin-bottom:.18rem;flex-wrap:wrap;}
-  .pt-title{font-family:var(--font-display);font-size:.98rem;color:var(--ink);line-height:1.2;}
-  .pt-org{font-size:.78rem;font-weight:500;line-height:1.2;}
-  .pt-dates{font-size:.7rem;color:var(--ink-ghost);white-space:nowrap;flex-shrink:0;}
-  .pt-desc{font-size:.78rem;color:var(--ink-soft);line-height:1.7;margin-top:.22rem;}
-  .pt-sector-legend{display:inline-flex;align-items:center;gap:6px;margin-bottom:.9rem;}
-  .pt-sector-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-  .pt-sector-name{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;}
-  .pt-other-cat{font-family:var(--font-display);font-size:.88rem;font-weight:600;margin-bottom:.45rem;margin-top:.9rem;}
+  .pt-head{display:flex;justify-content:space-between;align-items:baseline;gap:.4rem;margin-bottom:.15rem;flex-wrap:wrap;}
+  .pt-title{font-family:var(--font-display);font-size:.92rem;line-height:1.2;}
+  .pt-org{font-size:.72rem;font-weight:500;line-height:1.2;}
+  .pt-dates{font-size:.65rem;color:var(--ink-ghost);white-space:nowrap;flex-shrink:0;}
+  .pt-desc{font-size:.72rem;color:var(--ink-soft);line-height:1.65;margin-top:.18rem;}
+  .pt-sector-legend{display:inline-flex;align-items:center;gap:5px;margin-bottom:.75rem;}
+  .pt-sector-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .pt-sector-name{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;}
+  .pt-other-cat{font-family:var(--font-display);font-size:.85rem;font-weight:600;margin-bottom:.4rem;margin-top:.85rem;}
   .pt-other-cat:first-child{margin-top:0;}
   html[dir="rtl"] .pt-head{flex-direction:row-reverse;}
   html[dir="rtl"] .pt-role{flex-direction:row;}
@@ -1035,6 +1060,65 @@ function buildPrintTimeline(){
 }
 
 function printCV(){
+  // populate print page sidebar i18n
+  var t=UI_TEXT[currentLang]||UI_TEXT.en;
+  document.getElementById('pp-fn').textContent=t.firstName;
+  document.getElementById('pp-ln').textContent=t.lastName;
+  document.getElementById('pp-ln').style.color='var(--edu)';
+  document.getElementById('pp-title').textContent=t.bdBtn;
+  document.getElementById('pp-location').textContent=t.location;
+  document.getElementById('pp-skills-label').textContent=t.skills;
+  document.getElementById('pp-lang-label').textContent=t.languages;
+  document.getElementById('pp-certs-label').textContent=t.certs;
+  // skill names
+  document.getElementById('pp-s1').textContent=t.skillExcel;
+  document.getElementById('pp-s2').textContent=t.skillOps;
+  document.getElementById('pp-s3').textContent=t.skillAdobe;
+  document.getElementById('pp-s4').textContent=t.skillCrm;
+  document.getElementById('pp-s5').textContent=t.skillMarketing;
+  document.getElementById('pp-s6').textContent=t.skillAutoCAD;
+  // languages
+  document.getElementById('pp-l1').textContent=t.langArabic;
+  document.getElementById('pp-l2').textContent=t.langEnglish;
+  document.getElementById('pp-l3').textContent=t.langTurkish;
+  document.getElementById('pp-ll1').textContent=t.levelNative;
+  document.getElementById('pp-ll2').textContent=t.levelFluent;
+  document.getElementById('pp-ll3').textContent=t.levelIntermediate;
+  // certs
+  var certKeys=['certDigitalBasics','certMetaAssociate','certSocial','certDigitalBasics','certSeo','certData','certSurvey','certLogic','certFirstAid','certDisaster','certNlp','certProject','certME','certNeeds','certVulnerability','certWorc','certAccounting'];
+  certKeys.forEach(function(k,i){
+    var el=document.getElementById('pp-c'+(i+1));
+    if(el)el.textContent=t[k]||'';
+  });
+  // photo
+  var photoEl=document.getElementById('pp-photo');
+  var existingImg=document.querySelector('.photo-slot img');
+  if(existingImg && existingImg.complete && existingImg.naturalWidth>0){
+    photoEl.innerHTML='';
+    var img=document.createElement('img');
+    img.src=existingImg.src;
+    photoEl.appendChild(img);
+  }
+  // hero right side
+  document.getElementById('pp-hero-fn').textContent=t.firstName;
+  document.getElementById('pp-hero-ln').textContent=t.lastName;
+  document.getElementById('pp-hero-ln').style.color='var(--edu)';
+  document.getElementById('pp-hero-bio').textContent=t.heroBio;
+  // tags
+  var tagsEl=document.getElementById('pp-hero-tags');
+  tagsEl.innerHTML='';
+  [t.tagBiz,t.tagAI,t.tagExcel,t.tagOps,t.tagTrans].forEach(function(tag){
+    var s=document.createElement('span');
+    s.className='pp-tag';
+    s.textContent=tag;
+    tagsEl.appendChild(s);
+  });
+  // RTL
+  if(currentLang==='ar'){
+    document.getElementById('print-page').setAttribute('dir','rtl');
+  } else {
+    document.getElementById('print-page').setAttribute('dir','ltr');
+  }
   buildPrintTimeline();
   window.print();
 }
@@ -1054,5 +1138,67 @@ try{
   console.error(err);
 }
 </script>
+
+<!-- PRINT PAGE -->
+<div id="print-page">
+  <div id="pp-sidebar">
+    <div id="pp-photo"><div id="pp-photo-placeholder">photo</div></div>
+    <div id="pp-name">
+      <div id="pp-name-main"><span id="pp-fn"></span> <span id="pp-ln"></span></div>
+      <div id="pp-title">Business Developer</div>
+    </div>
+    <div class="pp-sec">
+      <p class="pp-sec-label">Contact</p>
+      <div class="pp-contact-item"><span class="pp-contact-text">salehzuh@gmail.com</span></div>
+      <div class="pp-contact-item"><span class="pp-contact-text">+90 552 540 73 77</span></div>
+      <div class="pp-contact-item"><span class="pp-contact-text" id="pp-location">Istanbul, Turkey</span></div>
+      <div class="pp-contact-item"><span class="pp-contact-text">WhatsApp: +90 552 540 73 77</span></div>
+      <div class="pp-contact-item"><span class="pp-contact-text">linkedin.com/in/ahmad-saleh-tuffaha</span></div>
+    </div>
+    <div class="pp-sec">
+      <p class="pp-sec-label" id="pp-skills-label">Skills</p>
+      <div class="pp-skill-row"><div class="pp-skill-name"><span id="pp-s1">Excel &amp; Data</span><span class="pp-skill-pct">95%</span></div><div class="pp-skill-track"><div class="pp-skill-fill" style="width:95%"></div></div></div>
+      <div class="pp-skill-row"><div class="pp-skill-name"><span id="pp-s2">Operations</span><span class="pp-skill-pct">90%</span></div><div class="pp-skill-track"><div class="pp-skill-fill" style="width:90%"></div></div></div>
+      <div class="pp-skill-row"><div class="pp-skill-name"><span id="pp-s3">Adobe Suite</span><span class="pp-skill-pct">88%</span></div><div class="pp-skill-track"><div class="pp-skill-fill" style="width:88%"></div></div></div>
+      <div class="pp-skill-row"><div class="pp-skill-name"><span id="pp-s4">CRM Systems</span><span class="pp-skill-pct">85%</span></div><div class="pp-skill-track"><div class="pp-skill-fill" style="width:85%"></div></div></div>
+      <div class="pp-skill-row"><div class="pp-skill-name"><span id="pp-s5">Digital Marketing</span><span class="pp-skill-pct">82%</span></div><div class="pp-skill-track"><div class="pp-skill-fill" style="width:82%"></div></div></div>
+      <div class="pp-skill-row"><div class="pp-skill-name"><span id="pp-s6">AutoCAD</span><span class="pp-skill-pct">70%</span></div><div class="pp-skill-track"><div class="pp-skill-fill" style="width:70%"></div></div></div>
+    </div>
+    <div class="pp-sec">
+      <p class="pp-sec-label" id="pp-lang-label">Languages</p>
+      <div class="pp-lang-row"><div class="pp-lang-top"><span class="pp-lang-name" id="pp-l1">Arabic</span><span class="pp-lang-level" id="pp-ll1">Native</span></div><div class="pp-lang-dots"><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div></div></div>
+      <div class="pp-lang-row"><div class="pp-lang-top"><span class="pp-lang-name" id="pp-l2">English</span><span class="pp-lang-level" id="pp-ll2">Fluent</span></div><div class="pp-lang-dots"><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot"></div></div></div>
+      <div class="pp-lang-row"><div class="pp-lang-top"><span class="pp-lang-name" id="pp-l3">Turkish</span><span class="pp-lang-level" id="pp-ll3">Intermediate</span></div><div class="pp-lang-dots"><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot"></div><div class="pp-lang-dot"></div></div></div>
+    </div>
+    <div class="pp-sec">
+      <p class="pp-sec-label" id="pp-certs-label">Certifications &amp; Training</p>
+      <div class="pp-cert-item"><strong>Google Digital Garage</strong><span id="pp-c1">Fundamentals of Digital Marketing</span></div>
+      <div class="pp-cert-item"><strong>Meta</strong><span id="pp-c2">Certified Digital Marketing Associate</span></div>
+      <div class="pp-cert-item"><strong>Coursera / Meta</strong><span id="pp-c3">Social Media Marketing Professional</span></div>
+      <div class="pp-cert-item"><strong>Niuversity</strong><span id="pp-c4">Fundamentals of Digital Marketing</span></div>
+      <div class="pp-cert-item"><strong>Niuversity</strong><span id="pp-c5">Search Engine Optimization (SEO)</span></div>
+      <div class="pp-cert-item"><strong>IFRC / ICRC</strong><span id="pp-c6">Data Analysis</span></div>
+      <div class="pp-cert-item"><strong>IFRC / BRC</strong><span id="pp-c7">Conducting Field Survey</span></div>
+      <div class="pp-cert-item"><strong>IFRC</strong><span id="pp-c8">Logistic Inventory Control (LogIC)</span></div>
+      <div class="pp-cert-item"><strong>SARC</strong><span id="pp-c9">First Aid Basic</span></div>
+      <div class="pp-cert-item"><strong>SARC</strong><span id="pp-c10">Disaster Management Basic</span></div>
+      <div class="pp-cert-item"><strong>SARC</strong><span id="pp-c11">Neuro-Linguistic Programming (NLP)</span></div>
+      <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c12">Project / Programme Planning</span></div>
+      <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c13">Introduction to M&amp;E</span></div>
+      <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c14">Emergency Needs Assessment</span></div>
+      <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c15">Vulnerability Assessment &amp; Analysis</span></div>
+      <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c16">WORC: World of Red Cross</span></div>
+      <div class="pp-cert-item"><strong>Damascus University</strong><span id="pp-c17">Commercial Institute / Accounting</span></div>
+    </div>
+  </div>
+  <div id="pp-main">
+    <div id="pp-hero">
+      <div id="pp-hero-name"><span id="pp-hero-fn"></span> <span id="pp-hero-ln"></span></div>
+      <p id="pp-hero-bio"></p>
+      <div id="pp-hero-tags"></div>
+    </div>
+    <div id="print-timeline"></div>
+  </div>
+</div>
 </body>
 </html>
