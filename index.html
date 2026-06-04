@@ -200,6 +200,10 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
   .pp-lang-dot.on{background:var(--edu);}
   .pp-cert-item{font-size:.62rem;color:rgba(245,242,235,.65);margin-bottom:.32rem;padding-left:.5rem;border-left:1.5px solid rgba(255,255,255,.12);line-height:1.4;break-inside:avoid;}
   .pp-cert-item strong{color:rgba(245,242,235,.85);font-weight:500;display:block;font-size:.6rem;}
+  #pp-qr{position:relative;display:block;text-align:center;width:100%;overflow:hidden;}
+  #pp-qr-canvas{display:block;margin:0 auto;position:relative;line-height:0;}
+  #pp-qr-canvas img,#pp-qr-canvas canvas{display:block!important;position:relative!important;margin:0 auto!important;max-width:100px!important;max-height:100px!important;}
+  #pp-qr-url{display:block;font-size:.52rem;color:rgba(245,242,235,.35);letter-spacing:.05em;text-align:center;word-break:break-all;margin-top:4px;}
   #pp-main{flex:1;padding:2rem 1.8rem 2rem 1.6rem;background:var(--white);}
   #pp-hero{margin-bottom:1.4rem;padding-bottom:1.2rem;border-bottom:1px solid var(--line);}
   #pp-hero-name{font-family:var(--font-display);font-size:2.4rem;line-height:.95;color:var(--ink);margin-bottom:.4rem;}
@@ -1191,9 +1195,9 @@ try{
     </div>
     <div class="pp-sec">
       <p class="pp-sec-label">View interactive version</p>
-      <div id="pp-qr" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+      <div id="pp-qr">
         <div id="pp-qr-canvas"></div>
-        <span style="font-size:.52rem;color:rgba(245,242,235,.35);letter-spacing:.05em;text-align:center;word-break:break-all;">ast47.github.io/ahmadsalehtuffaha</span>
+        <span id="pp-qr-url">ast47.github.io/ahmadsalehtuffaha</span>
       </div>
     </div>
     <div class="pp-sec">
