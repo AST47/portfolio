@@ -1090,15 +1090,6 @@ function printCV(){
     var el=document.getElementById('pp-c'+(i+1));
     if(el)el.textContent=t[k]||'';
   });
-  // photo
-  var photoEl=document.getElementById('pp-photo');
-  var existingImg=document.querySelector('.photo-slot img');
-  if(existingImg && existingImg.complete && existingImg.naturalWidth>0){
-    photoEl.innerHTML='';
-    var img=document.createElement('img');
-    img.src=existingImg.src;
-    photoEl.appendChild(img);
-  }
   // hero right side
   document.getElementById('pp-hero-fn').textContent=t.firstName;
   document.getElementById('pp-hero-ln').textContent=t.lastName;
@@ -1142,7 +1133,7 @@ try{
 <!-- PRINT PAGE -->
 <div id="print-page">
   <div id="pp-sidebar">
-    <div id="pp-photo"><div id="pp-photo-placeholder">photo</div></div>
+    <div id="pp-photo"><img src="CV_Pic.png" alt="Ahmad Saleh Tuffaha"></div>
     <div id="pp-name">
       <div id="pp-name-main"><span id="pp-fn"></span> <span id="pp-ln"></span></div>
       <div id="pp-title">Business Developer</div>
