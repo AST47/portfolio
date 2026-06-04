@@ -150,7 +150,8 @@ html[dir="rtl"] .tl-card.right::after{content:'‹';}
 html[dir="rtl"] .other-ticket::after{right:auto;left:.75rem;content:'›';}
 .tl-year{position:absolute;transform:translate(-50%,-100%);font-family:var(--font-body);font-weight:500;font-size:14px;line-height:1;color:var(--ink-ghost);z-index:2;pointer-events:none;background:var(--white);padding:0 3px;}
 .photo-slot{width:100%;aspect-ratio:1/1;margin:0;border-radius:50%;border:1px solid var(--line);background:var(--cream);display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--ink-ghost);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 10px 28px rgba(0,0,0,.08);}
-.photo-slot img{width:100%;height:100%;object-fit:cover;display:block;}
+.photo-slot img{width:100%;height:100%;object-fit:cover;display:block;transform:scaleX(-1);}
+html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
 /* PRINT BUTTON */
 .print-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 11px;border:1px solid var(--line);border-radius:999px;background:var(--cream);color:var(--ink-soft);font-family:var(--font-body);font-size:.62rem;line-height:1;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;transition:background .18s,color .18s,border-color .18s;white-space:nowrap;}
 .print-btn:hover{background:var(--ink);color:var(--white);border-color:var(--ink);}
@@ -173,7 +174,8 @@ html[dir="rtl"] .other-ticket::after{right:auto;left:.75rem;content:'›';}
   #print-timeline{display:block!important;}
   #pp-sidebar{width:195px;min-width:195px;background:#1a1a18;color:#f5f2eb;padding:2rem 1.2rem;display:flex;flex-direction:column;gap:0;}
   #pp-photo{width:90px;height:90px;border-radius:50%;overflow:hidden;margin:0 auto 1rem;border:2px solid rgba(255,255,255,.15);}
-  #pp-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  #pp-photo img{width:100%;height:100%;object-fit:cover;display:block;transform:scaleX(-1);}
+  html[dir="rtl"] #pp-photo img{transform:scaleX(1);}
   #pp-photo-placeholder{width:100%;height:100%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,242,235,.4);}
   #pp-name{text-align:center;margin-bottom:1.4rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(255,255,255,.12);}
   #pp-name-main{font-family:var(--font-display);font-size:1.05rem;line-height:1.2;color:#f5f2eb;margin-bottom:.2rem;}
@@ -301,6 +303,7 @@ html[dir="rtl"] .other-ticket::after{right:auto;left:.75rem;content:'›';}
 }
 
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -1105,6 +1108,16 @@ function printCV(){
     img.style.width='100%';img.style.height='100%';img.style.objectFit='cover';
     photoEl.appendChild(img);
   }
+  // QR code
+  var qrCanvas=document.getElementById('pp-qr-canvas');
+  qrCanvas.innerHTML='';
+  new QRCode(qrCanvas,{
+    text:'https://ast47.github.io/ahmadsalehtuffaha',
+    width:100,height:100,
+    colorDark:'#f5f2eb',
+    colorLight:'#1a1a18',
+    correctLevel:QRCode.CorrectLevel.M
+  });
   // hero right side
   document.getElementById('pp-hero-fn').textContent=t.firstName;
   document.getElementById('pp-hero-ln').textContent=t.lastName;
@@ -1175,6 +1188,13 @@ try{
       <div class="pp-lang-row"><div class="pp-lang-top"><span class="pp-lang-name" id="pp-l1">Arabic</span><span class="pp-lang-level" id="pp-ll1">Native</span></div><div class="pp-lang-dots"><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div></div></div>
       <div class="pp-lang-row"><div class="pp-lang-top"><span class="pp-lang-name" id="pp-l2">English</span><span class="pp-lang-level" id="pp-ll2">Fluent</span></div><div class="pp-lang-dots"><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot"></div></div></div>
       <div class="pp-lang-row"><div class="pp-lang-top"><span class="pp-lang-name" id="pp-l3">Turkish</span><span class="pp-lang-level" id="pp-ll3">Intermediate</span></div><div class="pp-lang-dots"><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot"></div><div class="pp-lang-dot"></div></div></div>
+    </div>
+    <div class="pp-sec">
+      <p class="pp-sec-label">View interactive version</p>
+      <div id="pp-qr" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <canvas id="pp-qr-canvas"></canvas>
+        <span style="font-size:.52rem;color:rgba(245,242,235,.35);letter-spacing:.05em;text-align:center;word-break:break-all;">ast47.github.io/ahmadsalehtuffaha</span>
+      </div>
     </div>
     <div class="pp-sec">
       <p class="pp-sec-label" id="pp-certs-label">Certifications &amp; Training</p>
