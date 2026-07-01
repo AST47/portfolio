@@ -2135,7 +2135,10 @@ async function fetchResults(isRetry = false) {
     window.__lastApiSuccessTime = new Date();
     if (window.__updateStampComponent) window.__updateStampComponent();
 
-    // 2. تحديث الإقصائيات مرة ثانية بعد fillKOFromStandings (عشان R16+ تتطابق)
+    // المرة الأولى: عشان تتحدد أسماء مباريات R32 المرتبطة بالمجموعات
+    fillKOFromStandings();
+
+    // Loop ثاني: هلأ الأسماء معروفة → بيقدر يحط السكور على group-based R32 matches
     data.matches.forEach(m => {
       if (!m.stage || m.stage === "GROUP_STAGE") return;
       const homeKey = TEAM_MAP[m.homeTeam?.name];
@@ -2163,7 +2166,7 @@ async function fetchResults(isRetry = false) {
       });
     });
 
-    // بعد ما كل السكورات اتحطت → احسب R16/QF/SF/Final
+    // المرة الثانية: هلأ كل سكورات R32 جاهزة → احسب R16/QF/SF/Final
     fillKOFromStandings();
 
     // استدعي forceUpdate حين يكون React جاهز (يحل race condition مع تسجيل useEffect)
