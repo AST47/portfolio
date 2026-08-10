@@ -85,10 +85,10 @@ html[dir="rtl"] .skill-cluster--plain .skill-cluster-name{padding-left:0;}
 .lang-dot{width:6px;height:6px;border-radius:50%;background:var(--line);}
 .lang-dot.on{background:var(--edu);}
 .proj-grid{display:flex;flex-direction:column;gap:1.4rem;margin-top:.4rem;}
-.proj-card{border:1px solid var(--line);border-radius:10px;padding:1.4rem 1.5rem;display:flex;flex-direction:column;gap:1.05rem;}
+.proj-card{border:1px solid var(--line);border-radius:10px;padding:1.4rem 1.5rem;display:flex;flex-direction:column;gap:1.05rem;break-inside:avoid;}
 .proj-cat{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;}
 .proj-title{font-family:var(--font-display);font-size:clamp(1.05rem,2vw,1.25rem);color:var(--ink);line-height:1.2;}
-.proj-block{position:relative;border:1.5px solid;border-radius:11px;padding:1rem .95rem .8rem;}
+.proj-block{position:relative;border:1.5px solid;border-radius:11px;padding:1rem .95rem .8rem;break-inside:avoid;}
 .proj-block-label{position:absolute;top:-9px;left:13px;background:var(--white);padding:0 7px;font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;}
 html[dir="rtl"] .proj-block-label{left:auto;right:13px;}
 .proj-block-text{font-size:.8rem;line-height:1.6;color:var(--ink-soft);}
@@ -239,7 +239,8 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
   #pp-hero-bio{font-size:.72rem;color:var(--ink-soft);line-height:1.75;border-left:2px solid var(--edu);padding-left:.85rem;font-style:italic;margin-bottom:.85rem;}
   .pt-section{margin-bottom:1.4rem;}
   .pt-section-label{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--edu);font-weight:600;margin-bottom:.6rem;padding-bottom:.3rem;border-bottom:1px solid var(--line);}
-  .pt-role{display:flex;gap:.65rem;margin-bottom:.9rem;break-inside:avoid;}
+  .pt-role{display:flex;gap:.65rem;margin-bottom:.9rem;}
+  .pt-head{break-inside:avoid;}
   .pt-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:.32rem;}
   .pt-body{flex:1;min-width:0;}
   .pt-head{display:flex;justify-content:space-between;align-items:baseline;gap:.4rem;margin-bottom:.15rem;flex-wrap:wrap;}
