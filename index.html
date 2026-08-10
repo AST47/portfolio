@@ -831,22 +831,23 @@ var PROJECTS=[
       impact:'Tamamen elle yürütülen, üç dosyaya dağılmış bir süreci; tam otomatik, gerçek zamanlı bir sisteme dönüştürdüm — tam finansal tabloya anında ve tek tıkla erişim sağladım.',
       tools:['Excel (İleri Düzey)','PivotTable','Finansal Konsolidasyon']}}
 ];
+function projectCardHTML(p){
+  var d=p[currentLang]||p.en;
+  return '<div class="proj-card" style="border-top:3px solid '+p.color+'">'
+    +'<p class="proj-cat" style="color:'+p.color+'">'+d.cat+'</p>'
+    +'<p class="proj-title">'+d.title+'</p>'
+    +'<div class="proj-block" style="border-color:'+p.tint1+'"><span class="proj-block-label" style="color:'+p.tint1+'">'+ui('projChallenge')+'</span><span class="proj-block-text">'+d.challenge+'</span></div>'
+    +'<div class="proj-block" style="border-color:'+p.tint2+'"><span class="proj-block-label" style="color:'+p.tint2+'">'+ui('projSolution')+'</span><span class="proj-block-text">'+d.solution+'</span></div>'
+    +'<div class="proj-block" style="border-color:'+p.color+'"><span class="proj-block-label" style="color:'+p.color+'">'+ui('projImpact')+'</span><span class="proj-block-text">'+d.impact+'</span></div>'
+    +'<div class="proj-tools">'+d.tools.map(function(t){return '<span class="proj-tag">'+t+'</span>';}).join('')+'</div>'
+    +'</div>';
+}
 function buildProjects(jobId){
   var host=document.getElementById('exp-projects');
   var list=PROJECTS.filter(function(p){return p.jobId===jobId;});
   if(!list.length){host.innerHTML='';host.style.display='none';return;}
   host.style.display='flex';
-  host.innerHTML=list.map(function(p){
-    var d=p[currentLang]||p.en;
-    return '<div class="proj-card" style="border-top:3px solid '+p.color+'">'
-      +'<p class="proj-cat" style="color:'+p.color+'">'+d.cat+'</p>'
-      +'<p class="proj-title">'+d.title+'</p>'
-      +'<div class="proj-block" style="border-color:'+p.tint1+'"><span class="proj-block-label" style="color:'+p.tint1+'">'+ui('projChallenge')+'</span><span class="proj-block-text">'+d.challenge+'</span></div>'
-      +'<div class="proj-block" style="border-color:'+p.tint2+'"><span class="proj-block-label" style="color:'+p.tint2+'">'+ui('projSolution')+'</span><span class="proj-block-text">'+d.solution+'</span></div>'
-      +'<div class="proj-block" style="border-color:'+p.color+'"><span class="proj-block-label" style="color:'+p.color+'">'+ui('projImpact')+'</span><span class="proj-block-text">'+d.impact+'</span></div>'
-      +'<div class="proj-tools">'+d.tools.map(function(t){return '<span class="proj-tag">'+t+'</span>';}).join('')+'</div>'
-      +'</div>';
-  }).join('');
+  host.innerHTML=list.map(projectCardHTML).join('');
 }
 function openCard(j,keepOpen){
   document.getElementById('exp-sector').textContent=sectorText(j);
@@ -1156,6 +1157,14 @@ function buildPrintTimeline(){
       desc.textContent=jobText(j,'desc');
       body.appendChild(head);
       body.appendChild(desc);
+      var projMatches=PROJECTS.filter(function(p){return p.jobId===j.id;});
+      if(projMatches.length){
+        var pgrid=document.createElement('div');
+        pgrid.className='proj-grid';
+        pgrid.style.marginTop='.7rem';
+        pgrid.innerHTML=projMatches.map(projectCardHTML).join('');
+        body.appendChild(pgrid);
+      }
       row.appendChild(dot);
       row.appendChild(body);
       section.appendChild(row);
