@@ -237,8 +237,6 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
   #pp-hero-name{font-family:var(--font-display);font-size:2.4rem;line-height:.95;color:var(--ink);margin-bottom:.4rem;}
   #pp-hero-name span:last-child{color:var(--edu);}
   #pp-hero-bio{font-size:.72rem;color:var(--ink-soft);line-height:1.75;border-left:2px solid var(--edu);padding-left:.85rem;font-style:italic;margin-bottom:.85rem;}
-  #pp-hero-tags{display:flex;flex-wrap:wrap;gap:5px;}
-  .pp-tag{padding:3px 10px;border:1px solid var(--ink);border-radius:100px;font-size:.58rem;color:var(--white);background:var(--ink);}
   .pt-section{margin-bottom:1.4rem;}
   .pt-section-label{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--edu);font-weight:600;margin-bottom:.6rem;padding-bottom:.3rem;border-bottom:1px solid var(--line);}
   .pt-role{display:flex;gap:.65rem;margin-bottom:.9rem;break-inside:avoid;}
@@ -777,22 +775,22 @@ function buildCards(){
 var PROJECTS=[
   {jobId:'j0', color:'var(--biz)', tint1:'#a8d5bb', tint2:'#4ea578',
     en:{cat:'Operational Systems & Compliance',
-      title:'Automating Compliance for a 60+ Employee Team',
-      challenge:'A 60+ employee medical tourism firm faced high risk from manual legal-document tracking, causing delays and compliance gaps.',
-      solution:'Built a custom database to centralize records, automate document expiry alerts, and ensure 100% data accuracy.',
+      title:'Automating Staff Legal Documentation for a 60+ Employee Company',
+      challenge:'A 60+ employee medical tourism firm faced high risk from manually tracking staff legal paperwork, causing delays and compliance gaps.',
+      solution:'Built a custom database to centralize staff records, verify document completeness, and automate expiry alerts — ensuring 100% data accuracy.',
       impact:'Eliminated documentation bottlenecks and turned a high-risk manual process into a reliable, automated system.',
       tools:['Notion','Database Design','Compliance Tracking']},
     ar:{cat:'الأنظمة التشغيلية والامتثال',
-      title:'أتمتة الامتثال لفريق يضم أكثر من 60 موظفاً',
-      challenge:'واجهت شركة سياحة علاجية يعمل بها أكثر من 60 موظفاً مخاطر تشغيلية عالية بسبب التتبع اليدوي للمستندات القانونية، ما أدى إلى تأخيرات وثغرات في الامتثال.',
-      solution:'بنيت قاعدة بيانات مخصصة لمركزة السجلات، وأتمتة تنبيهات انتهاء صلاحية المستندات، وضمان دقة البيانات بنسبة 100%.',
-      impact:'أزلت اختناقات التوثيق وحوّلت عملية يدوية عالية المخاطر إلى نظام آلي موثوق.',
-      tools:['Notion','تصميم قواعد البيانات','تتبع الامتثال']},
+      title:'أتمتة متابعة الأوراق القانونية لفريق العمل في شركة يعمل بها أكثر من 60 موظفاً',
+      challenge:'واجهت شركة سياحة علاجية يعمل بها أكثر من 60 موظفاً مخاطر تشغيلية عالية بسبب المتابعة اليدوية للأوراق القانونية لفريق العمل، ما أدى إلى تأخيرات وثغرات قانونية.',
+      solution:'بنيت قاعدة بيانات مخصصة لمركزة أوراق فريق العمل، والتحقق من اكتمالها، وأتمتة تنبيهات انتهاء صلاحيتها، مع ضمان دقة البيانات بنسبة 100%.',
+      impact:'أزلت اختناقات المتابعة وحوّلت عملية يدوية عالية المخاطر إلى نظام آلي موثوق.',
+      tools:['Notion','تصميم قواعد البيانات','متابعة الأوراق القانونية']},
     tr:{cat:'Operasyonel Sistemler ve Uyumluluk',
-      title:'60\'tan Fazla Çalışanı Olan Bir Ekip İçin Uyumluluğu Otomatikleştirme',
-      challenge:'60\'tan fazla çalışanı olan bir sağlık turizmi firması, yasal belgelerin elle takip edilmesinden kaynaklanan yüksek riskle karşı karşıyaydı; bu da gecikmelere ve uyumluluk eksikliklerine yol açıyordu.',
-      solution:'Kayıtları merkezileştiren, belge son kullanma tarihi uyarılarını otomatikleştiren ve %100 veri doğruluğu sağlayan özel bir veritabanı geliştirdim.',
-      impact:'Belge kaynaklı tıkanıklıkları ortadan kaldırarak yüksek riskli, elle yürütülen bir süreci güvenilir, otomatik bir sisteme dönüştürdüm.',
+      title:'60\'tan Fazla Çalışanı Olan Bir Şirkette Personel Evraklarını Otomatikleştirme',
+      challenge:'60\'tan fazla çalışanı olan bir sağlık turizmi firması, personel evraklarının elle takip edilmesinden kaynaklanan yüksek riskle karşı karşıyaydı; bu da gecikmelere ve uyumluluk eksikliklerine yol açıyordu.',
+      solution:'Personel kayıtlarını merkezileştiren, belgelerin eksiksizliğini doğrulayan ve son kullanma tarihi uyarılarını otomatikleştiren özel bir veritabanı geliştirdim — %100 veri doğruluğu sağlayarak.',
+      impact:'Belge takibindeki tıkanıklıkları ortadan kaldırarak yüksek riskli, elle yürütülen bir süreci güvenilir, otomatik bir sisteme dönüştürdüm.',
       tools:['Notion','Veritabanı Tasarımı','Uyumluluk Takibi']}},
   {jobId:'j0', color:'var(--human)', tint1:'#a9c9dc', tint2:'#4e8bb0',
     en:{cat:'CRM Implementation & Workflow',
@@ -1278,15 +1276,6 @@ function printCV(){
   document.getElementById('pp-hero-ln').textContent=t.lastName;
   document.getElementById('pp-hero-ln').style.color='var(--edu)';
   document.getElementById('pp-hero-bio').textContent=t.heroBio;
-  // tags
-  var tagsEl=document.getElementById('pp-hero-tags');
-  tagsEl.innerHTML='';
-  [t.tagBiz,t.tagAI,t.tagExcel,t.tagOps,t.tagTrans].forEach(function(tag){
-    var s=document.createElement('span');
-    s.className='pp-tag';
-    s.textContent=tag;
-    tagsEl.appendChild(s);
-  });
   // RTL
   if(currentLang==='ar'){
     document.getElementById('print-page').setAttribute('dir','rtl');
@@ -1385,7 +1374,6 @@ try{
     <div id="pp-hero">
       <div id="pp-hero-name"><span id="pp-hero-fn"></span> <span id="pp-hero-ln"></span></div>
       <p id="pp-hero-bio"></p>
-      <div id="pp-hero-tags"></div>
     </div>
     <div id="print-timeline"></div>
   </div>
