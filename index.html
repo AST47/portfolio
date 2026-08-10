@@ -11,6 +11,7 @@
   --ink:#1a1a18;--ink-soft:#5a5a55;--ink-ghost:#a0a09a;
   --cream:#f5f2eb;--line:#d8d4cc;--white:#ffffff;
   --edu:#c0392b;--human:#2471a3;--biz:#1e8449;
+  --edu-sector:#8b5e34;
   --create:#6c3483;--sales:#d35400;--trans:#b7950b;
   --font-body:'DM Sans',sans-serif;
   --font-display:'Playfair Display',serif;
@@ -42,7 +43,8 @@ html[dir="rtl"] .hero-bio{border-left:0;border-right:2px solid var(--edu);paddin
 html[dir="rtl"] .hero-tags{justify-content:flex-start;}
 html[dir="rtl"] .contact-item,html[dir="rtl"] .leg-row{direction:rtl;}
 html[dir="rtl"] .ct,html[dir="rtl"] .cl{word-break:normal;unicode-bidi:embed;}
-html[dir="rtl"] .skill-name,html[dir="rtl"] .lang-top{flex-direction:row-reverse;}
+html[dir="rtl"] .lang-top{flex-direction:row-reverse;}
+html[dir="rtl"] .cert-group-toggle{flex-direction:row-reverse;}
 html[dir="rtl"] .tl-card{direction:rtl;text-align:right;}
 
 html[dir="rtl"] .legend-bar{direction:rtl;}
@@ -63,11 +65,18 @@ html[dir="ltr"] .translatable{direction:ltr;}
 .ct{font-size:clamp(.86rem,.96vw,1.06rem);color:var(--ink-soft);line-height:1.5;word-break:break-all;}
 .cl{font-size:clamp(.86rem,.96vw,1.06rem);color:var(--edu);line-height:1.5;word-break:break-all;text-decoration:none;}
 .cl:hover{text-decoration:underline;}
-.skill-row{margin-bottom:.65rem;}
-.skill-name{font-size:clamp(.86rem,.96vw,1.08rem);color:var(--ink);font-weight:500;margin-bottom:3px;display:flex;justify-content:space-between;}
-.skill-name span{color:var(--ink-ghost);font-weight:400;font-size:clamp(.76rem,.84vw,.94rem);}
-.skill-track{height:2px;background:var(--line);border-radius:1px;overflow:hidden;}
-.skill-fill{height:100%;background:var(--edu);border-radius:1px;transition:width 1.2s ease;width:0;}
+.skill-cluster{display:block;width:100%;text-align:left;background:none;border:1px solid transparent;border-radius:8px;padding:.5rem .6rem;margin-bottom:.3rem;font-family:var(--font-body);cursor:default;position:relative;transition:background .18s,border-color .18s;}
+html[dir="rtl"] .skill-cluster{text-align:right;}
+.skill-cluster-name{display:block;font-size:clamp(.8rem,.9vw,1rem);color:var(--ink);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:1.1rem;}
+html[dir="rtl"] .skill-cluster-name{padding-right:0;padding-left:1.1rem;}
+.skill-cluster--linked{border-color:var(--line);cursor:pointer;}
+.skill-cluster--linked::after{content:'›';position:absolute;top:50%;right:.6rem;transform:translateY(-50%);font-size:.85rem;color:var(--ink-ghost);line-height:1;transition:color .18s;}
+html[dir="rtl"] .skill-cluster--linked::after{right:auto;left:.6rem;content:'‹';}
+.skill-cluster--linked:hover{background:var(--ink);border-color:var(--ink);}
+.skill-cluster--linked:hover .skill-cluster-name{color:var(--cream);}
+.skill-cluster--linked:hover::after{color:var(--cream);}
+.skill-cluster--plain .skill-cluster-name{color:var(--ink-ghost);padding-right:0;}
+html[dir="rtl"] .skill-cluster--plain .skill-cluster-name{padding-left:0;}
 .lang-row{margin-bottom:.75rem;}
 .lang-top{display:flex;justify-content:space-between;margin-bottom:3px;}
 .lang-name{font-size:clamp(.86rem,.96vw,1.08rem);color:var(--ink);font-weight:500;}
@@ -75,9 +84,27 @@ html[dir="ltr"] .translatable{direction:ltr;}
 .lang-dots{display:flex;gap:3px;}
 .lang-dot{width:6px;height:6px;border-radius:50%;background:var(--line);}
 .lang-dot.on{background:var(--edu);}
-.cert-list{display:block;}
-.cert-item{font-size:clamp(.8rem,.9vw,1rem);color:var(--ink-soft);margin-bottom:.38rem;padding-left:.5rem;border-left:1.5px solid var(--line);line-height:1.45;}
-.cert-item strong{color:var(--ink);font-weight:500;display:block;font-size:clamp(.78rem,.88vw,.98rem);}
+.proj-grid{display:flex;flex-direction:column;gap:1.4rem;margin-top:.4rem;}
+.proj-card{border:1px solid var(--line);border-radius:10px;padding:1.4rem 1.5rem;display:flex;flex-direction:column;gap:1.05rem;}
+.proj-cat{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;}
+.proj-title{font-family:var(--font-display);font-size:clamp(1.05rem,2vw,1.25rem);color:var(--ink);line-height:1.2;}
+.proj-block{position:relative;border:1.5px solid;border-radius:11px;padding:1rem .95rem .8rem;}
+.proj-block-label{position:absolute;top:-9px;left:13px;background:var(--white);padding:0 7px;font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;}
+html[dir="rtl"] .proj-block-label{left:auto;right:13px;}
+.proj-block-text{font-size:.8rem;line-height:1.6;color:var(--ink-soft);}
+.proj-tools{display:flex;flex-wrap:wrap;gap:6px;padding-top:.85rem;border-top:1px solid var(--line);}
+.proj-tag{font-size:.6rem;padding:3px 11px;border-radius:100px;border:1px solid var(--ink);color:var(--ink);}
+.cert-item{font-size:clamp(.72rem,.8vw,.86rem);color:var(--ink-ghost);margin-bottom:.3rem;padding-left:.5rem;border-left:1.5px solid var(--line);line-height:1.4;}
+.cert-item strong{color:var(--ink-soft);font-weight:500;display:block;font-size:clamp(.7rem,.78vw,.84rem);}
+.cert-group{margin-bottom:.3rem;}
+.cert-group-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;background:none;border:none;padding:.4rem 0;cursor:pointer;font-family:var(--font-body);text-align:left;}
+html[dir="rtl"] .cert-group-toggle{text-align:right;}
+.cert-group-name{font-size:clamp(.7rem,.78vw,.82rem);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;}
+.cert-group-count{font-size:.62rem;color:var(--ink-ghost);}
+.cert-group-chevron{width:8px;height:8px;flex-shrink:0;transition:transform .18s ease;color:var(--ink-ghost);}
+.cert-group.open .cert-group-chevron{transform:rotate(180deg);}
+.cert-group-items{display:none;padding:.3rem 0 .5rem;}
+.cert-group.open .cert-group-items{display:block;}
 .legend{display:flex;flex-direction:column;gap:.4rem;}
 .leg-row{display:flex;align-items:center;gap:7px;font-size:clamp(.82rem,.92vw,1rem);color:var(--ink-soft);}
 .leg-dot{width:clamp(9px,.72vw,12px);height:clamp(9px,.72vw,12px);border-radius:50%;flex-shrink:0;}
@@ -186,11 +213,11 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
   .pp-contact-item{display:flex;align-items:flex-start;gap:6px;margin-bottom:.5rem;}
   .pp-contact-text{font-size:.68rem;color:rgba(245,242,235,.75);line-height:1.45;word-break:break-all;}
   .pp-contact-text a{color:rgba(245,242,235,.75);text-decoration:none;}
-  .pp-skill-row{margin-bottom:.5rem;}
-  .pp-skill-name{font-size:.68rem;color:rgba(245,242,235,.8);display:flex;justify-content:space-between;margin-bottom:3px;}
-  .pp-skill-pct{color:rgba(245,242,235,.4);font-size:.62rem;}
-  .pp-skill-track{height:2px;background:rgba(255,255,255,.12);border-radius:1px;}
-  .pp-skill-fill{height:100%;background:var(--edu);border-radius:1px;}
+  .pp-skill-row{padding:.38rem 0;border-bottom:1px solid rgba(255,255,255,.1);}
+  .pp-skill-row:last-child{border-bottom:none;}
+  .pp-skill-name{font-size:.68rem;color:rgba(245,242,235,.8);}
+  .pp-cert-group-name{font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,242,235,.4);font-weight:500;margin:.55rem 0 .3rem;}
+  .pp-cert-group:first-child .pp-cert-group-name{margin-top:0;}
   .pp-lang-row{margin-bottom:.55rem;}
   .pp-lang-top{display:flex;justify-content:space-between;margin-bottom:3px;}
   .pp-lang-name{font-size:.68rem;color:rgba(245,242,235,.8);font-weight:500;}
@@ -266,9 +293,8 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
   .sidebar{order:2;border-right:0;border-top:1px solid var(--line);padding:2rem 1.1rem;background:var(--white);display:grid;grid-template-columns:1fr;gap:1.65rem;}
   .sidebar > div{min-width:0;}
   .sec-label{font-size:clamp(11px,.82vw,14px);margin-bottom:.8rem;}
-  .ct,.cl,.skill-name,.lang-name{font-size:clamp(.86rem,.96vw,1.08rem);}
+  .ct,.cl,.skill-cluster-name,.lang-name{font-size:clamp(.86rem,.96vw,1.08rem);}
   .cert-item,.leg-row,.lang-level{font-size:.7rem;}
-  .skill-track{height:3px;}
 
   .timeline-title{margin-bottom:.75rem;}
   .legend-bar{gap:.3rem .7rem;}
@@ -302,7 +328,6 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
 @media (min-width: 561px) and (max-width: 760px){
   .sidebar{grid-template-columns:repeat(2,minmax(0,1fr));}
   .cert-block{grid-column:1 / -1;}
-  .cert-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.38rem .8rem;}
   .cert-item{margin-bottom:0;}
 }
 
@@ -318,7 +343,9 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
       <img src="CV_Pic.png" alt="Ahmad Saleh Tuffaha">
     </div>
     <button class="bd-btn" id="bd-btn" onclick="openAchievements()" data-i18n="bdBtn">Business Developer</button>
-    <div style="display:flex;align-items:center;gap:6px;">
+  </div>
+  <div class="hero-copy">
+    <div class="hero-topline">
       <div class="lang-switch" aria-label="Language selector">
         <button type="button" class="lang-btn" data-lang="ar">ar</button>
         <button type="button" class="lang-btn active" data-lang="en">en</button>
@@ -329,22 +356,11 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
         <span>PDF</span>
       </button>
     </div>
-  </div>
-  <div class="hero-copy">
-    <div class="hero-topline">
-    </div>
     <h1 class="hero-name" data-name-en="true">
       <span data-i18n="firstName">Ahmad Saleh</span>
       <span data-i18n="lastName">TUFFAHA</span>
     </h1>
-    <p class="hero-bio" data-i18n="heroBio">20+ years across business development, operations, consultancy, humanitarian work, and creative design. Builds systems that transform how organisations operate — from macro-powered Excel tools to AI-assisted workflows. Fluent English–Arabic translator. Adapts fast, delivers results.</p>
-    <div class="hero-tags">
-      <span class="tag" data-i18n="tagBiz">Business Development</span>
-      <span class="tag" data-i18n="tagAI">AI-Assisted Workflows</span>
-      <span class="tag" data-i18n="tagExcel">Excel & Data Systems</span>
-      <span class="tag" data-i18n="tagOps">Operations</span>
-      <span class="tag" data-i18n="tagTrans">EN–AR Translation</span>
-    </div>
+    <p class="hero-bio" data-i18n="heroBio">Hidden inefficiency and operational waste cost companies far more than they realize. With 20+ years in business development and operations, I build and monitor automated workflows that turn that chaos into precise, high-performing systems.</p>
   </div>
 </div>
 
@@ -377,13 +393,29 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
 
     <div>
       <p class="sec-label" data-i18n="skills">Skills</p>
-      <div class="skill-row"><div class="skill-name"><span data-i18n="skillExcel">Excel & Data</span><span>95%</span></div><div class="skill-track"><div class="skill-fill" data-w="95"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span data-i18n="skillOps">Operations</span><span>90%</span></div><div class="skill-track"><div class="skill-fill" data-w="90"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span data-i18n="skillAdobe">Adobe Suite</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span data-i18n="skillCrm">CRM Systems</span><span>85%</span></div><div class="skill-track"><div class="skill-fill" data-w="85"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span data-i18n="skillMarketing">Digital Marketing</span><span>82%</span></div><div class="skill-track"><div class="skill-fill" data-w="82"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span data-i18n="skillAutoCAD">AutoCAD</span><span>70%</span></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
+      <button class="skill-cluster skill-cluster--linked" onclick="openAchievements('excel')" title="Excel &amp; Data">
+        <span class="skill-cluster-name" data-i18n="skillExcel">Excel & Data</span>
+      </button>
+      <button class="skill-cluster skill-cluster--linked" onclick="openAchievements('ai')" title="AI &amp; Digital Tools">
+        <span class="skill-cluster-name" data-i18n="skillAI">AI & Digital Tools</span>
+      </button>
+      <button class="skill-cluster skill-cluster--linked" onclick="openAchievements('systems')" title="Operations">
+        <span class="skill-cluster-name" data-i18n="skillOps">Operations</span>
+      </button>
+      <button class="skill-cluster skill-cluster--linked" onclick="openAchievements('systems')" title="CRM Systems">
+        <span class="skill-cluster-name" data-i18n="skillCrm">CRM Systems</span>
+      </button>
+      <div class="skill-cluster skill-cluster--plain" title="Adobe Suite">
+        <span class="skill-cluster-name" data-i18n="skillAdobe">Adobe Suite</span>
+      </div>
+      <div class="skill-cluster skill-cluster--plain" title="Digital Marketing">
+        <span class="skill-cluster-name" data-i18n="skillMarketing">Digital Marketing</span>
+      </div>
+      <div class="skill-cluster skill-cluster--plain" title="AutoCAD">
+        <span class="skill-cluster-name" data-i18n="skillAutoCAD">AutoCAD</span>
+      </div>
     </div>
+
 
     <div>
       <p class="sec-label" data-i18n="languages">Languages</p>
@@ -395,25 +427,51 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
 
     <div class="cert-block">
       <p class="sec-label" data-i18n="certs">Certifications & Training</p>
-      <div class="cert-list">
-        <div class="cert-item"><strong>Google Digital Garage</strong><span data-i18n="certDigitalBasics">Fundamentals of Digital Marketing</span></div>
-        <div class="cert-item"><strong>Meta</strong><span data-i18n="certMetaAssociate">Certified Digital Marketing Associate</span></div>
-        <div class="cert-item"><strong>Coursera / Meta</strong><span data-i18n="certSocial">Social Media Marketing Professional</span></div>
-        <div class="cert-item"><strong>Niuversity</strong><span data-i18n="certDigitalBasics">Fundamentals of Digital Marketing</span></div>
-        <div class="cert-item"><strong>Niuversity</strong><span data-i18n="certSeo">Search Engine Optimization (SEO)</span></div>
-        <div class="cert-item"><strong>IFRC / ICRC</strong><span data-i18n="certData">Data Analysis</span></div>
-        <div class="cert-item"><strong>IFRC / BRC</strong><span data-i18n="certSurvey">Conducting Field Survey</span></div>
-        <div class="cert-item"><strong>IFRC</strong><span data-i18n="certLogic">Logistic Inventory Control (LogIC)</span></div>
-        <div class="cert-item"><strong>SARC</strong><span data-i18n="certFirstAid">First Aid Basic</span></div>
-        <div class="cert-item"><strong>SARC</strong><span data-i18n="certDisaster">Disaster Management Basic</span></div>
-        <div class="cert-item"><strong>SARC</strong><span data-i18n="certNlp">Neuro-Linguistic Programming (NLP)</span></div>
-        <div class="cert-item"><strong>IFRC Online</strong><span data-i18n="certProject">Project / Programme Planning</span></div>
-        <div class="cert-item"><strong>IFRC Online</strong><span data-i18n="certME">Introduction to M&E</span></div>
-        <div class="cert-item"><strong>IFRC Online</strong><span data-i18n="certNeeds">Emergency Needs Assessment</span></div>
-        <div class="cert-item"><strong>IFRC Online</strong><span data-i18n="certVulnerability">Vulnerability Assessment & Analysis</span></div>
-        <div class="cert-item"><strong>IFRC Online</strong><span data-i18n="certWorc">WORC: World of Red Cross</span></div>
-        <div class="cert-item"><strong>Damascus University</strong><span data-i18n="certAccounting">Commercial Institute / Accounting</span></div>
+
+      <div class="cert-group">
+        <button class="cert-group-toggle" onclick="this.parentElement.classList.toggle('open')">
+          <span class="cert-group-name" data-i18n="certGroupMarketing">Digital Marketing</span>
+          <span style="display:flex;align-items:center;gap:6px;"><span class="cert-group-count">5</span><svg class="cert-group-chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="cert-group-items">
+          <div class="cert-item"><strong>Google Digital Garage</strong><span data-i18n="certDigitalBasics">Fundamentals of Digital Marketing</span></div>
+          <div class="cert-item"><strong>Meta</strong><span data-i18n="certMetaAssociate">Certified Digital Marketing Associate</span></div>
+          <div class="cert-item"><strong>Coursera / Meta</strong><span data-i18n="certSocial">Social Media Marketing Professional</span></div>
+          <div class="cert-item"><strong>Niuversity</strong><span data-i18n="certDigitalBasics">Fundamentals of Digital Marketing</span></div>
+          <div class="cert-item"><strong>Niuversity</strong><span data-i18n="certSeo">Search Engine Optimization (SEO)</span></div>
+        </div>
       </div>
+
+      <div class="cert-group">
+        <button class="cert-group-toggle" onclick="this.parentElement.classList.toggle('open')">
+          <span class="cert-group-name" data-i18n="certGroupHumanitarian">Humanitarian & M&amp;E</span>
+          <span style="display:flex;align-items:center;gap:6px;"><span class="cert-group-count">11</span><svg class="cert-group-chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="cert-group-items">
+          <div class="cert-item"><strong>IFRC / ICRC</strong><span data-i18n="certData">Data Analysis</span></div>
+          <div class="cert-item"><strong>IFRC / BRC</strong><span data-i18n="certSurvey">Conducting Field Survey</span></div>
+          <div class="cert-item"><strong>IFRC</strong><span data-i18n="certLogic">Logistic Inventory Control (LogIC)</span></div>
+          <div class="cert-item"><strong>SARC</strong><span data-i18n="certFirstAid">First Aid Basic</span></div>
+          <div class="cert-item"><strong>SARC</strong><span data-i18n="certDisaster">Disaster Management Basic</span></div>
+          <div class="cert-item"><strong>SARC</strong><span data-i18n="certNlp">Neuro-Linguistic Programming (NLP)</span></div>
+          <div class="cert-item"><strong>IFRC Online</strong><span data-i18n="certProject">Project / Programme Planning</span></div>
+          <div class="cert-item"><strong>IFRC Online</strong><span data-i18n="certME">Introduction to M&E</span></div>
+          <div class="cert-item"><strong>IFRC Online</strong><span data-i18n="certNeeds">Emergency Needs Assessment</span></div>
+          <div class="cert-item"><strong>IFRC Online</strong><span data-i18n="certVulnerability">Vulnerability Assessment & Analysis</span></div>
+          <div class="cert-item"><strong>IFRC Online</strong><span data-i18n="certWorc">WORC: World of Red Cross</span></div>
+        </div>
+      </div>
+
+      <div class="cert-group">
+        <button class="cert-group-toggle" onclick="this.parentElement.classList.toggle('open')">
+          <span class="cert-group-name" data-i18n="certGroupAccounting">Accounting</span>
+          <span style="display:flex;align-items:center;gap:6px;"><span class="cert-group-count">1</span><svg class="cert-group-chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="cert-group-items">
+          <div class="cert-item"><strong>Damascus University</strong><span data-i18n="certAccounting">Commercial Institute / Accounting</span></div>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -422,8 +480,9 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
     <div class="timeline-header">
       <p class="sec-label timeline-title" data-i18n="timeline">Companies I've Worked With</p>
       <div class="legend-bar">
+        <div class="leg-row"><div class="leg-dot" style="background:var(--edu)"></div><span data-i18n="sectorIndie">Independent Practice</span></div>
         <div class="leg-row"><div class="leg-dot" style="background:var(--biz)"></div><span data-i18n="sectorBiz">Accounting & Finance</span></div>
-        <div class="leg-row"><div class="leg-dot" style="background:var(--edu)"></div><span data-i18n="sectorEdu">Educational Consulting</span></div>
+        <div class="leg-row"><div class="leg-dot" style="background:var(--edu-sector)"></div><span data-i18n="sectorEdu">Educational Consulting</span></div>
         <div class="leg-row"><div class="leg-dot" style="background:var(--human)"></div><span data-i18n="sectorHuman">Humanitarian</span></div>
       </div>
     </div>
@@ -458,6 +517,7 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
     <p class="exp-org" id="exp-org"></p>
     <div class="exp-div"></div>
     <p class="exp-desc" id="exp-desc"></p>
+    <div class="proj-grid" id="exp-projects"></div>
   </div>
 </div>
 
@@ -550,7 +610,7 @@ var ACH_CATEGORIES=[
         en:{text:'Co-developed a Bitrix24 CRM customization for education companies with a Bitrix developer — adopted widely across the industry for three consecutive seasons',badge:'Industry-wide',source:'New Horizons'},
         ar:{text:'طوّرت مع مطوّر Bitrix تخصيصاً لنظام Bitrix24 لشركات التعليم — تم تبنّيه على نطاق واسع في القطاع لثلاثة مواسم متتالية',badge:'انتشار واسع',source:'New Horizons'},
         tr:{text:'Bir Bitrix geliştiricisiyle birlikte eğitim şirketleri için Bitrix24 CRM özelleştirmesi geliştirdi — üç ardışık sezon boyunca sektörde yaygın biçimde benimsendi',badge:'Sektör geneli',source:'New Horizons'},
-        color:'var(--edu)'
+        color:'var(--edu-sector)'
       }
     ]
   },
@@ -570,14 +630,14 @@ var ACH_CATEGORIES=[
         en:{text:'Led company-wide operational transformation: recruited staff, redeveloped CRM and website, authored policy and contracts, developed new logistics revenue streams, restructured agent relations through a Notion-based system built from scratch — reporting directly to the board',badge:'Full scope',source:'Unitopia'},
         ar:{text:'قدت تحولاً تشغيلياً شاملاً: استقطبت الكوادر، وأعدت تطوير CRM والموقع، وصغت السياسات والعقود، وطوّرت مصادر دخل لوجستية جديدة، وأعدت هيكلة علاقات الوكلاء عبر نظام Notion بنيته من الصفر — وقدّمت تقارير مباشرةً إلى مجلس الإدارة',badge:'نطاق كامل',source:'Unitopia'},
         tr:{text:'Şirket genelinde operasyonel dönüşümü yönetti: personel alımı, CRM ve web sitesi yeniden geliştirme, politika ve sözleşme hazırlama, yeni lojistik gelir kaynakları geliştirme, sıfırdan kurduğu Notion sistemi üzerinden acente ilişkilerini yeniden yapılandırma — doğrudan yönetim kuruluna raporlama',badge:'Tam kapsam',source:'Unitopia'},
-        color:'var(--edu)'
+        color:'var(--edu-sector)'
       }
     ]
   }
 ];
 
 function colorToRgba(cssVar,alpha){
-  var map={'var(--edu)':'192,57,43','var(--human)':'36,113,163','var(--biz)':'30,132,73','var(--create)':'108,52,131','var(--sales)':'211,84,0','var(--trans)':'183,149,11'};
+  var map={'var(--edu)':'192,57,43','var(--edu-sector)':'139,94,52','var(--human)':'36,113,163','var(--biz)':'30,132,73','var(--create)':'108,52,131','var(--sales)':'211,84,0','var(--trans)':'183,149,11'};
   return 'rgba('+(map[cssVar]||'26,26,24')+','+alpha+')';
 }
 
@@ -588,6 +648,7 @@ function buildAchievements(){
   ACH_CATEGORIES.forEach(function(cat){
     var catEl=document.createElement('div');
     catEl.className='ach-category';
+    catEl.id='ach-cat-'+cat.key;
     var label=cat[currentLang]||cat.en;
     catEl.innerHTML='<div class="ach-category-header"><span class="ach-category-label">'+label+'</span><div class="ach-category-line"></div></div><div class="ach-grid-inner"></div>';
     var inner=catEl.querySelector('.ach-grid-inner');
@@ -609,15 +670,15 @@ function buildAchievements(){
 }
 
 var UI_TEXT={
-  en:{cvLabel:'Curriculum Vitae',firstName:'Ahmad Saleh',lastName:'TUFFAHA',heroBio:'20+ years of experience in business development and operations, with a strong focus on building Excel-powered systems and AI-assisted workflows that make organisations run better. Native Arabic speaker, fluent in English and conversational in Turkish.',tagBiz:'Business Development',tagAI:'AI-Assisted Workflows',tagExcel:'Excel & Data Systems',tagOps:'Operations',tagTrans:'EN–AR Translation',contact:'Contact',skills:'Skills',languages:'Languages',sectorLegend:'Sector Legend',certs:'Certifications & Training',timeline:'Companies I\'ve Worked With',location:'Istanbul, Turkey',skillExcel:'Excel & Data',skillOps:'Operations',skillAdobe:'Adobe Suite',skillCrm:'CRM Systems',skillMarketing:'Digital Marketing',skillAutoCAD:'AutoCAD',langArabic:'Arabic',langEnglish:'English',langTurkish:'Turkish',levelNative:'Native',levelFluent:'Fluent',levelIntermediate:'Intermediate',sectorEdu:'Educational Consulting',sectorHuman:'Humanitarian',sectorBiz:'Accounting & Finance',sectorCreate:'Creative & Design',sectorSales:'Sales & Retail',sectorTrans:'Translation',tap:'tap to view',present:'present',certDigitalBasics:'Fundamentals of Digital Marketing',certMetaAssociate:'Certified Digital Marketing Associate',certSocial:'Social Media Marketing Professional',certSeo:'Search Engine Optimization (SEO)',certData:'Data Analysis',certSurvey:'Conducting Field Survey',certLogic:'Logistic Inventory Control (LogIC)',certFirstAid:'First Aid Basic',certDisaster:'Disaster Management Basic',certNlp:'Neuro-Linguistic Programming (NLP)',certProject:'Project / Programme Planning',certME:'Introduction to M&E',certNeeds:'Emergency Needs Assessment',certVulnerability:'Vulnerability Assessment & Analysis',certWorc:'WORC: World of Red Cross',certAccounting:'Commercial Institute / Accounting',achLabel:'Key Achievements',bdBtn:'Business Developer',otherExp:'Other Experiences & Projects',otherTransTitle:'Translation',otherRetailTitle:'Retail & Store Management',otherDesignTitle:'Design',other12yr:'12 years',other4pl:'4 companies',other7yr:'7 years',other2pl:'2 companies',other9yr:'9 years',other3pl:'3 companies'},
-  ar:{cvLabel:'السيرة الذاتية',firstName:'أحمد صالح',lastName:'تفاحة',heroBio:'خبرة تتجاوز 20 عاماً في تطوير الأعمال والعمليات، مع تركيز واضح على بناء أنظمة Excel وسير عمل مدعومة بالذكاء الاصطناعي تُحسّن أداء المؤسسات. متحدث أصلي بالعربية، طلاقة في الإنجليزية، ومحادثة في التركية.',tagBiz:'تطوير الأعمال',tagAI:'سير عمل بالذكاء الاصطناعي',tagExcel:'Excel وأنظمة البيانات',tagOps:'العمليات',tagTrans:'ترجمة إنجليزي–عربي',contact:'التواصل',skills:'المهارات',languages:'اللغات',sectorLegend:'دليل القطاعات',certs:'الشهادات والتدريب',timeline:'الشركات التي عملت معها',location:'إسطنبول، تركيا',skillExcel:'Excel والبيانات',skillOps:'العمليات',skillAdobe:'حزمة Adobe',skillCrm:'أنظمة إدارة علاقات العملاء',skillMarketing:'التسويق الرقمي',skillAutoCAD:'AutoCAD',langArabic:'العربية',langEnglish:'الإنجليزية',langTurkish:'التركية',levelNative:'اللغة الأم',levelFluent:'متقدم',levelIntermediate:'متوسط',sectorEdu:'الاستشارات التعليمية',sectorHuman:'العمل الإنساني',sectorBiz:'المحاسبة والمالية',sectorCreate:'الإبداع والتصميم',sectorSales:'المبيعات والتجزئة',sectorTrans:'الترجمة',tap:'اضغط للتفاصيل',present:'حتى الآن',certDigitalBasics:'أساسيات التسويق الرقمي',certMetaAssociate:'شريك معتمد في التسويق الرقمي من Meta',certSocial:'محترف تسويق عبر وسائل التواصل الاجتماعي',certSeo:'تحسين محركات البحث (SEO)',certData:'تحليل البيانات',certSurvey:'إجراء المسوحات الميدانية',certLogic:'التحكم بالمخزون اللوجستي (LogIC)',certFirstAid:'الإسعاف الأولي الأساسي',certDisaster:'أساسيات إدارة الكوارث',certNlp:'البرمجة اللغوية العصبية (NLP)',certProject:'تخطيط المشاريع والبرامج',certME:'مقدمة في الرصد والتقييم',certNeeds:'تقييم الاحتياجات الطارئة',certVulnerability:'تقييم وتحليل الهشاشة',certWorc:'عالم الصليب الأحمر والهلال الأحمر',certAccounting:'المعهد التجاري / المحاسبة',achLabel:'الإنجازات الرئيسية',bdBtn:'مطوّر أعمال',otherExp:'تجارب ومشاريع أخرى',otherTransTitle:'الترجمة',otherRetailTitle:'التجزئة وإدارة المتاجر',otherDesignTitle:'التصميم',other12yr:'12 عاماً',other4pl:'4 شركات',other7yr:'7 أعوام',other2pl:'شركتان',other9yr:'9 أعوام',other3pl:'3 شركات'},
-  tr:{cvLabel:'Özgeçmiş',firstName:'Ahmad Saleh',lastName:'TUFFAHA',heroBio:'İş geliştirme ve operasyon alanlarında 20 yılı aşkın deneyim; kurumların daha verimli çalışmasını sağlayan Excel sistemleri ve yapay zekâ destekli iş akışları oluşturmaya güçlü bir odaklanmayla. Anadili Arapça, akıcı İngilizce ve konuşma düzeyinde Türkçe.',tagBiz:'İş Geliştirme',tagAI:'Yapay Zekâ Destekli İş Akışları',tagExcel:'Excel ve Veri Sistemleri',tagOps:'Operasyon',tagTrans:'EN–AR Çeviri',contact:'İletişim',skills:'Yetenekler',languages:'Diller',sectorLegend:'Sektör Rehberi',certs:'Sertifikalar ve Eğitimler',timeline:'Birlikte Çalıştığım Şirketler',location:'İstanbul, Türkiye',skillExcel:'Excel ve Veri',skillOps:'Operasyonlar',skillAdobe:'Adobe Paketi',skillCrm:'CRM Sistemleri',skillMarketing:'Dijital Pazarlama',skillAutoCAD:'AutoCAD',langArabic:'Arapça',langEnglish:'İngilizce',langTurkish:'Türkçe',levelNative:'Ana dil',levelFluent:'Akıcı',levelIntermediate:'Orta seviye',sectorEdu:'Eğitim Danışmanlığı',sectorHuman:'İnsani Çalışmalar',sectorBiz:'Muhasebe ve Finans',sectorCreate:'Yaratıcılık ve Tasarım',sectorSales:'Satış ve Perakende',sectorTrans:'Çeviri',tap:'detayları gör',present:'günümüz',certDigitalBasics:'Dijital Pazarlamanın Temelleri',certMetaAssociate:'Meta Sertifikalı Dijital Pazarlama Ortağı',certSocial:'Sosyal Medya Pazarlama Profesyoneli',certSeo:'Arama Motoru Optimizasyonu (SEO)',certData:'Veri Analizi',certSurvey:'Saha Araştırması Yürütme',certLogic:'Lojistik Envanter Kontrolü (LogIC)',certFirstAid:'Temel İlk Yardım',certDisaster:'Temel Afet Yönetimi',certNlp:'Nöro-Linguistik Programlama (NLP)',certProject:'Proje / Program Planlama',certME:'İzleme ve Değerlendirmeye Giriş',certNeeds:'Acil İhtiyaç Değerlendirmesi',certVulnerability:'Kırılganlık Değerlendirmesi ve Analizi',certWorc:'WORC: Kızılhaç ve Kızılay Dünyası',certAccounting:'Ticaret Enstitüsü / Muhasebe',achLabel:'Öne Çıkan Başarılar',bdBtn:'İş Geliştirici',otherExp:'Diğer Deneyimler ve Projeler',otherTransTitle:'Çeviri',otherRetailTitle:'Perakende ve Mağaza Yönetimi',otherDesignTitle:'Tasarım',other12yr:'12 yıl',other4pl:'4 şirket',other7yr:'7 yıl',other2pl:'2 şirket',other9yr:'9 yıl',other3pl:'3 şirket'}
+  en:{cvLabel:'Curriculum Vitae',firstName:'Ahmad Saleh',lastName:'TUFFAHA',heroBio:'Hidden inefficiency and operational waste cost companies far more than they realize. With 20+ years in business development and operations, I build and monitor automated workflows that turn that chaos into precise, high-performing systems.',tagBiz:'Business Development',tagAI:'AI-Assisted Workflows',tagExcel:'Excel & Data Systems',tagOps:'Operations',tagTrans:'EN–AR Translation',contact:'Contact',skills:'Skills',languages:'Languages',sectorLegend:'Sector Legend',certs:'Certifications & Training',timeline:'Companies I\'ve Worked With',location:'Istanbul, Turkey',skillExcel:'Excel & Data',skillOps:'Operations',skillAdobe:'Adobe Suite',skillCrm:'CRM Systems',skillMarketing:'Digital Marketing',skillAutoCAD:'AutoCAD',skillAI:'AI & Digital Tools',langArabic:'Arabic',langEnglish:'English',langTurkish:'Turkish',levelNative:'Native',levelFluent:'Fluent',levelIntermediate:'Intermediate',sectorEdu:'Educational Consulting',sectorIndie:'Independent Practice',sectorHuman:'Humanitarian',sectorBiz:'Accounting & Finance',sectorCreate:'Creative & Design',sectorSales:'Sales & Retail',sectorTrans:'Translation',tap:'tap to view',present:'present',certDigitalBasics:'Fundamentals of Digital Marketing',certMetaAssociate:'Certified Digital Marketing Associate',certSocial:'Social Media Marketing Professional',certSeo:'Search Engine Optimization (SEO)',certData:'Data Analysis',certSurvey:'Conducting Field Survey',certLogic:'Logistic Inventory Control (LogIC)',certFirstAid:'First Aid Basic',certDisaster:'Disaster Management Basic',certNlp:'Neuro-Linguistic Programming (NLP)',certProject:'Project / Programme Planning',certME:'Introduction to M&E',certNeeds:'Emergency Needs Assessment',certVulnerability:'Vulnerability Assessment & Analysis',certWorc:'WORC: World of Red Cross',certAccounting:'Commercial Institute / Accounting',certGroupMarketing:'Digital Marketing',certGroupHumanitarian:'Humanitarian & M&E',certGroupAccounting:'Accounting',achLabel:'Key Achievements',bdBtn:'Business Developer',otherExp:'Other Experiences & Projects',otherTransTitle:'Translation',otherRetailTitle:'Retail & Store Management',otherDesignTitle:'Design',other12yr:'12 years',other4pl:'4 companies',other7yr:'7 years',other2pl:'2 companies',other9yr:'9 years',other3pl:'3 companies',projChallenge:'Challenge',projSolution:'Solution',projImpact:'Impact'},
+  ar:{cvLabel:'السيرة الذاتية',firstName:'أحمد صالح',lastName:'تفاحة',heroBio:'يكلّف الهدر التشغيلي والفوضى الخفية الشركاتِ وقتاً وموارداً أكثر بكثير مما يتوقعون. لدي خبرة تزيد عن 20 عاماً في تطوير أعمال الشركات والمؤسسات، وأتمتة سير عملها ومراقبته لتحويل تلك الفوضى إلى أنظمة دقيقة عالية الكفاءة.',tagBiz:'تطوير الأعمال',tagAI:'سير عمل بالذكاء الاصطناعي',tagExcel:'Excel وأنظمة البيانات',tagOps:'العمليات',tagTrans:'ترجمة إنجليزي–عربي',contact:'التواصل',skills:'المهارات',languages:'اللغات',sectorLegend:'دليل القطاعات',certs:'الشهادات والتدريب',timeline:'الشركات التي عملت معها',location:'إسطنبول، تركيا',skillExcel:'Excel والبيانات',skillOps:'العمليات',skillAdobe:'حزمة Adobe',skillCrm:'أنظمة إدارة علاقات العملاء',skillMarketing:'التسويق الرقمي',skillAutoCAD:'AutoCAD',skillAI:'الذكاء الاصطناعي والأدوات الرقمية',langArabic:'العربية',langEnglish:'الإنجليزية',langTurkish:'التركية',levelNative:'اللغة الأم',levelFluent:'متقدم',levelIntermediate:'متوسط',sectorEdu:'الاستشارات التعليمية',sectorIndie:'عمل مستقل',sectorHuman:'العمل الإنساني',sectorBiz:'المحاسبة والمالية',sectorCreate:'الإبداع والتصميم',sectorSales:'المبيعات والتجزئة',sectorTrans:'الترجمة',tap:'اضغط للتفاصيل',present:'حتى الآن',certDigitalBasics:'أساسيات التسويق الرقمي',certMetaAssociate:'شريك معتمد في التسويق الرقمي من Meta',certSocial:'محترف تسويق عبر وسائل التواصل الاجتماعي',certSeo:'تحسين محركات البحث (SEO)',certData:'تحليل البيانات',certSurvey:'إجراء المسوحات الميدانية',certLogic:'التحكم بالمخزون اللوجستي (LogIC)',certFirstAid:'الإسعاف الأولي الأساسي',certDisaster:'أساسيات إدارة الكوارث',certNlp:'البرمجة اللغوية العصبية (NLP)',certProject:'تخطيط المشاريع والبرامج',certME:'مقدمة في الرصد والتقييم',certNeeds:'تقييم الاحتياجات الطارئة',certVulnerability:'تقييم وتحليل الهشاشة',certWorc:'عالم الصليب الأحمر والهلال الأحمر',certAccounting:'المعهد التجاري / المحاسبة',certGroupMarketing:'التسويق الرقمي',certGroupHumanitarian:'العمل الإنساني والرصد والتقييم',certGroupAccounting:'المحاسبة',achLabel:'الإنجازات الرئيسية',bdBtn:'مطوّر أعمال',otherExp:'تجارب ومشاريع أخرى',otherTransTitle:'الترجمة',otherRetailTitle:'التجزئة وإدارة المتاجر',otherDesignTitle:'التصميم',other12yr:'12 عاماً',other4pl:'4 شركات',other7yr:'7 أعوام',other2pl:'شركتان',other9yr:'9 أعوام',other3pl:'3 شركات',projChallenge:'التحدي',projSolution:'الحل',projImpact:'الأثر'},
+  tr:{cvLabel:'Özgeçmiş',firstName:'Ahmad Saleh',lastName:'TUFFAHA',heroBio:'Gizli verimsizlik ve operasyonel israf, şirketlere düşündüklerinden çok daha fazlasına mal olur. İş geliştirme ve operasyonlarda 20 yılı aşkın deneyimimle, iş akışlarını otomatikleştirip izleyerek bu kaosu hassas ve yüksek verimli sistemlere dönüştürüyorum.',tagBiz:'İş Geliştirme',tagAI:'Yapay Zekâ Destekli İş Akışları',tagExcel:'Excel ve Veri Sistemleri',tagOps:'Operasyon',tagTrans:'EN–AR Çeviri',contact:'İletişim',skills:'Yetenekler',languages:'Diller',sectorLegend:'Sektör Rehberi',certs:'Sertifikalar ve Eğitimler',timeline:'Birlikte Çalıştığım Şirketler',location:'İstanbul, Türkiye',skillExcel:'Excel ve Veri',skillOps:'Operasyonlar',skillAdobe:'Adobe Paketi',skillCrm:'CRM Sistemleri',skillMarketing:'Dijital Pazarlama',skillAutoCAD:'AutoCAD',skillAI:'Yapay Zekâ ve Dijital Araçlar',langArabic:'Arapça',langEnglish:'İngilizce',langTurkish:'Türkçe',levelNative:'Ana dil',levelFluent:'Akıcı',levelIntermediate:'Orta seviye',sectorEdu:'Eğitim Danışmanlığı',sectorIndie:'Bağımsız Çalışma',sectorHuman:'İnsani Çalışmalar',sectorBiz:'Muhasebe ve Finans',sectorCreate:'Yaratıcılık ve Tasarım',sectorSales:'Satış ve Perakende',sectorTrans:'Çeviri',tap:'detayları gör',present:'günümüz',certDigitalBasics:'Dijital Pazarlamanın Temelleri',certMetaAssociate:'Meta Sertifikalı Dijital Pazarlama Ortağı',certSocial:'Sosyal Medya Pazarlama Profesyoneli',certSeo:'Arama Motoru Optimizasyonu (SEO)',certData:'Veri Analizi',certSurvey:'Saha Araştırması Yürütme',certLogic:'Lojistik Envanter Kontrolü (LogIC)',certFirstAid:'Temel İlk Yardım',certDisaster:'Temel Afet Yönetimi',certNlp:'Nöro-Linguistik Programlama (NLP)',certProject:'Proje / Program Planlama',certME:'İzleme ve Değerlendirmeye Giriş',certNeeds:'Acil İhtiyaç Değerlendirmesi',certVulnerability:'Kırılganlık Değerlendirmesi ve Analizi',certWorc:'WORC: Kızılhaç ve Kızılay Dünyası',certAccounting:'Ticaret Enstitüsü / Muhasebe',certGroupMarketing:'Dijital Pazarlama',certGroupHumanitarian:'İnsani Çalışmalar ve İzleme-Değerlendirme',certGroupAccounting:'Muhasebe',achLabel:'Öne Çıkan Başarılar',bdBtn:'İş Geliştirici',otherExp:'Diğer Deneyimler ve Projeler',otherTransTitle:'Çeviri',otherRetailTitle:'Perakende ve Mağaza Yönetimi',otherDesignTitle:'Tasarım',other12yr:'12 yıl',other4pl:'4 şirket',other7yr:'7 yıl',other2pl:'2 şirket',other9yr:'9 yıl',other3pl:'3 şirket',projChallenge:'Zorluk',projSolution:'Çözüm',projImpact:'Etki'}
 };
-var SECTOR_TEXT={ar:{'Education & Ops':'الاستشارات التعليمية','Humanitarian':'العمل الإنساني','Business':'المحاسبة والمالية','Creative & Design':'الإبداع والتصميم','Sales & Retail':'المبيعات والتجزئة','Translation':'الترجمة'},tr:{'Education & Ops':'Eğitim Danışmanlığı','Humanitarian':'İnsani Çalışmalar','Business':'Muhasebe ve Finans','Creative & Design':'Yaratıcılık ve Tasarım','Sales & Retail':'Satış ve Perakende','Translation':'Çeviri'}};
+var SECTOR_TEXT={ar:{'Education & Ops':'الاستشارات التعليمية','Humanitarian':'العمل الإنساني','Business':'المحاسبة والمالية','Creative & Design':'الإبداع والتصميم','Sales & Retail':'المبيعات والتجزئة','Translation':'الترجمة','Independent Practice':'عمل مستقل'},tr:{'Education & Ops':'Eğitim Danışmanlığı','Humanitarian':'İnsani Çalışmalar','Business':'Muhasebe ve Finans','Creative & Design':'Yaratıcılık ve Tasarım','Sales & Retail':'Satış ve Perakende','Translation':'Çeviri','Independent Practice':'Bağımsız Çalışma'}};
 var JOB_TEXT={
- ar:{j1:{role:'تطوير الأعمال',org:'Amwal للمحاسبة والاستشارات',desc:'بنيت وطوّرت الأنظمة التشغيلية الأساسية للشركة. صمّمت حزمة أدوات Excel متقدمة — لوحة تحكم من 47 ورقة لبيانات حكومية، وملف ضريبي خفّض دورة المعالجة من 20 يوماً إلى يومين، وأتمتة للتقارير الشهرية من 45 دقيقة إلى 5، وملف حضور يختصر يوم عمل كامل في ساعة. صمّمت 3 أرشيفات مؤسسية مخصصة ودمجت 8+ أدوات ذكاء اصطناعي في سير العمل اليومي.'},j2:{role:'مدير تطوير الأعمال',org:'Unitopia Global',desc:'أشرفت على استقطاب الكوادر، وتابعت تطوير نظام CRM والموقع الإلكتروني، وحدّدت مصادر دخل لوجستية جديدة، وأعددت سياسات الشركة ونماذج العقود، وأعدت هيكلة علاقات الوكلاء عبر نظام Notion بنيته من الصفر، ووضعت إجراءات المحاسبة المالية، وقدّمت تقارير دورية لمجلس الإدارة.'},j3:{role:'مدير العمليات',org:'Marifet Group',desc:'أشرفت على جميع عمليات الشركة: التوظيف، والتدريب، والمبيعات، والتسويق وتحليل الحملات، وعمليات القبول، والمراسلات المؤسسية، واللوجستيات، والموارد البشرية، وإدارة Bitrix24، وإعداد التقارير والتحليلات.'},j4:{role:'مدير علاقات الوكلاء',org:'New Horizons',desc:'انضممت لإدارة التواصل بين الشركة وشركائها — وتطوّر دوري ليشمل الإشراف الكامل على عملية القبول وفريق إدخال البيانات. أصبحت المسؤول الوحيد عن Bitrix24 وجميع تخصيصاته. شاركت مع مطوّر Bitrix في بناء إعداد CRM لشركات التعليم انتشر على نطاق واسع في القطاع لثلاثة مواسم متتالية.'},j5:{role:'مصمم ومحرر Adobe',org:'One for All',desc:'حوّلت مشروعاً جانبياً نشأ أثناء الجائحة إلى نشاط متكامل في التسويق والتصميم: بعت المنتجات عبر الإنترنت، وصمّمت المحتوى وحرّرته، وقدّمت حلولاً رقمية لعملاء من قطاعات متنوعة.'},j6:{role:'مندوب مبيعات',org:'Kiswah Jewellery',desc:'قدّمت المجوهرات بوصفها قصة وإرثاً، من خلال شرح الإلهام والخلفية الثقافية لكل قطعة. تولّيت جميع مسؤوليات الوردية في فرع مطار إسطنبول الجديد.'},j7:{role:'منسق الرصد والتقييم',org:'SARC – إدارة الكوارث',desc:'قدت عمليات الرصد والتقييم لوحدة إدارة الكوارث بأكملها. بنيت ملف رصد وتقييم لـ 7 أقسام بـ Excel خالص — يشمل المستودع والموارد البشرية والعمليات والجودة والتوزيع وأكثر — في ظل قيود مؤسسية صارمة. ربطت البيانات عبر الأقسام لكشف تناقضات لم تكن مرئية من قبل. أنشأت وأدرت التقرير اليومي للوحدة.'},j8:{role:'مسؤول إدارة المعلومات',org:'SARC – إدارة الكوارث',desc:'أعدت بناء نموذج مخزون مُهمَل من الجهة المانحة وحوّلته إلى نظام جرد Excel فعّال لمستودعات المقر — انتقل الوضع من صفر رؤية إلى شفافية كاملة — أفضى مباشرةً إلى ترقيتي. كنت الوحيد القادر على إتمام تقرير المستودع بدقة واحتُفظ بي لهذا السبب.'},j9:{role:'مسؤول تقارير',org:'UNHCR – الدعم الإنساني',desc:'بدأت بإعداد تقارير قسم التوزيع وبرزت بجودة عملي لأتولى حزمة التقارير الكاملة لمشروع الدعم الإنساني بأكمله. قدّمت تدريباً على Excel بنفسي بعد أن رُفض طلب الميزانية — تحسّنت جودة البيانات — وحصلت على لقب "ملك Excel".'},j10:{role:'مترجم',org:'NatGeo، MBC، Quest Arabia',desc:'ترجمت النصوص والمحتوى الصوتي من الإنجليزية إلى العربية لصالح National Geographic وMBC Group وQuest Arabia وSpace Power وغيرها، بالتوازي مع أدوار أخرى على مدى 11 عاماً، وترجمت مقالات لعدة مجلات.'},j11:{role:'مدير متجر',org:'Tuffaha Fashion',desc:'أدرت المتجر بالكامل بشكل منفرد: الشراء، وتصميم واجهات العرض، وإدارة صفحة Facebook، والبيع، والمحاسبة، والضرائب، وسائر متطلبات الاستمرارية اليومية.'},j12:{role:'رسام AutoCAD',org:'Tuffaha Office',desc:'أنتجت رسومات تقنية بتوجيه من والدي المهندس موظّفاً مهاراتي الحاسوبية، وُصفت بأنها الأعلى جودةً في المكتب — قدّمت حلولاً هندسية دون خلفية أكاديمية هندسية رسمية.'},j13:{role:'مصمم مسارات تطريز',org:'Silver Light',desc:'صمّمت مسارات ماكينات التطريز لشركة ملابس أطفال. أنجزت أكثر من 100 تصميم في موسم واحد مقابل معدل 10–15 تصميماً، مما أرسى معياراً جديداً للشركة.'}},
+ ar:{j0:{role:'مطوّر أعمال',org:'أحمد صالح تفاحة / تطوير الأعمال',desc:'أطلقت ممارسة مستقلة في تطوير الأعمال والعمليات، أتولى من خلالها مشاريع لعملاء في الأنظمة التشغيلية، وإجراءات الامتثال، وتطبيق أنظمة CRM — حاملاً نفس المنهج القائم على Excel والأتمتة الذي بنيته على مدى أكثر من 20 عاماً داخل المؤسسات، لأقدّمه الآن مباشرة للشركات على أساس كل مشروع.'},j1:{role:'تطوير الأعمال',org:'Amwal للمحاسبة والاستشارات',desc:'بنيت وطوّرت الأنظمة التشغيلية الأساسية للشركة. صمّمت حزمة أدوات Excel متقدمة — لوحة تحكم من 47 ورقة لبيانات حكومية، وملف ضريبي خفّض دورة المعالجة من 20 يوماً إلى يومين، وأتمتة للتقارير الشهرية من 45 دقيقة إلى 5، وملف حضور يختصر يوم عمل كامل في ساعة. صمّمت 3 أرشيفات مؤسسية مخصصة ودمجت 8+ أدوات ذكاء اصطناعي في سير العمل اليومي.'},j2:{role:'مدير تطوير الأعمال',org:'Unitopia Global',desc:'أشرفت على استقطاب الكوادر، وتابعت تطوير نظام CRM والموقع الإلكتروني، وحدّدت مصادر دخل لوجستية جديدة، وأعددت سياسات الشركة ونماذج العقود، وأعدت هيكلة علاقات الوكلاء عبر نظام Notion بنيته من الصفر، ووضعت إجراءات المحاسبة المالية، وقدّمت تقارير دورية لمجلس الإدارة.'},j3:{role:'مدير العمليات',org:'Marifet Group',desc:'أشرفت على جميع عمليات الشركة: التوظيف، والتدريب، والمبيعات، والتسويق وتحليل الحملات، وعمليات القبول، والمراسلات المؤسسية، واللوجستيات، والموارد البشرية، وإدارة Bitrix24، وإعداد التقارير والتحليلات.'},j4:{role:'مدير علاقات الوكلاء',org:'New Horizons',desc:'انضممت لإدارة التواصل بين الشركة وشركائها — وتطوّر دوري ليشمل الإشراف الكامل على عملية القبول وفريق إدخال البيانات. أصبحت المسؤول الوحيد عن Bitrix24 وجميع تخصيصاته. شاركت مع مطوّر Bitrix في بناء إعداد CRM لشركات التعليم انتشر على نطاق واسع في القطاع لثلاثة مواسم متتالية.'},j5:{role:'مصمم ومحرر Adobe',org:'One for All',desc:'حوّلت مشروعاً جانبياً نشأ أثناء الجائحة إلى نشاط متكامل في التسويق والتصميم: بعت المنتجات عبر الإنترنت، وصمّمت المحتوى وحرّرته، وقدّمت حلولاً رقمية لعملاء من قطاعات متنوعة.'},j6:{role:'مندوب مبيعات',org:'Kiswah Jewellery',desc:'قدّمت المجوهرات بوصفها قصة وإرثاً، من خلال شرح الإلهام والخلفية الثقافية لكل قطعة. تولّيت جميع مسؤوليات الوردية في فرع مطار إسطنبول الجديد.'},j7:{role:'منسق الرصد والتقييم',org:'SARC – إدارة الكوارث',desc:'قدت عمليات الرصد والتقييم لوحدة إدارة الكوارث بأكملها. بنيت ملف رصد وتقييم لـ 7 أقسام بـ Excel خالص — يشمل المستودع والموارد البشرية والعمليات والجودة والتوزيع وأكثر — في ظل قيود مؤسسية صارمة. ربطت البيانات عبر الأقسام لكشف تناقضات لم تكن مرئية من قبل. أنشأت وأدرت التقرير اليومي للوحدة.'},j8:{role:'مسؤول إدارة المعلومات',org:'SARC – إدارة الكوارث',desc:'أعدت بناء نموذج مخزون مُهمَل من الجهة المانحة وحوّلته إلى نظام جرد Excel فعّال لمستودعات المقر — انتقل الوضع من صفر رؤية إلى شفافية كاملة — أفضى مباشرةً إلى ترقيتي. كنت الوحيد القادر على إتمام تقرير المستودع بدقة واحتُفظ بي لهذا السبب.'},j9:{role:'مسؤول تقارير',org:'UNHCR – الدعم الإنساني',desc:'بدأت بإعداد تقارير قسم التوزيع وبرزت بجودة عملي لأتولى حزمة التقارير الكاملة لمشروع الدعم الإنساني بأكمله. قدّمت تدريباً على Excel بنفسي بعد أن رُفض طلب الميزانية — تحسّنت جودة البيانات — وحصلت على لقب "ملك Excel".'},j10:{role:'مترجم',org:'NatGeo، MBC، Quest Arabia',desc:'ترجمت النصوص والمحتوى الصوتي من الإنجليزية إلى العربية لصالح National Geographic وMBC Group وQuest Arabia وSpace Power وغيرها، بالتوازي مع أدوار أخرى على مدى 11 عاماً، وترجمت مقالات لعدة مجلات.'},j11:{role:'مدير متجر',org:'Tuffaha Fashion',desc:'أدرت المتجر بالكامل بشكل منفرد: الشراء، وتصميم واجهات العرض، وإدارة صفحة Facebook، والبيع، والمحاسبة، والضرائب، وسائر متطلبات الاستمرارية اليومية.'},j12:{role:'رسام AutoCAD',org:'Tuffaha Office',desc:'أنتجت رسومات تقنية بتوجيه من والدي المهندس موظّفاً مهاراتي الحاسوبية، وُصفت بأنها الأعلى جودةً في المكتب — قدّمت حلولاً هندسية دون خلفية أكاديمية هندسية رسمية.'},j13:{role:'مصمم مسارات تطريز',org:'Silver Light',desc:'صمّمت مسارات ماكينات التطريز لشركة ملابس أطفال. أنجزت أكثر من 100 تصميم في موسم واحد مقابل معدل 10–15 تصميماً، مما أرسى معياراً جديداً للشركة.'}},
 
- tr:{j1:{role:'İş Geliştirme',org:'Amwal Muhasebe ve Danışmanlık',desc:'Şirketin temel operasyonel sistemlerini kurdum ve optimize ettim. 47 sayfalık hükümet verisi panosu, işlem süresini 20 günden 2 güne indiren vergi dosyası, aylık raporlamayı 45 dakikadan 5 dakikaya düşüren otomasyon ve tam günlük işi bir saate sıkıştıran İK devam dosyası dahil gelişmiş Excel araçları tasarladım. 3 amaç odaklı arşiv tasarladım ve günlük iş akışlarına 8+ yapay zekâ aracı entegre ettim.'},j2:{role:'İş Geliştirme Müdürü',org:'Unitopia Global',desc:'Personel işe aldım, CRM ve web sitesi geliştirme sürecini takip ettim, yeni lojistik gelir kanalları belirledim, şirket politikaları ve sözleşmeleri hazırladım, sıfırdan kurduğum Notion sistemi üzerinden acente ilişkilerini yeniden yapılandırdım, finansal muhasebe prosedürleri oluşturdum ve yönetim kuruluna düzenli raporlama yaptım.'},j3:{role:'Operasyon Müdürü',org:'Marifet Group',desc:'Tüm şirket operasyonlarını yönettim: işe alım, eğitim, satış, pazarlama ve kampanya analizi, kayıt süreçleri, kurumsal iletişim, lojistik, İK, Bitrix24 yönetimi, raporlama ve analiz.'},j4:{role:'Acente İlişkileri Müdürü',org:'New Horizons',desc:'Şirket ile iş ortakları arasındaki iletişimi yönetmek üzere katıldım — rolüm tam kayıt süreci ve veri giriş ekibinin sahipliğine dönüştü. Tek Bitrix24 yöneticisi oldum, tüm özelleştirmelerin sorumluluğunu üstlendim. Bir Bitrix geliştiricisiyle birlikte eğitim şirketleri için sektörde üç sezon boyunca yaygın biçimde benimsenen CRM yapılandırması geliştirdim.'},j5:{role:'Adobe Tasarımcı ve Editör',org:'One for All',desc:'Pandemi döneminde kurduğum yan girişimi kapsamlı bir pazarlama ve tasarım operasyonuna dönüştürdüm: ürünleri çevrimiçi sattım, içerik tasarladım ve düzenledim, farklı sektörlerden müşterilere dijital çözümler sundum.'},j6:{role:'Satış Danışmanı',org:'Kiswah Jewellery',desc:'Mücevheri ürün olarak değil, hikâye ve miras olarak sundum; her parçanın ilham kaynağını ve kültürel arka planını aktardım. İstanbul Yeni Havalimanı şubesinde tüm vardiya sorumluluklarını eksiksiz yürüttüm.'},j7:{role:'İzleme ve Değerlendirme Koordinatörü',org:'SARC – Afet Yönetimi',desc:'Tüm Afet Yönetim Birimi için izleme ve değerlendirmeyi yönettim. Depo, İK, operasyon, KK, dağıtım ve daha fazlasını kapsayan 7 departmanlı M&E dosyasını katı kurumsal kısıtlamalar altında saf Excel ile oluşturdum. Daha önce tespit edilemeyen tutarsızlıkları gün yüzüne çıkarmak için departmanlar arası verileri çapraz referansladım. Günlük Birim Raporunu oluşturdum ve yönettim.'},j8:{role:'Bilgi Yönetimi Sorumlusu',org:'SARC – Afet Yönetimi',desc:'Kullanılmayan donör stok formunu Genel Merkez depoları için işlevsel bir Excel envanter sistemine dönüştürdüm — sıfır görünürlükten tam şeffaflığa geçtik — bu başarı doğrudan terfime yol açtı. Depo raporunu doğru şekilde tamamlayabilen tek kişiydim ve bu nedenle görevde tutuldum.'},j9:{role:'Raporlama Sorumlusu',org:'UNHCR – İnsani Destek',desc:'Dağıtım departmanı raporlamasıyla başladım, kalitemle öne çıkarak tüm İnsani Destek Projesi için 4 departmanlı rapor paketinin sorumluluğunu devraldım. Bütçe reddedilince Excel eğitimini bizzat verdim — veri kalitesi iyileşti — "Excel Kralı" unvanını kazandım.'},j10:{role:'Çevirmen',org:'NatGeo, MBC, Quest Arabia',desc:'National Geographic, MBC Group, Quest Arabia, Space Power ve diğer kuruluşlar için İngilizceden Arapçaya metin ve ses içeriği çevirdim; 11 yıl boyunca diğer görevlerimle eş zamanlı sürdürdüm. Çeşitli dergiler için makale çevirisi yaptım.'},j11:{role:'Mağaza Müdürü',org:'Tuffaha Fashion',desc:'Mağazayı tamamen tek başıma yönettim: satın alma, vitrin tasarımı, Facebook sayfası yönetimi, satış, muhasebe, vergi işlemleri ve günlük operasyonun sürekliliği için gereken tüm süreçleri tek başıma yürüttüm.'},j12:{role:'AutoCAD Teknik Çizim Uzmanı',org:'Tuffaha Office',desc:"Mühendis babamın rehberliğinde bilgisayar becerilerimi kullanarak teknik çizimler ürettim — bunlar ofisteki en kaliteli çizimler olarak nitelendirildi. Resmi mühendislik eğitimi olmadan mühendislik çözümleri sundum."},j13:{role:'Nakış Deseni Tasarımcısı',org:'Silver Light',desc:"Bebek giyim şirketi için nakış makinesi desenleri tasarladım. Tek bir sezonda olağan 10–15 tasarım hedefine karşılık 100'den fazla tasarım ürettim ve şirket için yeni bir standart oluşturdum."}}
+ tr:{j0:{role:'İş Geliştirici',org:'Ahmad Saleh Tuffaha / İş Geliştirme',desc:'Operasyonel sistemler, uyumluluk iş akışları ve CRM uygulamaları alanında müşteri projeleri üstlendiğim bağımsız bir iş geliştirme ve operasyon danışmanlığı başlattım — 20 yılı aşkın süredir kurum içinde geliştirdiğim Excel odaklı, otomasyon öncelikli yaklaşımı artık doğrudan kuruluşlara, proje bazında sunuyorum.'},j1:{role:'İş Geliştirme',org:'Amwal Muhasebe ve Danışmanlık',desc:'Şirketin temel operasyonel sistemlerini kurdum ve optimize ettim. 47 sayfalık hükümet verisi panosu, işlem süresini 20 günden 2 güne indiren vergi dosyası, aylık raporlamayı 45 dakikadan 5 dakikaya düşüren otomasyon ve tam günlük işi bir saate sıkıştıran İK devam dosyası dahil gelişmiş Excel araçları tasarladım. 3 amaç odaklı arşiv tasarladım ve günlük iş akışlarına 8+ yapay zekâ aracı entegre ettim.'},j2:{role:'İş Geliştirme Müdürü',org:'Unitopia Global',desc:'Personel işe aldım, CRM ve web sitesi geliştirme sürecini takip ettim, yeni lojistik gelir kanalları belirledim, şirket politikaları ve sözleşmeleri hazırladım, sıfırdan kurduğum Notion sistemi üzerinden acente ilişkilerini yeniden yapılandırdım, finansal muhasebe prosedürleri oluşturdum ve yönetim kuruluna düzenli raporlama yaptım.'},j3:{role:'Operasyon Müdürü',org:'Marifet Group',desc:'Tüm şirket operasyonlarını yönettim: işe alım, eğitim, satış, pazarlama ve kampanya analizi, kayıt süreçleri, kurumsal iletişim, lojistik, İK, Bitrix24 yönetimi, raporlama ve analiz.'},j4:{role:'Acente İlişkileri Müdürü',org:'New Horizons',desc:'Şirket ile iş ortakları arasındaki iletişimi yönetmek üzere katıldım — rolüm tam kayıt süreci ve veri giriş ekibinin sahipliğine dönüştü. Tek Bitrix24 yöneticisi oldum, tüm özelleştirmelerin sorumluluğunu üstlendim. Bir Bitrix geliştiricisiyle birlikte eğitim şirketleri için sektörde üç sezon boyunca yaygın biçimde benimsenen CRM yapılandırması geliştirdim.'},j5:{role:'Adobe Tasarımcı ve Editör',org:'One for All',desc:'Pandemi döneminde kurduğum yan girişimi kapsamlı bir pazarlama ve tasarım operasyonuna dönüştürdüm: ürünleri çevrimiçi sattım, içerik tasarladım ve düzenledim, farklı sektörlerden müşterilere dijital çözümler sundum.'},j6:{role:'Satış Danışmanı',org:'Kiswah Jewellery',desc:'Mücevheri ürün olarak değil, hikâye ve miras olarak sundum; her parçanın ilham kaynağını ve kültürel arka planını aktardım. İstanbul Yeni Havalimanı şubesinde tüm vardiya sorumluluklarını eksiksiz yürüttüm.'},j7:{role:'İzleme ve Değerlendirme Koordinatörü',org:'SARC – Afet Yönetimi',desc:'Tüm Afet Yönetim Birimi için izleme ve değerlendirmeyi yönettim. Depo, İK, operasyon, KK, dağıtım ve daha fazlasını kapsayan 7 departmanlı M&E dosyasını katı kurumsal kısıtlamalar altında saf Excel ile oluşturdum. Daha önce tespit edilemeyen tutarsızlıkları gün yüzüne çıkarmak için departmanlar arası verileri çapraz referansladım. Günlük Birim Raporunu oluşturdum ve yönettim.'},j8:{role:'Bilgi Yönetimi Sorumlusu',org:'SARC – Afet Yönetimi',desc:'Kullanılmayan donör stok formunu Genel Merkez depoları için işlevsel bir Excel envanter sistemine dönüştürdüm — sıfır görünürlükten tam şeffaflığa geçtik — bu başarı doğrudan terfime yol açtı. Depo raporunu doğru şekilde tamamlayabilen tek kişiydim ve bu nedenle görevde tutuldum.'},j9:{role:'Raporlama Sorumlusu',org:'UNHCR – İnsani Destek',desc:'Dağıtım departmanı raporlamasıyla başladım, kalitemle öne çıkarak tüm İnsani Destek Projesi için 4 departmanlı rapor paketinin sorumluluğunu devraldım. Bütçe reddedilince Excel eğitimini bizzat verdim — veri kalitesi iyileşti — "Excel Kralı" unvanını kazandım.'},j10:{role:'Çevirmen',org:'NatGeo, MBC, Quest Arabia',desc:'National Geographic, MBC Group, Quest Arabia, Space Power ve diğer kuruluşlar için İngilizceden Arapçaya metin ve ses içeriği çevirdim; 11 yıl boyunca diğer görevlerimle eş zamanlı sürdürdüm. Çeşitli dergiler için makale çevirisi yaptım.'},j11:{role:'Mağaza Müdürü',org:'Tuffaha Fashion',desc:'Mağazayı tamamen tek başıma yönettim: satın alma, vitrin tasarımı, Facebook sayfası yönetimi, satış, muhasebe, vergi işlemleri ve günlük operasyonun sürekliliği için gereken tüm süreçleri tek başıma yürüttüm.'},j12:{role:'AutoCAD Teknik Çizim Uzmanı',org:'Tuffaha Office',desc:"Mühendis babamın rehberliğinde bilgisayar becerilerimi kullanarak teknik çizimler ürettim — bunlar ofisteki en kaliteli çizimler olarak nitelendirildi. Resmi mühendislik eğitimi olmadan mühendislik çözümleri sundum."},j13:{role:'Nakış Deseni Tasarımcısı',org:'Silver Light',desc:"Bebek giyim şirketi için nakış makinesi desenleri tasarladım. Tek bir sezonda olağan 10–15 tasarım hedefine karşılık 100'den fazla tasarım ürettim ve şirket için yeni bir standart oluşturdum."}}
 };
 function ui(key){return (UI_TEXT[currentLang]&&UI_TEXT[currentLang][key])||UI_TEXT.en[key]||key;}
 function jobText(j,field){return currentLang==='en'?j[field]:((JOB_TEXT[currentLang]&&JOB_TEXT[currentLang][j.id]&&JOB_TEXT[currentLang][j.id][field])||j[field]);}
@@ -639,7 +700,7 @@ function applyLanguage(lang){
 }
 
 var GHOST='#a0a09a',SPINE_C='#d8d4cc',INK='#1a1a18';
-var COL={edu:'#c0392b',human:'#2471a3',biz:'#1e8449',create:'#6c3483',sales:'#d35400',trans:'#b7950b'};
+var COL={edu:'#c0392b',human:'#2471a3',biz:'#1e8449',create:'#6c3483',sales:'#d35400',trans:'#b7950b',eduSector:'#8b5e34',indie:'#c0392b'};
 var MIN=2015,MAX=2026,TOP=60;
 var D_INNER=34,D_OUTER=74,SERIF=10,CARD_GAP=15;
 var INNER_W=172,OUTER_W=150;
@@ -683,10 +744,11 @@ function fitCardText(el){
 }
 
 var jobs=[
+  {id:'j0', start:2026,end:MAX,present:true,side:'L',depth:'outer',sector:'Independent Practice', col:COL.indie, role:'Business Developer', org:'Ahmad Saleh Tuffaha / Business Development', desc:'Launched an independent business development and operations practice, taking on client projects in operational systems, compliance workflows, and CRM implementation — bringing the same Excel-driven, automation-first approach built over 20+ years in-house to organizations directly, on a project basis.'},
   {id:'j1', start:2024,end:2026,side:'R',depth:'outer',sector:'Business',         col:COL.biz,   role:'Business Development',           org:'Amwal Accounting & Consulting', desc:'Built and optimized the company\'s core operational systems. Designed a suite of advanced Excel tools — including a 47-sheet government-data dashboard, a tax processing file that cut cycle time from 20 days to 2, monthly reporting automation from 45 min to 5, and an HR attendance file that compressed a full day\'s work to one hour. Designed 3 purpose-built archives and integrated 8+ AI tools into daily workflows. Served as the internal reference point for all digital platforms.'},
-  {id:'j2', start:2023,end:2024,side:'L',depth:'outer',sector:'Education & Ops',  col:COL.edu,   role:'Business Development Manager',   org:'Unitopia Global',             desc:'Recruited staff, tracked CRM and website progress, found new logistics revenue streams, wrote company policy and contracts, worked daily with marketing partners, organized agent relations, set financial accounting rules — reporting to the board throughout the company\'s growth journey.'},
-  {id:'j3', start:2022,end:2023,side:'R',depth:'outer',sector:'Education & Ops',  col:COL.edu,   role:'Operations Manager',            org:'Marifet Group',               desc:'Responsible for monitoring all operations: recruiting, training, sales, marketing and campaign analysis, admissions, business communications, logistics, HR, Bitrix24 management, reporting and analysis.'},
-  {id:'j4', start:2021,end:2022,side:'L',depth:'outer',sector:'Education & Ops',  col:COL.edu,   role:'Agent Relations Manager',      org:'New Horizons',                desc:'Joined to manage communications between the company and its partners — evolved into full ownership of the admissions process and data entry team. Became sole Bitrix24 administrator, responsible for all customizations. Co-developed with a Bitrix developer a CRM configuration for education companies that was adopted industry-wide for three consecutive seasons.'},
+  {id:'j2', start:2023,end:2024,side:'L',depth:'outer',sector:'Education & Ops',  col:COL.eduSector,   role:'Business Development Manager',   org:'Unitopia Global',             desc:'Recruited staff, tracked CRM and website progress, found new logistics revenue streams, wrote company policy and contracts, worked daily with marketing partners, organized agent relations, set financial accounting rules — reporting to the board throughout the company\'s growth journey.'},
+  {id:'j3', start:2022,end:2023,side:'R',depth:'outer',sector:'Education & Ops',  col:COL.eduSector,   role:'Operations Manager',            org:'Marifet Group',               desc:'Responsible for monitoring all operations: recruiting, training, sales, marketing and campaign analysis, admissions, business communications, logistics, HR, Bitrix24 management, reporting and analysis.'},
+  {id:'j4', start:2021,end:2022,side:'L',depth:'outer',sector:'Education & Ops',  col:COL.eduSector,   role:'Agent Relations Manager',      org:'New Horizons',                desc:'Joined to manage communications between the company and its partners — evolved into full ownership of the admissions process and data entry team. Became sole Bitrix24 administrator, responsible for all customizations. Co-developed with a Bitrix developer a CRM configuration for education companies that was adopted industry-wide for three consecutive seasons.'},
   {id:'j7', start:2017,end:2019,side:'L',depth:'outer',sector:'Humanitarian',     col:COL.human, role:'M&E Coordinator',               org:'SARC – Disaster Mgmt',        desc:'Led monitoring and evaluation across the entire Disaster Management Unit. Built a 7-department M&E file in pure Excel — covering warehouse, HR, ops, QC, distribution and more — under strict no-macro institutional constraints. Cross-referenced data across departments to surface discrepancies previously undetectable. Created and owned the Daily Unit Report: a compiled analysis revealing results and trends of every ongoing operation.'},
   {id:'j8', start:2016,end:2017,side:'R',depth:'outer',sector:'Humanitarian',     col:COL.human, role:'Information Management Officer',  org:'SARC – Disaster Mgmt',        desc:'Rebuilt a poorly used donor stock form into a fully functioning Excel inventory system for HQ warehouses — shifting stock visibility from zero to full transparency. The achievement was recognized by HQ and led directly to promotion as M&E Coordinator. Became the only person who could complete the warehouse report accurately and was retained specifically for that reason.'},
   {id:'j9', start:2015,end:2016,side:'L',depth:'outer',sector:'Humanitarian',     col:COL.human, role:'Reporting Officer',              org:'UNHCR – Humanitarian Support', desc:'Started by handling reporting for the distribution department. Report quality stood out — escalated to owning the full 4-department reporting bundle for the entire Humanitarian Support Project. Delivered Excel training personally after budget for formal training was refused — data quality improved measurably, earning the title "King of Excel".'},
@@ -711,14 +773,91 @@ function buildCards(){
   });
 }
 
+var PROJECTS=[
+  {jobId:'j0', color:'var(--biz)', tint1:'#a8d5bb', tint2:'#4ea578',
+    en:{cat:'Operational Systems & Compliance',
+      title:'Automating Compliance for a 60+ Employee Team',
+      challenge:'A 60+ employee medical tourism firm faced high risk from manual legal-document tracking, causing delays and compliance gaps.',
+      solution:'Built a custom database to centralize records, automate document expiry alerts, and ensure 100% data accuracy.',
+      impact:'Eliminated documentation bottlenecks and turned a high-risk manual process into a reliable, automated system.',
+      tools:['Notion','Database Design','Compliance Tracking']},
+    ar:{cat:'الأنظمة التشغيلية والامتثال',
+      title:'أتمتة الامتثال لفريق يضم أكثر من 60 موظفاً',
+      challenge:'واجهت شركة سياحة علاجية يعمل بها أكثر من 60 موظفاً مخاطر تشغيلية عالية بسبب التتبع اليدوي للمستندات القانونية، ما أدى إلى تأخيرات وثغرات في الامتثال.',
+      solution:'بنيت قاعدة بيانات مخصصة لمركزة السجلات، وأتمتة تنبيهات انتهاء صلاحية المستندات، وضمان دقة البيانات بنسبة 100%.',
+      impact:'أزلت اختناقات التوثيق وحوّلت عملية يدوية عالية المخاطر إلى نظام آلي موثوق.',
+      tools:['Notion','تصميم قواعد البيانات','تتبع الامتثال']},
+    tr:{cat:'Operasyonel Sistemler ve Uyumluluk',
+      title:'60\'tan Fazla Çalışanı Olan Bir Ekip İçin Uyumluluğu Otomatikleştirme',
+      challenge:'60\'tan fazla çalışanı olan bir sağlık turizmi firması, yasal belgelerin elle takip edilmesinden kaynaklanan yüksek riskle karşı karşıyaydı; bu da gecikmelere ve uyumluluk eksikliklerine yol açıyordu.',
+      solution:'Kayıtları merkezileştiren, belge son kullanma tarihi uyarılarını otomatikleştiren ve %100 veri doğruluğu sağlayan özel bir veritabanı geliştirdim.',
+      impact:'Belge kaynaklı tıkanıklıkları ortadan kaldırarak yüksek riskli, elle yürütülen bir süreci güvenilir, otomatik bir sisteme dönüştürdüm.',
+      tools:['Notion','Veritabanı Tasarımı','Uyumluluk Takibi']}},
+  {jobId:'j0', color:'var(--human)', tint1:'#a9c9dc', tint2:'#4e8bb0',
+    en:{cat:'CRM Implementation & Workflow',
+      title:'Building a Single Source of Truth for Client Bookings',
+      challenge:'A travel agency struggled with fragmented client data and manual booking tracking, leading to lost follow-ups and no visibility into client history.',
+      solution:'Implemented and customized Bitrix24, tailoring interfaces, pipelines, and status cards to the exact flow of a travel client — from inquiry to trip completion.',
+      impact:'Established a single source of truth for client journeys, enabling instant access to history and consistently personalized service.',
+      tools:['Bitrix24','CRM Design','Workflow Automation']},
+    ar:{cat:'تطبيق أنظمة CRM وتنظيم سير العمل',
+      title:'بناء مصدر موحّد وموثوق لحجوزات العملاء',
+      challenge:'عانت وكالة سياحة من تشتت بيانات العملاء والتتبع اليدوي للحجوزات، ما أدى لضياع المتابعات وغياب أي رؤية واضحة لتاريخ العميل.',
+      solution:'طبّقت نظام Bitrix24 وخصّصته بالكامل، وصممت الواجهات ومسارات العمل وبطاقات الحالة لتطابق رحلة عميل السياحة تماماً — من أول استفسار وحتى انتهاء الرحلة.',
+      impact:'أسّست مصدراً موحّداً وموثوقاً لرحلة كل عميل، ما مكّن الفريق من الوصول الفوري للتاريخ الكامل وتقديم خدمة شخصية ثابتة الجودة.',
+      tools:['Bitrix24','تصميم أنظمة CRM','أتمتة سير العمل']},
+    tr:{cat:'CRM Uygulaması ve İş Akışı',
+      title:'Müşteri Rezervasyonları İçin Tek ve Güvenilir Bir Kaynak Oluşturma',
+      challenge:'Bir seyahat acentesi, dağınık müşteri verileri ve elle takip edilen rezervasyonlar yüzünden zorlanıyor, bu da takiplerin kaybolmasına ve müşteri geçmişine dair görünürlük eksikliğine yol açıyordu.',
+      solution:'Bitrix24\'ü kurup özelleştirdim; arayüzleri, iş akışlarını ve durum kartlarını bir seyahat müşterisinin yolculuğuna — talep anından seyahatin tamamlanmasına kadar — birebir uyacak şekilde tasarladım.',
+      impact:'Müşteri yolculukları için tek ve güvenilir bir kaynak oluşturdum; bu sayede geçmişe anında erişim ve tutarlı, kişiselleştirilmiş hizmet mümkün oldu.',
+      tools:['Bitrix24','CRM Tasarımı','İş Akışı Otomasyonu']}},
+  {jobId:'j0', color:'var(--trans)', tint1:'#e6d8a8', tint2:'#cbab3f',
+    en:{cat:'Financial Consolidation & Reporting',
+      title:'Automating Real-Time Financials Across Three Disconnected Files',
+      challenge:'A travel agency tracked clients, suppliers, and partners across three separate Excel files, each updated and cross-referenced by hand — despite being digital, the process remained entirely manual, with no real-time view of the company\'s overall financial position.',
+      solution:'Rebuilt the system using PivotTables to automatically pull and consolidate data from all three files into a single, unified interface.',
+      impact:'Turned a fully manual, three-file process into a fully automated, real-time system — giving instant, one-click visibility into the complete financial picture.',
+      tools:['Excel (Advanced)','PivotTables','Financial Consolidation']},
+    ar:{cat:'التوحيد المالي والتقارير',
+      title:'أتمتة البيانات المالية اللحظية عبر ثلاثة ملفات منفصلة',
+      challenge:'كانت وكالة سياحة تتابع العملاء والموردين والشركاء عبر ثلاثة ملفات إكسل منفصلة، يتم تحديثها ومطابقتها يدوياً — ورغم كونها رقمية، بقيت العملية يدوية بالكامل، بدون أي رؤية لحظية للوضع المالي العام للشركة.',
+      solution:'أعدت بناء النظام باستخدام PivotTables لسحب البيانات من الملفات الثلاثة كلها ودمجها تلقائياً في واجهة موحّدة واحدة.',
+      impact:'حوّلت عملية يدوية بالكامل موزعة على ثلاثة ملفات إلى نظام آلي بالكامل يعمل بشكل لحظي — يمنح رؤية فورية وبضغطة واحدة للوضع المالي الكامل.',
+      tools:['Excel (متقدم)','PivotTables','التوحيد المالي']},
+    tr:{cat:'Finansal Konsolidasyon ve Raporlama',
+      title:'Birbirinden Bağımsız Üç Dosya Genelinde Gerçek Zamanlı Finansal Otomasyon',
+      challenge:'Bir seyahat acentesi; müşterileri, tedarikçileri ve iş ortaklarını, her biri elle güncellenip karşılaştırılan üç ayrı Excel dosyası üzerinden takip ediyordu — dijital olmasına rağmen süreç tamamen elle yürütülüyor, şirketin genel mali durumuna dair gerçek zamanlı bir görünürlük bulunmuyordu.',
+      solution:'Üç dosyadaki verileri otomatik olarak çekip tek bir ortak arayüzde birleştiren sistemi PivotTable\'lar kullanarak yeniden kurdum.',
+      impact:'Tamamen elle yürütülen, üç dosyaya dağılmış bir süreci; tam otomatik, gerçek zamanlı bir sisteme dönüştürdüm — tam finansal tabloya anında ve tek tıkla erişim sağladım.',
+      tools:['Excel (İleri Düzey)','PivotTable','Finansal Konsolidasyon']}}
+];
+function buildProjects(jobId){
+  var host=document.getElementById('exp-projects');
+  var list=PROJECTS.filter(function(p){return p.jobId===jobId;});
+  if(!list.length){host.innerHTML='';host.style.display='none';return;}
+  host.style.display='flex';
+  host.innerHTML=list.map(function(p){
+    var d=p[currentLang]||p.en;
+    return '<div class="proj-card" style="border-top:3px solid '+p.color+'">'
+      +'<p class="proj-cat" style="color:'+p.color+'">'+d.cat+'</p>'
+      +'<p class="proj-title">'+d.title+'</p>'
+      +'<div class="proj-block" style="border-color:'+p.tint1+'"><span class="proj-block-label" style="color:'+p.tint1+'">'+ui('projChallenge')+'</span><span class="proj-block-text">'+d.challenge+'</span></div>'
+      +'<div class="proj-block" style="border-color:'+p.tint2+'"><span class="proj-block-label" style="color:'+p.tint2+'">'+ui('projSolution')+'</span><span class="proj-block-text">'+d.solution+'</span></div>'
+      +'<div class="proj-block" style="border-color:'+p.color+'"><span class="proj-block-label" style="color:'+p.color+'">'+ui('projImpact')+'</span><span class="proj-block-text">'+d.impact+'</span></div>'
+      +'<div class="proj-tools">'+d.tools.map(function(t){return '<span class="proj-tag">'+t+'</span>';}).join('')+'</div>'
+      +'</div>';
+  }).join('');
+}
 function openCard(j,keepOpen){
   document.getElementById('exp-sector').textContent=sectorText(j);
   document.getElementById('exp-sector').style.color=j.col;
-  document.getElementById('exp-period').textContent=j.start+' \u2192 '+(j.end===MAX?ui('present'):j.end);
+  document.getElementById('exp-period').textContent=j.start+' \u2192 '+(j.present?ui('present'):j.end);
   document.getElementById('exp-role').textContent=jobText(j,'role');
   document.getElementById('exp-org').textContent=jobText(j,'org');
   document.getElementById('exp-org').style.color=j.col;
   document.getElementById('exp-desc').textContent=jobText(j,'desc');
+  buildProjects(j.id);
   document.getElementById('overlay').dataset.jobId=j.id;
   if(!keepOpen)document.getElementById('overlay').classList.add('open');
 }
@@ -798,10 +937,16 @@ function closeOther(){
   document.getElementById('other-overlay').classList.remove('open');
 }
 
-function openAchievements(){
+function openAchievements(scrollKey){
   buildAchievements();
   document.getElementById('ach-overlay-title').textContent=ui('achLabel');
   document.getElementById('ach-overlay').classList.add('open');
+  if(scrollKey){
+    setTimeout(function(){
+      var el=document.getElementById('ach-cat-'+scrollKey);
+      if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+    },260);
+  }
 }
 function closeAchievements(){
   document.getElementById('ach-overlay').classList.remove('open');
@@ -1000,7 +1145,7 @@ function buildPrintTimeline(){
       dot.style.background=j.col;
       var body=document.createElement('div');
       body.className='pt-body';
-      var endLabel=j.end===MAX?ui('present'):String(j.end);
+      var endLabel=j.present?ui('present'):String(j.end);
       var head=document.createElement('div');
       head.className='pt-head';
       head.innerHTML='<span class="pt-title" style="color:'+j.col+'">'+jobText(j,'role')+'</span>'
@@ -1084,6 +1229,7 @@ function printCV(){
   document.getElementById('pp-s4').textContent=t.skillCrm;
   document.getElementById('pp-s5').textContent=t.skillMarketing;
   document.getElementById('pp-s6').textContent=t.skillAutoCAD;
+  document.getElementById('pp-s7').textContent=t.skillAI;
   // languages
   document.getElementById('pp-l1').textContent=t.langArabic;
   document.getElementById('pp-l2').textContent=t.langEnglish;
@@ -1097,6 +1243,9 @@ function printCV(){
     var el=document.getElementById('pp-c'+(i+1));
     if(el)el.textContent=t[k]||'';
   });
+  document.getElementById('pp-cg1').textContent=t.certGroupMarketing;
+  document.getElementById('pp-cg2').textContent=t.certGroupHumanitarian;
+  document.getElementById('pp-cg3').textContent=t.certGroupAccounting;
   // photo — use canvas to force full-res render
   var photoEl=document.getElementById('pp-photo');
   var existingImg=document.querySelector('.photo-slot img');
@@ -1152,7 +1301,6 @@ try{
   applyLanguage('en');
   window.addEventListener('load',function(){
     render();
-    Array.prototype.forEach.call(document.querySelectorAll('.skill-fill'),function(b){b.style.width=b.getAttribute('data-w')+'%';});
   });
   if(document.fonts&&document.fonts.ready){document.fonts.ready.then(render).catch(function(){});}
   window.addEventListener('resize',render);
@@ -1180,12 +1328,13 @@ try{
     </div>
     <div class="pp-sec">
       <p class="pp-sec-label" id="pp-skills-label">Skills</p>
-      <div class="pp-skill-row"><div class="pp-skill-name"><span id="pp-s1">Excel &amp; Data</span><span class="pp-skill-pct">95%</span></div><div class="pp-skill-track"><div class="pp-skill-fill" style="width:95%"></div></div></div>
-      <div class="pp-skill-row"><div class="pp-skill-name"><span id="pp-s2">Operations</span><span class="pp-skill-pct">90%</span></div><div class="pp-skill-track"><div class="pp-skill-fill" style="width:90%"></div></div></div>
-      <div class="pp-skill-row"><div class="pp-skill-name"><span id="pp-s3">Adobe Suite</span><span class="pp-skill-pct">88%</span></div><div class="pp-skill-track"><div class="pp-skill-fill" style="width:88%"></div></div></div>
-      <div class="pp-skill-row"><div class="pp-skill-name"><span id="pp-s4">CRM Systems</span><span class="pp-skill-pct">85%</span></div><div class="pp-skill-track"><div class="pp-skill-fill" style="width:85%"></div></div></div>
-      <div class="pp-skill-row"><div class="pp-skill-name"><span id="pp-s5">Digital Marketing</span><span class="pp-skill-pct">82%</span></div><div class="pp-skill-track"><div class="pp-skill-fill" style="width:82%"></div></div></div>
-      <div class="pp-skill-row"><div class="pp-skill-name"><span id="pp-s6">AutoCAD</span><span class="pp-skill-pct">70%</span></div><div class="pp-skill-track"><div class="pp-skill-fill" style="width:70%"></div></div></div>
+      <div class="pp-skill-row"><span class="pp-skill-name" id="pp-s1">Excel &amp; Data</span></div>
+      <div class="pp-skill-row"><span class="pp-skill-name" id="pp-s7">AI &amp; Digital Tools</span></div>
+      <div class="pp-skill-row"><span class="pp-skill-name" id="pp-s2">Operations</span></div>
+      <div class="pp-skill-row"><span class="pp-skill-name" id="pp-s4">CRM Systems</span></div>
+      <div class="pp-skill-row"><span class="pp-skill-name" id="pp-s3">Adobe Suite</span></div>
+      <div class="pp-skill-row"><span class="pp-skill-name" id="pp-s5">Digital Marketing</span></div>
+      <div class="pp-skill-row"><span class="pp-skill-name" id="pp-s6">AutoCAD</span></div>
     </div>
     <div class="pp-sec">
       <p class="pp-sec-label" id="pp-lang-label">Languages</p>
@@ -1202,23 +1351,32 @@ try{
     </div>
     <div class="pp-sec">
       <p class="pp-sec-label" id="pp-certs-label">Certifications &amp; Training</p>
-      <div class="pp-cert-item"><strong>Google Digital Garage</strong><span id="pp-c1">Fundamentals of Digital Marketing</span></div>
-      <div class="pp-cert-item"><strong>Meta</strong><span id="pp-c2">Certified Digital Marketing Associate</span></div>
-      <div class="pp-cert-item"><strong>Coursera / Meta</strong><span id="pp-c3">Social Media Marketing Professional</span></div>
-      <div class="pp-cert-item"><strong>Niuversity</strong><span id="pp-c4">Fundamentals of Digital Marketing</span></div>
-      <div class="pp-cert-item"><strong>Niuversity</strong><span id="pp-c5">Search Engine Optimization (SEO)</span></div>
-      <div class="pp-cert-item"><strong>IFRC / ICRC</strong><span id="pp-c6">Data Analysis</span></div>
-      <div class="pp-cert-item"><strong>IFRC / BRC</strong><span id="pp-c7">Conducting Field Survey</span></div>
-      <div class="pp-cert-item"><strong>IFRC</strong><span id="pp-c8">Logistic Inventory Control (LogIC)</span></div>
-      <div class="pp-cert-item"><strong>SARC</strong><span id="pp-c9">First Aid Basic</span></div>
-      <div class="pp-cert-item"><strong>SARC</strong><span id="pp-c10">Disaster Management Basic</span></div>
-      <div class="pp-cert-item"><strong>SARC</strong><span id="pp-c11">Neuro-Linguistic Programming (NLP)</span></div>
-      <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c12">Project / Programme Planning</span></div>
-      <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c13">Introduction to M&amp;E</span></div>
-      <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c14">Emergency Needs Assessment</span></div>
-      <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c15">Vulnerability Assessment &amp; Analysis</span></div>
-      <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c16">WORC: World of Red Cross</span></div>
-      <div class="pp-cert-item"><strong>Damascus University</strong><span id="pp-c17">Commercial Institute / Accounting</span></div>
+      <div class="pp-cert-group">
+        <p class="pp-cert-group-name" id="pp-cg1">Digital Marketing</p>
+        <div class="pp-cert-item"><strong>Google Digital Garage</strong><span id="pp-c1">Fundamentals of Digital Marketing</span></div>
+        <div class="pp-cert-item"><strong>Meta</strong><span id="pp-c2">Certified Digital Marketing Associate</span></div>
+        <div class="pp-cert-item"><strong>Coursera / Meta</strong><span id="pp-c3">Social Media Marketing Professional</span></div>
+        <div class="pp-cert-item"><strong>Niuversity</strong><span id="pp-c4">Fundamentals of Digital Marketing</span></div>
+        <div class="pp-cert-item"><strong>Niuversity</strong><span id="pp-c5">Search Engine Optimization (SEO)</span></div>
+      </div>
+      <div class="pp-cert-group">
+        <p class="pp-cert-group-name" id="pp-cg2">Humanitarian &amp; M&amp;E</p>
+        <div class="pp-cert-item"><strong>IFRC / ICRC</strong><span id="pp-c6">Data Analysis</span></div>
+        <div class="pp-cert-item"><strong>IFRC / BRC</strong><span id="pp-c7">Conducting Field Survey</span></div>
+        <div class="pp-cert-item"><strong>IFRC</strong><span id="pp-c8">Logistic Inventory Control (LogIC)</span></div>
+        <div class="pp-cert-item"><strong>SARC</strong><span id="pp-c9">First Aid Basic</span></div>
+        <div class="pp-cert-item"><strong>SARC</strong><span id="pp-c10">Disaster Management Basic</span></div>
+        <div class="pp-cert-item"><strong>SARC</strong><span id="pp-c11">Neuro-Linguistic Programming (NLP)</span></div>
+        <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c12">Project / Programme Planning</span></div>
+        <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c13">Introduction to M&amp;E</span></div>
+        <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c14">Emergency Needs Assessment</span></div>
+        <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c15">Vulnerability Assessment &amp; Analysis</span></div>
+        <div class="pp-cert-item"><strong>IFRC Online</strong><span id="pp-c16">WORC: World of Red Cross</span></div>
+      </div>
+      <div class="pp-cert-group">
+        <p class="pp-cert-group-name" id="pp-cg3">Accounting</p>
+        <div class="pp-cert-item"><strong>Damascus University</strong><span id="pp-c17">Commercial Institute / Accounting</span></div>
+      </div>
     </div>
   </div>
   <div id="pp-main">
