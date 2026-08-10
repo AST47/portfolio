@@ -229,7 +229,8 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
   .pp-cert-item strong{color:rgba(245,242,235,.85);font-weight:500;display:block;font-size:.6rem;}
   #pp-qr{position:relative;display:block;text-align:center;width:100%;overflow:hidden;}
   #pp-qr-canvas{display:block;margin:0 auto;position:relative;line-height:0;}
-  #pp-qr-canvas img,#pp-qr-canvas canvas{display:block!important;position:relative!important;margin:0 auto!important;max-width:100px!important;max-height:100px!important;}
+  #pp-qr-canvas canvas{display:none!important;}
+  #pp-qr-canvas img{display:block!important;position:relative!important;margin:0 auto!important;max-width:100px!important;max-height:100px!important;}
   #pp-qr-url{display:block;font-size:.52rem;color:rgba(245,242,235,.35);letter-spacing:.05em;text-align:center;word-break:break-all;margin-top:4px;}
   #pp-main{flex:1;padding:2rem 1.8rem 2rem 1.6rem;background:var(--white);}
   #pp-hero{margin-bottom:1.4rem;padding-bottom:1.2rem;border-bottom:1px solid var(--line);}
@@ -1109,13 +1110,14 @@ function buildPrintTimeline(){
   mainLabel.textContent=ui('timeline');
   container.appendChild(mainLabel);
 
-  var SECTOR_ORDER=['Business','Education & Ops','Humanitarian'];
+  var SECTOR_ORDER=['Independent Practice','Business','Education & Ops','Humanitarian'];
   var SECTOR_LABELS={
+    'Independent Practice':{en:'Independent Practice',ar:'عمل مستقل',tr:'Bağımsız Çalışma'},
     'Education & Ops':{en:'Educational Consulting',ar:'الاستشارات التعليمية',tr:'Eğitim Danışmanlığı'},
     'Humanitarian':{en:'Humanitarian',ar:'العمل الإنساني',tr:'İnsani Çalışmalar'},
     'Business':{en:'Accounting & Finance',ar:'المحاسبة والمالية',tr:'Muhasebe ve Finans'}
   };
-  var SECTOR_COL={'Education & Ops':COL.edu,'Humanitarian':COL.human,'Business':COL.biz};
+  var SECTOR_COL={'Independent Practice':COL.indie,'Education & Ops':COL.eduSector,'Humanitarian':COL.human,'Business':COL.biz};
 
   SECTOR_ORDER.forEach(function(sector){
     var sectorJobs=jobs.filter(function(j){return j.sector===sector;});
