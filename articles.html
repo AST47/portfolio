@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Ahmad Saleh Tuffaha — Reflections & Experiences</title>
+<meta name="description" content="Reflections and experiences by Ahmad Saleh Tuffaha.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   TOKENS — keep identical to index.html so the site feels unified
+   ============================================================ */
+:root{
+  --cream:#f5f2eb;
+  --white:#ffffff;
+  --ink:#1a1a18;
+  --ink-soft:#5a5a55;
+  --ink-ghost:#a0a09a;
+  --line:#d8d4cc;
+  --accent:#c0392b;
+  --accent-wash:rgba(192,57,43,.07);
+  --radius:14px;
+  --maxw:880px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+html[lang="ar"] body{font-family:'Cairo',sans-serif;}
+html[lang="en"] body, html[lang="tr"] body{font-family:'Lora',serif;}
+
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+
+.dot-grid{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:radial-gradient(rgba(26,26,24,.09) 1px, transparent 1px);
+  background-size:28px 28px;
+}
+
+/* ---------- header (identical pattern to index.html) ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(245,242,235,.86);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-wrap{max-width:var(--maxw);margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;}
+html[lang="en"] .logo, html[lang="tr"] .logo{font-weight:700;}
+.logo .mark{width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;}
+.logo .role{font-weight:600;font-size:13px;color:var(--ink-soft);padding-inline-start:10px;border-inline-start:1px solid var(--line);}
+.lang-switch{display:flex;gap:4px;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:3px;}
+.lang-switch button{border:none;background:transparent;cursor:pointer;font-family:'Cairo',sans-serif;font-size:13px;font-weight:600;color:var(--ink-soft);padding:6px 13px;border-radius:999px;transition:background .2s, color .2s;}
+.lang-switch button.active{background:var(--ink);color:var(--cream);}
+.lang-switch button:hover:not(.active){color:var(--ink);}
+
+/* ---------- page head ---------- */
+.page-head{max-width:var(--maxw);margin:0 auto;padding:50px 24px 10px;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--ink-soft);margin-bottom:22px;}
+.back-link:hover{color:var(--accent);}
+.back-link svg{width:15px;height:15px;stroke:currentColor;}
+html[dir="rtl"] .back-link svg{transform:scaleX(-1);}
+.page-title{font-size:clamp(1.7rem,4.4vw,2.5rem);font-weight:800;}
+html[lang="en"] .page-title, html[lang="tr"] .page-title{font-weight:700;}
+
+/* ---------- card grid ---------- */
+section{max-width:var(--maxw);margin:0 auto;padding:26px 24px 70px;}
+.item-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+@media(min-width:640px){.item-grid{grid-template-columns:repeat(2,1fr);}}
+
+.item-card{
+  position:relative;overflow:hidden;
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  transition:border-color .3s, transform .2s;
+}
+.item-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+.item-card::before{
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%), var(--accent-wash), transparent 45%);
+  transition:opacity .4s;z-index:0;
+}
+.item-card:hover::before{opacity:1;}
+.item-body{padding:22px;position:relative;z-index:1;}
+.item-cover{width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--cream);border-bottom:1px solid var(--line);}
+.item-cover img{width:100%;height:100%;object-fit:cover;display:block;}
+.item-top{display:flex;align-items:center;gap:12px;margin-bottom:10px;position:relative;z-index:1;}
+.item-ext{width:14px;height:14px;stroke:var(--ink-ghost);flex-shrink:0;margin-inline-start:auto;transition:stroke .2s;}
+.item-card:hover .item-ext{stroke:var(--accent);}
+.item-emoji{width:38px;height:38px;border-radius:9px;background:var(--cream);border:1px solid var(--line);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.item-title{font-size:17px;font-weight:800;position:relative;z-index:1;}
+html[lang="en"] .item-title, html[lang="tr"] .item-title{font-weight:700;}
+.item-date{font-size:12px;color:var(--ink-ghost);font-weight:600;margin-top:12px;display:block;position:relative;z-index:1;}
+.item-blurb{font-size:14px;color:var(--ink-soft);position:relative;z-index:1;}
+
+.empty-state{
+  grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--ink-ghost);font-size:15px;
+  border:1px dashed var(--line);border-radius:var(--radius);
+}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:34px 24px;max-width:var(--maxw);margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;}
+.foot-socials{display:flex;gap:16px;}
+.foot-socials a{color:var(--ink-soft);font-size:13px;font-weight:600;}
+.foot-socials a:hover{color:var(--accent);}
+.foot-copy{font-size:13px;color:var(--ink-ghost);}
+</style>
+</head>
+<body>
+
+<div class="dot-grid"></div>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" class="logo">
+      <span class="mark">A</span>
+      <span data-i18n="nav.name">أحمد صالح تفاحة</span>
+      <span class="role" data-i18n="nav.role">مطوّر أعمال</span>
+    </a>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button data-lang="ar" class="active">AR</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="tr">TR</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="page-head">
+    <a class="back-link" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <span data-i18n="back">عودة للرئيسية</span>
+    </a>
+    <h1 class="page-title" data-i18n="page.title">خواطر وتجارب</h1>
+  </div>
+
+  <section>
+    <div class="item-grid" id="item-grid"></div>
+  </section>
+</main>
+
+<footer>
+  <span class="foot-copy" data-i18n="footer.copy">© 2026 أحمد صالح تفاحة — جميع الحقوق محفوظة</span>
+  <div class="foot-socials">
+    <a href="https://www.linkedin.com/in/ahmad-saleh-tuffaha/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="index.html" data-i18n="footer.home">الرئيسية</a>
+    <a href="mailto:salehzuh@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   CONTENT — add your LinkedIn articles here as you publish them.
+   Newest first. Each item needs: date, the LinkedIn post url,
+   and a title/blurb per language (LinkedIn posts are usually
+   written in one language — feel free to repeat the same text
+   in all three fields if you don't want to re-write it per language).
+
+   IMAGE (optional): add an "image" field with a direct link to the
+   picture and it'll show as a cover photo instead of the emoji icon.
+   Two ways to get that link:
+   1) On the LinkedIn post, right-click the image → "Copy image address".
+      Fast, but LinkedIn's image links can occasionally expire.
+   2) Download the image, put it in an "images" folder next to this
+      file, and use a relative path like "images/my-post.jpg".
+      More reliable long-term, since it doesn't depend on LinkedIn.
+   ============================================================ */
+const ITEMS = [
+  {
+    emoji: "💡",
+    date: "260827",
+    url: "https://www.linkedin.com/posts/ahmad-saleh-tuffaha_systemsintegration-operationalexcellence-activity-7498660803173048320-U_Zc",
+    title: {
+      ar: "السبب الحقيقي وراء \"اختفاء\" عشرات الأخطاء شهرياً في شركة لوجستية",
+      en: "The real reason dozens of monthly errors \"disappeared\" at a logistics company",
+      tr: "Bir lojistik şirketinde onlarca aylık hatanın \"kaybolmasının\" gerçek nedeni"
+    },
+    blurb: {
+      ar: "لا تبحث عن بشر خارقين لإصلاح نظام متهالك؛ ابنِ نظاماً ذكياً يجعل الخطأ مستحيلاً.",
+      en: "Don't look for superhuman staff to fix a broken system; build a smart system that makes the error impossible.",
+      tr: "Bozuk bir sistemi düzeltmek için kahraman insanlar arama; hatayı imkansız kılan akıllı bir sistem kur."
+    }
+  },
+  // {
+  //   emoji: "📝",
+  //   image: "images/my-post.jpg", // optional — omit to use the emoji instead
+  //   date: "يناير 2026",
+  //   url: "https://www.linkedin.com/posts/your-post-url",
+  //   title: { ar: "عنوان المقال", en: "Article title", tr: "Makale başlığı" },
+  //   blurb: { ar: "سطر مختصر عن الموضوع.", en: "One short line about it.", tr: "Kısa bir açıklama." }
+  // },
+];
+
+const translations = {
+  ar: {
+    "nav.name": "أحمد صالح تفاحة",
+    "nav.role": "مطوّر أعمال",
+    "back": "عودة للرئيسية",
+    "page.title": "خواطر وتجارب",
+    "empty": "لسا ما في خواطر منشورة — تابعني عالينكدإن.",
+    "footer.copy": "© 2026 أحمد صالح تفاحة — جميع الحقوق محفوظة",
+    "footer.home": "الرئيسية",
+  },
+  en: {
+    "nav.name": "Ahmad Saleh Tuffaha",
+    "nav.role": "Business Developer",
+    "back": "Back to home",
+    "page.title": "Reflections & Experiences",
+    "empty": "No reflections published yet — follow along on LinkedIn.",
+    "footer.copy": "© 2026 Ahmad Saleh Tuffaha — All rights reserved",
+    "footer.home": "Home",
+  },
+  tr: {
+    "nav.name": "Ahmad Saleh Tuffaha",
+    "nav.role": "İş Geliştirme Uzmanı",
+    "back": "Ana sayfaya dön",
+    "page.title": "Düşünceler ve Deneyimler",
+    "empty": "Henüz paylaşılmış bir düşünce yok — LinkedIn'den takip edebilirsin.",
+    "footer.copy": "© 2026 Ahmad Saleh Tuffaha — Tüm hakları saklıdır",
+    "footer.home": "Ana sayfa",
+  }
+};
+
+function applyTranslations(lang){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
+  const dict = translations[lang];
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if(dict[key]) el.textContent = dict[key];
+  });
+  document.querySelectorAll(".lang-switch button").forEach(btn=>{
+    btn.classList.toggle("active", btn.dataset.lang === lang);
+  });
+}
+
+function formatDate(code, lang){
+  // Expects a 6-digit YYMMDD code (e.g. "260827"). Anything else is shown as-is.
+  if(!/^\d{6}$/.test(String(code))) return code || "";
+  const yy = code.slice(0,2), mm = parseInt(code.slice(2,4),10)-1, dd = parseInt(code.slice(4,6),10);
+  const year = 2000 + parseInt(yy,10);
+  const months = {
+    ar: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول"],
+    en: ["January","February","March","April","May","June","July","August","September","October","November","December"],
+    tr: ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"]
+  };
+  const monthName = (months[lang] || months.en)[mm];
+  if(lang === "en") return `${monthName} ${dd}, ${year}`;
+  return `${dd} ${monthName} ${year}`;
+}
+
+function renderItems(lang){
+  const grid = document.getElementById("item-grid");
+  grid.innerHTML = "";
+  if(ITEMS.length === 0){
+    const p = document.createElement("p");
+    p.className = "empty-state";
+    p.textContent = translations[lang]["empty"];
+    grid.appendChild(p);
+    return;
+  }
+  ITEMS.forEach(item=>{
+    const a = document.createElement("a");
+    a.href = item.url; a.target = "_blank"; a.rel = "noopener";
+    a.className = "item-card";
+    const cover = item.image
+      ? `<div class="item-cover"><img src="${item.image}" alt="" loading="lazy"></div>`
+      : "";
+    const icon = item.image ? "" : `<span class="item-emoji">${item.emoji || "🔗"}</span>`;
+    a.innerHTML = `
+      ${cover}
+      <div class="item-body">
+        <div class="item-top">
+          ${icon}
+          <span class="item-title">${item.title[lang] || item.title.ar}</span>
+          <svg class="item-ext" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </div>
+        <p class="item-blurb">${(item.blurb && (item.blurb[lang] || item.blurb.ar)) || ""}</p>
+        <span class="item-date">${formatDate(item.date, lang)}</span>
+      </div>`;
+    a.addEventListener("mousemove", e=>{
+      const r = a.getBoundingClientRect();
+      a.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      a.style.setProperty("--my", (e.clientY - r.top) + "px");
+    });
+    grid.appendChild(a);
+  });
+}
+
+function setLanguage(lang){
+  localStorage.setItem("site-lang", lang);
+  applyTranslations(lang);
+  renderItems(lang);
+}
+
+document.querySelectorAll(".lang-switch button").forEach(btn=>{
+  btn.addEventListener("click", ()=> setLanguage(btn.dataset.lang));
+});
+
+const savedLang = localStorage.getItem("site-lang");
+setLanguage(translations[savedLang] ? savedLang : "ar");
+</script>
+</body>
+</html>
