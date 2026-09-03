@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ahmad Saleh TUFFAHA — Portfolio</title>
+<title>Ahmad Saleh TUFFAHA — CV</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500&family=Lora:ital,wght@0,400;0,600;1,400&family=Raleway:wght@300;400;500&family=Josefin+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --ink:#1a1a18;--ink-soft:#5a5a55;--ink-ghost:#a0a09a;
   --cream:#f5f2eb;--line:#d8d4cc;--white:#ffffff;
-  --edu:#c0392b;--human:#2471a3;--biz:#1e8449;
+  --edu:#7d0102;--human:#2471a3;--biz:#1e8449;
   --edu-sector:#8b5e34;
   --create:#6c3483;--sales:#d35400;--trans:#b7950b;
   --font-body:'DM Sans',sans-serif;
@@ -77,13 +77,11 @@ html[dir="rtl"] .skill-cluster--linked::after{right:auto;left:.6rem;content:'‹
 .skill-cluster--linked:hover::after{color:var(--cream);}
 .skill-cluster--plain .skill-cluster-name{color:var(--ink-ghost);padding-right:0;}
 html[dir="rtl"] .skill-cluster--plain .skill-cluster-name{padding-left:0;}
-.lang-row{margin-bottom:.75rem;}
-.lang-top{display:flex;justify-content:space-between;margin-bottom:3px;}
+.lang-row{margin-bottom:.7rem;padding-bottom:.7rem;border-bottom:1px solid var(--line);}
+.lang-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.lang-top{display:flex;justify-content:space-between;align-items:baseline;}
 .lang-name{font-size:clamp(.86rem,.96vw,1.08rem);color:var(--ink);font-weight:500;}
-.lang-level{font-size:clamp(.76rem,.84vw,.94rem);color:var(--ink-ghost);}
-.lang-dots{display:flex;gap:3px;}
-.lang-dot{width:6px;height:6px;border-radius:50%;background:var(--line);}
-.lang-dot.on{background:var(--edu);}
+.lang-level{font-size:clamp(.72rem,.8vw,.88rem);color:var(--ink-ghost);font-style:italic;}
 .proj-grid{display:flex;flex-direction:column;gap:1.4rem;margin-top:.4rem;}
 .proj-card{border:1px solid var(--line);border-radius:10px;padding:1.4rem 1.5rem;display:flex;flex-direction:column;gap:1.05rem;break-inside:avoid;}
 .proj-cat{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;}
@@ -121,7 +119,7 @@ html[dir="rtl"] .cert-group-toggle{text-align:right;}
 
 
 .photo-col{display:flex;flex-direction:column;align-items:center;gap:.65rem;width:100%;max-width:190px;align-self:center;}
-.bd-btn{display:block;width:100%;padding:.55rem 1rem;background:#c0392b;border:none;border-radius:6px;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,1.1vw,1.05rem);font-weight:700;letter-spacing:.08em;color:#fff;cursor:pointer;transition:opacity .2s;position:relative;padding-right:2rem;}
+.bd-btn{display:block;width:100%;padding:.55rem 1rem;background:#7d0102;border:none;border-radius:6px;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,1.1vw,1.05rem);font-weight:700;letter-spacing:.08em;color:#fff;cursor:pointer;transition:opacity .2s;position:relative;padding-right:2rem;}
 .bd-btn::after{content:'›';position:absolute;right:.85rem;top:50%;transform:translateY(-50%);font-size:1.1rem;line-height:1;transition:transform .18s ease;}
 .bd-btn:hover{opacity:.85;}
 .bd-btn:hover::after{transform:translateY(-50%) translateX(3px);}
@@ -192,6 +190,10 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
 /* PRINT-ONLY TIMELINE — shown only inside #print-page via print CSS */
 #print-timeline{display:none;}
 
+.cv-footer{grid-column:1/-1;text-align:center;padding:2.5rem 0 1.5rem;margin-top:1rem;border-top:1px solid var(--line);font-size:.75rem;letter-spacing:.03em;color:var(--ink-ghost);}
+.footer-name-link{color:var(--ink-ghost);text-decoration:none;border-bottom:1px solid transparent;transition:color .2s,border-color .2s;}
+.footer-name-link:hover{color:var(--edu);border-color:var(--edu);}
+
 /* PRINT PAGE */
 #print-page{display:none;}
 
@@ -223,13 +225,11 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
   .pp-skill-name{font-size:.68rem;color:rgba(245,242,235,.8);}
   .pp-cert-group-name{font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,242,235,.4);font-weight:500;margin:.55rem 0 .3rem;}
   .pp-cert-group:first-child .pp-cert-group-name{margin-top:0;}
-  .pp-lang-row{margin-bottom:.55rem;}
-  .pp-lang-top{display:flex;justify-content:space-between;margin-bottom:3px;}
+  .pp-lang-row{margin-bottom:.5rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.12);}
+  .pp-lang-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .pp-lang-top{display:flex;justify-content:space-between;align-items:baseline;}
   .pp-lang-name{font-size:.68rem;color:rgba(245,242,235,.8);font-weight:500;}
-  .pp-lang-level{font-size:.6rem;color:rgba(245,242,235,.4);}
-  .pp-lang-dots{display:flex;gap:3px;}
-  .pp-lang-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.15);}
-  .pp-lang-dot.on{background:var(--edu);}
+  .pp-lang-level{font-size:.6rem;color:rgba(245,242,235,.4);font-style:italic;}
   .pp-cert-item{font-size:.62rem;color:rgba(245,242,235,.65);margin-bottom:.32rem;padding-left:.5rem;border-left:1.5px solid rgba(255,255,255,.12);line-height:1.4;break-inside:avoid;}
   .pp-cert-item strong{color:rgba(245,242,235,.85);font-weight:500;display:block;font-size:.6rem;}
   #pp-qr{position:relative;display:block;text-align:center;width:100%;overflow:hidden;}
@@ -394,6 +394,10 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
         <svg class="ci" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2" stroke="#a0a09a" stroke-width="1.2"/><path d="M4 6v6M4 4v.5M8 6v6M8 6a3 3 0 016 0v6" stroke="#a0a09a" stroke-width="1.2" stroke-linecap="round"/></svg>
         <a class="cl" href="https://www.linkedin.com/in/ahmad-saleh-tuffaha/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
+      <div class="contact-item">
+        <svg class="ci" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#a0a09a" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c1.8 1.8 2.8 4.1 2.8 6.5s-1 4.7-2.8 6.5c-1.8-1.8-2.8-4.1-2.8-6.5S6.2 3.3 8 1.5z" stroke="#a0a09a" stroke-width="1.2"/></svg>
+        <a class="cl" href="https://ahmadsalehtuffaha.com/" target="_blank" rel="noopener">ahmadsalehtuffaha.com</a>
+      </div>
     </div>
 
     <div>
@@ -410,23 +414,23 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
       <button class="skill-cluster skill-cluster--linked" onclick="openAchievements('systems')" title="CRM Systems">
         <span class="skill-cluster-name" data-i18n="skillCrm">CRM Systems</span>
       </button>
-      <div class="skill-cluster skill-cluster--plain" title="Adobe Suite">
+      <button class="skill-cluster skill-cluster--linked" onclick="openAchievements('adobe')" title="Adobe Suite">
         <span class="skill-cluster-name" data-i18n="skillAdobe">Adobe Suite</span>
-      </div>
-      <div class="skill-cluster skill-cluster--plain" title="Digital Marketing">
+      </button>
+      <button class="skill-cluster skill-cluster--linked" onclick="openAchievements('marketing')" title="Digital Marketing">
         <span class="skill-cluster-name" data-i18n="skillMarketing">Digital Marketing</span>
-      </div>
-      <div class="skill-cluster skill-cluster--plain" title="AutoCAD">
+      </button>
+      <button class="skill-cluster skill-cluster--linked" onclick="openAchievements('autocad')" title="AutoCAD">
         <span class="skill-cluster-name" data-i18n="skillAutoCAD">AutoCAD</span>
-      </div>
+      </button>
     </div>
 
 
     <div>
       <p class="sec-label" data-i18n="languages">Languages</p>
-      <div class="lang-row"><div class="lang-top"><span class="lang-name" data-i18n="langArabic">Arabic</span><span class="lang-level" data-i18n="levelNative">Native</span></div><div class="lang-dots"><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div></div></div>
-      <div class="lang-row"><div class="lang-top"><span class="lang-name" data-i18n="langEnglish">English</span><span class="lang-level" data-i18n="levelFluent">Fluent</span></div><div class="lang-dots"><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot"></div></div></div>
-      <div class="lang-row"><div class="lang-top"><span class="lang-name" data-i18n="langTurkish">Turkish</span><span class="lang-level" data-i18n="levelIntermediate">Intermediate</span></div><div class="lang-dots"><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot"></div><div class="lang-dot"></div></div></div>
+      <div class="lang-row"><div class="lang-top"><span class="lang-name" data-i18n="langArabic">Arabic</span><span class="lang-level" data-i18n="levelNative">Native</span></div></div>
+      <div class="lang-row"><div class="lang-top"><span class="lang-name" data-i18n="langEnglish">English</span><span class="lang-level" data-i18n="levelFluent">Fluent</span></div></div>
+      <div class="lang-row"><div class="lang-top"><span class="lang-name" data-i18n="langTurkish">Turkish</span><span class="lang-level" data-i18n="levelIntermediate">Intermediate</span></div></div>
     </div>
 
 
@@ -512,6 +516,10 @@ html[dir="rtl"] .photo-slot img{transform:scaleX(1);}
       </div>
     </div>
   </div>
+  <footer class="cv-footer">
+    <span data-i18n="footerCopyPrefix">© 2026</span>
+    <a class="footer-name-link" href="https://ahmadsalehtuffaha.com/" data-i18n="footerName">Ahmad Saleh Tuffaha</a>
+  </footer>
 </div>
 <div class="overlay" id="overlay" onclick="handleClose(event)">
   <div class="exp-card">
@@ -639,6 +647,60 @@ var ACH_CATEGORIES=[
         color:'var(--edu-sector)'
       }
     ]
+  },
+  {
+    key:'autocad',
+    en:'AutoCAD',
+    ar:'AutoCAD',
+    tr:'AutoCAD',
+    items:[
+      {
+        en:{text:'Reorganized single-layer drawings into element-based, structured layers across 10+ civil engineering projects',badge:'10+ projects',source:'Tuffaha Office'},
+        ar:{text:'أعدت تنظيم الرسومات من طبقة واحدة إلى طبقات مصنّفة حسب العناصر، عبر أكثر من 10 مشاريع هندسة مدنية',badge:'10+ مشاريع',source:'Tuffaha Office'},
+        tr:{text:'10+ inşaat mühendisliği projesinde tek katmanlı çizimleri, elemana dayalı düzenli katmanlara yeniden organize etti',badge:'10+ proje',source:'Tuffaha Office'},
+        color:'var(--create)'
+      }
+    ]
+  },
+  {
+    key:'adobe',
+    en:'Adobe Suite',
+    ar:'حزمة Adobe',
+    tr:'Adobe Paketi',
+    items:[
+      {
+        en:{text:'Delivered visual design work across jewelry retail, personal branding, and print — every AI-generated visual is still manually reviewed and edited before publishing',badge:'100% manual review',source:'One for All'},
+        ar:{text:'صممت أعمالاً بصرية لقطاعات المجوهرات بالتجزئة والعلامات الشخصية والطباعة — وإلى الآن كل عمل مرئي يُنشأ بالذكاء الاصطناعي يتم تعديله يدوياً قبل النشر',badge:'مراجعة يدوية 100%',source:'One for All'},
+        tr:{text:'Mücevher perakendesi, kişisel marka ve baskı alanlarında görsel tasarım işleri üretti — yapay zekâ ile oluşturulan her görsel hâlâ yayından önce elle gözden geçiriliyor ve düzenleniyor',badge:'%100 manuel kontrol',source:'One for All'},
+        color:'var(--create)'
+      }
+    ]
+  },
+  {
+    key:'marketing',
+    en:'Digital Marketing',
+    ar:'التسويق الرقمي',
+    tr:'Dijital Pazarlama',
+    items:[
+      {
+        en:{text:'Certified Digital Marketing Associate from Meta',badge:'Meta Certified',source:'Meta'},
+        ar:{text:'حاصل على شهادة معتمدة من Meta في التسويق الرقمي',badge:'شهادة Meta',source:'Meta'},
+        tr:{text:'Meta\'dan Sertifikalı Dijital Pazarlama Ortağı unvanı aldı',badge:'Meta Sertifikalı',source:'Meta'},
+        color:'var(--edu)'
+      },
+      {
+        en:{text:'Grew a client\'s page past 500 followers in a single day',badge:'500+ in 1 day',source:''},
+        ar:{text:'نمّيت صفحة عميل لتتجاوز 500 متابع خلال يوم واحد',badge:'500+ بيوم واحد',source:''},
+        tr:{text:'Bir müşteri sayfasını tek bir günde 500\'ün üzerinde takipçiye ulaştırdı',badge:'1 günde 500+',source:''},
+        color:'var(--create)'
+      },
+      {
+        en:{text:'Oversaw marketing managers across multiple companies',badge:'Multi-company',source:''},
+        ar:{text:'أشرفت على مدراء تسويق ضمن شركات متعددة',badge:'شركات متعددة',source:''},
+        tr:{text:'Birden fazla şirkette pazarlama müdürlerini denetledi',badge:'Çoklu şirket',source:''},
+        color:'var(--edu-sector)'
+      }
+    ]
   }
 ];
 
@@ -676,9 +738,9 @@ function buildAchievements(){
 }
 
 var UI_TEXT={
-  en:{cvLabel:'Curriculum Vitae',firstName:'Ahmad Saleh',lastName:'TUFFAHA',heroBio:'Hidden inefficiency and operational waste cost companies far more than they realize. With 20+ years in business development and operations, I build and monitor automated workflows that turn that chaos into precise, high-performing systems.',tagBiz:'Business Development',tagAI:'AI-Assisted Workflows',tagExcel:'Excel & Data Systems',tagOps:'Operations',tagTrans:'EN–AR Translation',contact:'Contact',skills:'Skills',languages:'Languages',sectorLegend:'Sector Legend',certs:'Certifications & Training',timeline:'Companies I\'ve Worked With',location:'Istanbul, Turkey',skillExcel:'Excel & Data',skillOps:'Operations',skillAdobe:'Adobe Suite',skillCrm:'CRM Systems',skillMarketing:'Digital Marketing',skillAutoCAD:'AutoCAD',skillAI:'AI & Digital Tools',langArabic:'Arabic',langEnglish:'English',langTurkish:'Turkish',levelNative:'Native',levelFluent:'Fluent',levelIntermediate:'Intermediate',sectorEdu:'Educational Consulting',sectorIndie:'Independent Practice',sectorHuman:'Humanitarian',sectorBiz:'Accounting & Finance',sectorCreate:'Creative & Design',sectorSales:'Sales & Retail',sectorTrans:'Translation',tap:'tap to view',present:'present',certDigitalBasics:'Fundamentals of Digital Marketing',certMetaAssociate:'Certified Digital Marketing Associate',certSocial:'Social Media Marketing Professional',certSeo:'Search Engine Optimization (SEO)',certData:'Data Analysis',certSurvey:'Conducting Field Survey',certLogic:'Logistic Inventory Control (LogIC)',certFirstAid:'First Aid Basic',certDisaster:'Disaster Management Basic',certNlp:'Neuro-Linguistic Programming (NLP)',certProject:'Project / Programme Planning',certME:'Introduction to M&E',certNeeds:'Emergency Needs Assessment',certVulnerability:'Vulnerability Assessment & Analysis',certWorc:'WORC: World of Red Cross',certAccounting:'Commercial Institute / Accounting',certGroupMarketing:'Digital Marketing',certGroupHumanitarian:'Humanitarian & M&E',certGroupAccounting:'Accounting',achLabel:'Key Achievements',bdBtn:'Business Developer',otherExp:'Other Experiences & Projects',otherTransTitle:'Translation',otherRetailTitle:'Retail & Store Management',otherDesignTitle:'Design',other12yr:'12 years',other4pl:'4 companies',other7yr:'7 years',other2pl:'2 companies',other9yr:'9 years',other3pl:'3 companies',projChallenge:'Challenge',projSolution:'Solution',projImpact:'Impact',projIntro:'Client projects delivered:',projPrintNote:'Project details are available in the interactive portfolio — scan the QR code.'},
-  ar:{cvLabel:'السيرة الذاتية',firstName:'أحمد صالح',lastName:'تفاحة',heroBio:'يكلّف الهدر التشغيلي والفوضى الخفية الشركاتِ وقتاً وموارداً أكثر بكثير مما يتوقعون. لدي خبرة تزيد عن 20 عاماً في تطوير أعمال الشركات والمؤسسات، وأتمتة سير عملها ومراقبته لتحويل تلك الفوضى إلى أنظمة دقيقة عالية الكفاءة.',tagBiz:'تطوير الأعمال',tagAI:'سير عمل بالذكاء الاصطناعي',tagExcel:'Excel وأنظمة البيانات',tagOps:'العمليات',tagTrans:'ترجمة إنجليزي–عربي',contact:'التواصل',skills:'المهارات',languages:'اللغات',sectorLegend:'دليل القطاعات',certs:'الشهادات والتدريب',timeline:'الشركات التي عملت معها',location:'إسطنبول، تركيا',skillExcel:'Excel والبيانات',skillOps:'العمليات',skillAdobe:'حزمة Adobe',skillCrm:'أنظمة إدارة علاقات العملاء',skillMarketing:'التسويق الرقمي',skillAutoCAD:'AutoCAD',skillAI:'الذكاء الاصطناعي والأدوات الرقمية',langArabic:'العربية',langEnglish:'الإنجليزية',langTurkish:'التركية',levelNative:'اللغة الأم',levelFluent:'متقدم',levelIntermediate:'متوسط',sectorEdu:'الاستشارات التعليمية',sectorIndie:'عمل مستقل',sectorHuman:'العمل الإنساني',sectorBiz:'المحاسبة والمالية',sectorCreate:'الإبداع والتصميم',sectorSales:'المبيعات والتجزئة',sectorTrans:'الترجمة',tap:'اضغط للتفاصيل',present:'حتى الآن',certDigitalBasics:'أساسيات التسويق الرقمي',certMetaAssociate:'شريك معتمد في التسويق الرقمي من Meta',certSocial:'محترف تسويق عبر وسائل التواصل الاجتماعي',certSeo:'تحسين محركات البحث (SEO)',certData:'تحليل البيانات',certSurvey:'إجراء المسوحات الميدانية',certLogic:'التحكم بالمخزون اللوجستي (LogIC)',certFirstAid:'الإسعاف الأولي الأساسي',certDisaster:'أساسيات إدارة الكوارث',certNlp:'البرمجة اللغوية العصبية (NLP)',certProject:'تخطيط المشاريع والبرامج',certME:'مقدمة في الرصد والتقييم',certNeeds:'تقييم الاحتياجات الطارئة',certVulnerability:'تقييم وتحليل الهشاشة',certWorc:'عالم الصليب الأحمر والهلال الأحمر',certAccounting:'المعهد التجاري / المحاسبة',certGroupMarketing:'التسويق الرقمي',certGroupHumanitarian:'العمل الإنساني والرصد والتقييم',certGroupAccounting:'المحاسبة',achLabel:'الإنجازات الرئيسية',bdBtn:'مطوّر أعمال',otherExp:'تجارب ومشاريع أخرى',otherTransTitle:'الترجمة',otherRetailTitle:'التجزئة وإدارة المتاجر',otherDesignTitle:'التصميم',other12yr:'12 عاماً',other4pl:'4 شركات',other7yr:'7 أعوام',other2pl:'شركتان',other9yr:'9 أعوام',other3pl:'3 شركات',projChallenge:'التحدي',projSolution:'الحل',projImpact:'الأثر',projIntro:'قائمة بالمشاريع التي نفذتها:',projPrintNote:'تفاصيل المشاريع متوفرة ضمن البورتفوليو التفاعلي — امسح رمز QR.'},
-  tr:{cvLabel:'Özgeçmiş',firstName:'Ahmad Saleh',lastName:'TUFFAHA',heroBio:'Gizli verimsizlik ve operasyonel israf, şirketlere düşündüklerinden çok daha fazlasına mal olur. İş geliştirme ve operasyonlarda 20 yılı aşkın deneyimimle, iş akışlarını otomatikleştirip izleyerek bu kaosu hassas ve yüksek verimli sistemlere dönüştürüyorum.',tagBiz:'İş Geliştirme',tagAI:'Yapay Zekâ Destekli İş Akışları',tagExcel:'Excel ve Veri Sistemleri',tagOps:'Operasyon',tagTrans:'EN–AR Çeviri',contact:'İletişim',skills:'Yetenekler',languages:'Diller',sectorLegend:'Sektör Rehberi',certs:'Sertifikalar ve Eğitimler',timeline:'Birlikte Çalıştığım Şirketler',location:'İstanbul, Türkiye',skillExcel:'Excel ve Veri',skillOps:'Operasyonlar',skillAdobe:'Adobe Paketi',skillCrm:'CRM Sistemleri',skillMarketing:'Dijital Pazarlama',skillAutoCAD:'AutoCAD',skillAI:'Yapay Zekâ ve Dijital Araçlar',langArabic:'Arapça',langEnglish:'İngilizce',langTurkish:'Türkçe',levelNative:'Ana dil',levelFluent:'Akıcı',levelIntermediate:'Orta seviye',sectorEdu:'Eğitim Danışmanlığı',sectorIndie:'Bağımsız Çalışma',sectorHuman:'İnsani Çalışmalar',sectorBiz:'Muhasebe ve Finans',sectorCreate:'Yaratıcılık ve Tasarım',sectorSales:'Satış ve Perakende',sectorTrans:'Çeviri',tap:'detayları gör',present:'günümüz',certDigitalBasics:'Dijital Pazarlamanın Temelleri',certMetaAssociate:'Meta Sertifikalı Dijital Pazarlama Ortağı',certSocial:'Sosyal Medya Pazarlama Profesyoneli',certSeo:'Arama Motoru Optimizasyonu (SEO)',certData:'Veri Analizi',certSurvey:'Saha Araştırması Yürütme',certLogic:'Lojistik Envanter Kontrolü (LogIC)',certFirstAid:'Temel İlk Yardım',certDisaster:'Temel Afet Yönetimi',certNlp:'Nöro-Linguistik Programlama (NLP)',certProject:'Proje / Program Planlama',certME:'İzleme ve Değerlendirmeye Giriş',certNeeds:'Acil İhtiyaç Değerlendirmesi',certVulnerability:'Kırılganlık Değerlendirmesi ve Analizi',certWorc:'WORC: Kızılhaç ve Kızılay Dünyası',certAccounting:'Ticaret Enstitüsü / Muhasebe',certGroupMarketing:'Dijital Pazarlama',certGroupHumanitarian:'İnsani Çalışmalar ve İzleme-Değerlendirme',certGroupAccounting:'Muhasebe',achLabel:'Öne Çıkan Başarılar',bdBtn:'İş Geliştirici',otherExp:'Diğer Deneyimler ve Projeler',otherTransTitle:'Çeviri',otherRetailTitle:'Perakende ve Mağaza Yönetimi',otherDesignTitle:'Tasarım',other12yr:'12 yıl',other4pl:'4 şirket',other7yr:'7 yıl',other2pl:'2 şirket',other9yr:'9 yıl',other3pl:'3 şirket',projChallenge:'Zorluk',projSolution:'Çözüm',projImpact:'Etki',projIntro:'Tamamlanan müşteri projeleri:',projPrintNote:'Proje detayları interaktif portföyde mevcuttur — QR kodu okutun.'}
+  en:{cvLabel:'Curriculum Vitae',firstName:'Ahmad Saleh',lastName:'TUFFAHA',heroBio:'Hidden inefficiency and operational waste cost companies far more than they realize. With 20+ years in business development and operations, I build and monitor automated workflows that turn that chaos into precise, high-performing systems.',tagBiz:'Business Development',tagAI:'AI-Assisted Workflows',tagExcel:'Excel & Data Systems',tagOps:'Operations',tagTrans:'EN–AR Translation',contact:'Contact',skills:'Skills',languages:'Languages',sectorLegend:'Sector Legend',certs:'Certifications & Training',timeline:'Companies I\'ve Worked With',location:'Istanbul, Turkey',skillExcel:'Excel & Data',skillOps:'Operations',skillAdobe:'Adobe Suite',skillCrm:'CRM Systems',skillMarketing:'Digital Marketing',skillAutoCAD:'AutoCAD',skillAI:'AI & Digital Tools',langArabic:'Arabic',langEnglish:'English',langTurkish:'Turkish',levelNative:'Native',levelFluent:'Fluent',levelIntermediate:'Intermediate',sectorEdu:'Educational Consulting',sectorIndie:'Independent Practice',sectorHuman:'Humanitarian',sectorBiz:'Accounting & Finance',sectorCreate:'Creative & Design',sectorSales:'Sales & Retail',sectorTrans:'Translation',tap:'tap to view',present:'present',certDigitalBasics:'Fundamentals of Digital Marketing',certMetaAssociate:'Certified Digital Marketing Associate',certSocial:'Social Media Marketing Professional',certSeo:'Search Engine Optimization (SEO)',certData:'Data Analysis',certSurvey:'Conducting Field Survey',certLogic:'Logistic Inventory Control (LogIC)',certFirstAid:'First Aid Basic',certDisaster:'Disaster Management Basic',certNlp:'Neuro-Linguistic Programming (NLP)',certProject:'Project / Programme Planning',certME:'Introduction to M&E',certNeeds:'Emergency Needs Assessment',certVulnerability:'Vulnerability Assessment & Analysis',certWorc:'WORC: World of Red Cross',certAccounting:'Commercial Institute / Accounting',certGroupMarketing:'Digital Marketing',certGroupHumanitarian:'Humanitarian & M&E',certGroupAccounting:'Accounting',achLabel:'Key Achievements',bdBtn:'Business Developer',otherExp:'Other Experiences & Projects',otherTransTitle:'Translation',otherRetailTitle:'Retail & Store Management',otherDesignTitle:'Design',other12yr:'12 years',other4pl:'4 companies',other7yr:'7 years',other2pl:'2 companies',other9yr:'9 years',other3pl:'3 companies',projChallenge:'Challenge',projSolution:'Solution',projImpact:'Impact',projIntro:'Client projects delivered:',projPrintNote:'Project details are available in the interactive portfolio — scan the QR code.',footerCopyPrefix:'© 2026',footerName:'Ahmad Saleh Tuffaha'},
+  ar:{cvLabel:'السيرة الذاتية',firstName:'أحمد صالح',lastName:'تفاحة',heroBio:'يكلّف الهدر التشغيلي والفوضى الخفية الشركاتِ وقتاً وموارداً أكثر بكثير مما يتوقعون. لدي خبرة تزيد عن 20 عاماً في تطوير أعمال الشركات والمؤسسات، وأتمتة سير عملها ومراقبته لتحويل تلك الفوضى إلى أنظمة دقيقة عالية الكفاءة.',tagBiz:'تطوير الأعمال',tagAI:'سير عمل بالذكاء الاصطناعي',tagExcel:'Excel وأنظمة البيانات',tagOps:'العمليات',tagTrans:'ترجمة إنجليزي–عربي',contact:'التواصل',skills:'المهارات',languages:'اللغات',sectorLegend:'دليل القطاعات',certs:'الشهادات والتدريب',timeline:'الشركات التي عملت معها',location:'إسطنبول، تركيا',skillExcel:'Excel والبيانات',skillOps:'العمليات',skillAdobe:'حزمة Adobe',skillCrm:'أنظمة إدارة علاقات العملاء',skillMarketing:'التسويق الرقمي',skillAutoCAD:'AutoCAD',skillAI:'الذكاء الاصطناعي والأدوات الرقمية',langArabic:'العربية',langEnglish:'الإنجليزية',langTurkish:'التركية',levelNative:'اللغة الأم',levelFluent:'متقدم',levelIntermediate:'متوسط',sectorEdu:'الاستشارات التعليمية',sectorIndie:'عمل مستقل',sectorHuman:'العمل الإنساني',sectorBiz:'المحاسبة والمالية',sectorCreate:'الإبداع والتصميم',sectorSales:'المبيعات والتجزئة',sectorTrans:'الترجمة',tap:'اضغط للتفاصيل',present:'حتى الآن',certDigitalBasics:'أساسيات التسويق الرقمي',certMetaAssociate:'شريك معتمد في التسويق الرقمي من Meta',certSocial:'محترف تسويق عبر وسائل التواصل الاجتماعي',certSeo:'تحسين محركات البحث (SEO)',certData:'تحليل البيانات',certSurvey:'إجراء المسوحات الميدانية',certLogic:'التحكم بالمخزون اللوجستي (LogIC)',certFirstAid:'الإسعاف الأولي الأساسي',certDisaster:'أساسيات إدارة الكوارث',certNlp:'البرمجة اللغوية العصبية (NLP)',certProject:'تخطيط المشاريع والبرامج',certME:'مقدمة في الرصد والتقييم',certNeeds:'تقييم الاحتياجات الطارئة',certVulnerability:'تقييم وتحليل الهشاشة',certWorc:'عالم الصليب الأحمر والهلال الأحمر',certAccounting:'المعهد التجاري / المحاسبة',certGroupMarketing:'التسويق الرقمي',certGroupHumanitarian:'العمل الإنساني والرصد والتقييم',certGroupAccounting:'المحاسبة',achLabel:'الإنجازات الرئيسية',bdBtn:'مطوّر أعمال',otherExp:'تجارب ومشاريع أخرى',otherTransTitle:'الترجمة',otherRetailTitle:'التجزئة وإدارة المتاجر',otherDesignTitle:'التصميم',other12yr:'12 عاماً',other4pl:'4 شركات',other7yr:'7 أعوام',other2pl:'شركتان',other9yr:'9 أعوام',other3pl:'3 شركات',projChallenge:'التحدي',projSolution:'الحل',projImpact:'الأثر',projIntro:'قائمة بالمشاريع التي نفذتها:',projPrintNote:'تفاصيل المشاريع متوفرة ضمن البورتفوليو التفاعلي — امسح رمز QR.',footerCopyPrefix:'© 2026',footerName:'أحمد صالح تفاحة'},
+  tr:{cvLabel:'Özgeçmiş',firstName:'Ahmad Saleh',lastName:'TUFFAHA',heroBio:'Gizli verimsizlik ve operasyonel israf, şirketlere düşündüklerinden çok daha fazlasına mal olur. İş geliştirme ve operasyonlarda 20 yılı aşkın deneyimimle, iş akışlarını otomatikleştirip izleyerek bu kaosu hassas ve yüksek verimli sistemlere dönüştürüyorum.',tagBiz:'İş Geliştirme',tagAI:'Yapay Zekâ Destekli İş Akışları',tagExcel:'Excel ve Veri Sistemleri',tagOps:'Operasyon',tagTrans:'EN–AR Çeviri',contact:'İletişim',skills:'Yetenekler',languages:'Diller',sectorLegend:'Sektör Rehberi',certs:'Sertifikalar ve Eğitimler',timeline:'Birlikte Çalıştığım Şirketler',location:'İstanbul, Türkiye',skillExcel:'Excel ve Veri',skillOps:'Operasyonlar',skillAdobe:'Adobe Paketi',skillCrm:'CRM Sistemleri',skillMarketing:'Dijital Pazarlama',skillAutoCAD:'AutoCAD',skillAI:'Yapay Zekâ ve Dijital Araçlar',langArabic:'Arapça',langEnglish:'İngilizce',langTurkish:'Türkçe',levelNative:'Ana dil',levelFluent:'Akıcı',levelIntermediate:'Orta seviye',sectorEdu:'Eğitim Danışmanlığı',sectorIndie:'Bağımsız Çalışma',sectorHuman:'İnsani Çalışmalar',sectorBiz:'Muhasebe ve Finans',sectorCreate:'Yaratıcılık ve Tasarım',sectorSales:'Satış ve Perakende',sectorTrans:'Çeviri',tap:'detayları gör',present:'günümüz',certDigitalBasics:'Dijital Pazarlamanın Temelleri',certMetaAssociate:'Meta Sertifikalı Dijital Pazarlama Ortağı',certSocial:'Sosyal Medya Pazarlama Profesyoneli',certSeo:'Arama Motoru Optimizasyonu (SEO)',certData:'Veri Analizi',certSurvey:'Saha Araştırması Yürütme',certLogic:'Lojistik Envanter Kontrolü (LogIC)',certFirstAid:'Temel İlk Yardım',certDisaster:'Temel Afet Yönetimi',certNlp:'Nöro-Linguistik Programlama (NLP)',certProject:'Proje / Program Planlama',certME:'İzleme ve Değerlendirmeye Giriş',certNeeds:'Acil İhtiyaç Değerlendirmesi',certVulnerability:'Kırılganlık Değerlendirmesi ve Analizi',certWorc:'WORC: Kızılhaç ve Kızılay Dünyası',certAccounting:'Ticaret Enstitüsü / Muhasebe',certGroupMarketing:'Dijital Pazarlama',certGroupHumanitarian:'İnsani Çalışmalar ve İzleme-Değerlendirme',certGroupAccounting:'Muhasebe',achLabel:'Öne Çıkan Başarılar',bdBtn:'İş Geliştirici',otherExp:'Diğer Deneyimler ve Projeler',otherTransTitle:'Çeviri',otherRetailTitle:'Perakende ve Mağaza Yönetimi',otherDesignTitle:'Tasarım',other12yr:'12 yıl',other4pl:'4 şirket',other7yr:'7 yıl',other2pl:'2 şirket',other9yr:'9 yıl',other3pl:'3 şirket',projChallenge:'Zorluk',projSolution:'Çözüm',projImpact:'Etki',projIntro:'Tamamlanan müşteri projeleri:',projPrintNote:'Proje detayları interaktif portföyde mevcuttur — QR kodu okutun.',footerCopyPrefix:'© 2026',footerName:'Ahmad Saleh Tuffaha'}
 };
 var SECTOR_TEXT={ar:{'Education & Ops':'الاستشارات التعليمية','Humanitarian':'العمل الإنساني','Business':'المحاسبة والمالية','Creative & Design':'الإبداع والتصميم','Sales & Retail':'المبيعات والتجزئة','Translation':'الترجمة','Independent Practice':'عمل مستقل'},tr:{'Education & Ops':'Eğitim Danışmanlığı','Humanitarian':'İnsani Çalışmalar','Business':'Muhasebe ve Finans','Creative & Design':'Yaratıcılık ve Tasarım','Sales & Retail':'Satış ve Perakende','Translation':'Çeviri','Independent Practice':'Bağımsız Çalışma'}};
 var JOB_TEXT={
@@ -706,7 +768,7 @@ function applyLanguage(lang){
 }
 
 var GHOST='#a0a09a',SPINE_C='#d8d4cc',INK='#1a1a18';
-var COL={edu:'#c0392b',human:'#2471a3',biz:'#1e8449',create:'#6c3483',sales:'#d35400',trans:'#b7950b',eduSector:'#8b5e34',indie:'#c0392b'};
+var COL={edu:'#7d0102',human:'#2471a3',biz:'#1e8449',create:'#6c3483',sales:'#d35400',trans:'#b7950b',eduSector:'#8b5e34',indie:'#7d0102'};
 var MIN=2015,MAX=2026,TOP=60;
 var D_INNER=34,D_OUTER=74,SERIF=10,CARD_GAP=15;
 var INNER_W=172,OUTER_W=150;
@@ -1358,9 +1420,9 @@ try{
     </div>
     <div class="pp-sec">
       <p class="pp-sec-label" id="pp-lang-label">Languages</p>
-      <div class="pp-lang-row"><div class="pp-lang-top"><span class="pp-lang-name" id="pp-l1">Arabic</span><span class="pp-lang-level" id="pp-ll1">Native</span></div><div class="pp-lang-dots"><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div></div></div>
-      <div class="pp-lang-row"><div class="pp-lang-top"><span class="pp-lang-name" id="pp-l2">English</span><span class="pp-lang-level" id="pp-ll2">Fluent</span></div><div class="pp-lang-dots"><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot"></div></div></div>
-      <div class="pp-lang-row"><div class="pp-lang-top"><span class="pp-lang-name" id="pp-l3">Turkish</span><span class="pp-lang-level" id="pp-ll3">Intermediate</span></div><div class="pp-lang-dots"><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot on"></div><div class="pp-lang-dot"></div><div class="pp-lang-dot"></div></div></div>
+      <div class="pp-lang-row"><div class="pp-lang-top"><span class="pp-lang-name" id="pp-l1">Arabic</span><span class="pp-lang-level" id="pp-ll1">Native</span></div></div>
+      <div class="pp-lang-row"><div class="pp-lang-top"><span class="pp-lang-name" id="pp-l2">English</span><span class="pp-lang-level" id="pp-ll2">Fluent</span></div></div>
+      <div class="pp-lang-row"><div class="pp-lang-top"><span class="pp-lang-name" id="pp-l3">Turkish</span><span class="pp-lang-level" id="pp-ll3">Intermediate</span></div></div>
     </div>
     <div class="pp-sec">
       <p class="pp-sec-label">View interactive version</p>
